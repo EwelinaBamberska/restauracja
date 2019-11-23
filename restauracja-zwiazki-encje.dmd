@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="restauracja-zwiazki-encje" id="49F425D1-430A-A559-8F20-1F886A971F2C" version="3.5">
+<createdBy>filga</createdBy>
+<createdTime>2019-10-24 12:19:30 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>49F425D1-430A-A559-8F20-1F886A971F2C</designId>
+</OSDM_Design>

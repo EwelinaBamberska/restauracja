@@ -1,0 +1,71 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="9BE43C1D-7E48-4C2B-88B7-E7E26602B758" name="PRACOWNIK_NA_ZMIANIE">
+<createdBy>filga</createdBy>
+<createdTime>2019-10-24 12:24:59 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<engineerTo>
+<item key="17A8065D-D27C-C0D8-E825-DF6F9C9B499F" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID_PRAC" id="BE0E20BF-0AAC-291B-34C2-2307F5DB954B">
+<createdBy>filga</createdBy>
+<createdTime>2019-10-24 13:18:57 UTC</createdTime>
+<generatorID>393D5CFF-C467-A3CC-25E5-A95D7E504F39</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<engineerTo>
+<item key="17A8065D-D27C-C0D8-E825-DF6F9C9B499F" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>12E3FD99-FEC8-339A-998C-03E9E54BABD9</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Data" id="26BC15D0-E8BD-CBAA-9CAE-94780D00D0BE">
+<createdBy>filga</createdBy>
+<createdTime>2019-10-24 13:19:44 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<engineerTo>
+<item key="17A8065D-D27C-C0D8-E825-DF6F9C9B499F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Ilosc_godzin" id="D560A14C-62FF-7C10-335C-87FF6710A8DE">
+<createdBy>filga</createdBy>
+<createdTime>2019-10-24 13:20:19 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<engineerTo>
+<item key="17A8065D-D27C-C0D8-E825-DF6F9C9B499F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT018</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Stawka" id="FDD5ACD0-7C2C-AF6D-C9DB-E9BAB5B05694">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-18 14:17:33 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<engineerTo>
+<item key="17A8065D-D27C-C0D8-E825-DF6F9C9B499F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

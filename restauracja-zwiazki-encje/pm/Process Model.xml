@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<ProcessModel class="oracle.dbtools.crest.model.design.process.ProcessModel" name="Process Model" id="4A6336B4-F3E0-0A40-A0B0-4662EB1A3C76">
+<createdBy>filga</createdBy>
+<createdTime>2019-10-24 12:19:31 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</ProcessModel>

@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<LogicalDesign class="oracle.dbtools.crest.model.design.logical.LogicalDesign" name="Logical" id="280E4A4E-9E9E-CDCF-3546-F7DA834AA9E4" mainViewID="0423994B-D680-C772-C8AD-9A0621A773CF">
+<createdBy>filga</createdBy>
+<createdTime>2019-10-24 12:19:30 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</LogicalDesign>

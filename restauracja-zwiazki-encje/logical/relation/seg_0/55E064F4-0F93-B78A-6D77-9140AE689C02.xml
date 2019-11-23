@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_5" directorySegmentName="seg_0" id="55E064F4-0F93-B78A-6D77-9140AE689C02">
+<createdBy>filga</createdBy>
+<createdTime>2019-10-24 13:32:01 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<engineerTo>
+<item key="17A8065D-D27C-C0D8-E825-DF6F9C9B499F" value="true"/>
+</engineerTo>
+<sourcePk>BDA39056-FCAA-D2E6-FA1E-25973EF4A9E5</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>wydaje</nameOnSource>
+<nameOnTarget>jest wydawany przez</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>37A81CB7-7E55-000B-8BCC-6738D64F149B</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>CEC91A68-BAFE-6E01-30BC-74F883AA88EA</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

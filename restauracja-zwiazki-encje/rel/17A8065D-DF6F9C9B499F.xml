@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<relationalModel class="oracle.dbtools.crest.model.design.relational.RelationalDesign" name="Relational_1" id="17A8065D-D27C-C0D8-E825-DF6F9C9B499F" mainViewID="77517FEB-1A8A-7733-EF6C-AEFE93949965">
+<createdBy>filga</createdBy>
+<createdTime>2019-10-24 12:24:51 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+<selectedRDBMSSite>32076570-2523-435C-2E92-BF29817DFF70</selectedRDBMSSite>
+</relationalModel>
