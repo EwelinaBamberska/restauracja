@@ -6,6 +6,7 @@
 <mandatory>false</mandatory>
 <reverseArc>true</reverseArc>
 <table>2F39F773-0C3F-9477-740C-0B80F2837164</table>
+<discriminatorColumn>ED00CCB9-BED9-A3E8-BA5E-D72D1AE36438</discriminatorColumn>
 <fkeys>
 <fkeyID>978659BC-83A0-2508-C7F6-154DCF2D8B47</fkeyID>
 <fkeyID>9B9E48DA-6489-C755-AC39-EE856C5CDC82</fkeyID>

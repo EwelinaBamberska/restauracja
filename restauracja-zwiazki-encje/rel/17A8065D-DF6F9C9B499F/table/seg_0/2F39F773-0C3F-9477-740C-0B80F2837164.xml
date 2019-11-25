@@ -19,7 +19,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="PRACOWNIK_NA_ZMIANIE_PRACOWNIK_NA_ZMIANIE_ID" id="71251940-B17C-1FF3-9E2A-E7D04105E002">
+<Column name="PRACOWNIK_NA_ZMIANIE_ID" id="71251940-B17C-1FF3-9E2A-E7D04105E002">
 <createdBy>filga</createdBy>
 <createdTime>2019-11-21 11:19:35 UTC</createdTime>
 <ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
@@ -32,6 +32,18 @@
 <associations>
 <colAssociation fkAssociation="508D9FF7-7DB3-4F82-4ADA-061469D13EB8" referredColumn="FDC978A3-F020-3E06-B4A3-3FE221E8CACD"/>
 </associations>
+</Column>
+<Column name="typ" id="ED00CCB9-BED9-A3E8-BA5E-D72D1AE36438">
+<createdBy>Ewelina</createdBy>
+<createdTime>2019-11-25 14:55:29 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>2 CHAR</dataTypeSize>
+<ownDataTypeParameters>2 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">

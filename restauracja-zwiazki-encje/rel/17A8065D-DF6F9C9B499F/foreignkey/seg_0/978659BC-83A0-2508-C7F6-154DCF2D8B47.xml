@@ -14,5 +14,6 @@
 <refColNames>ID_ROLI</refColNames>
 <transferable>true</transferable>
 <rely>false</rely>
+<discriminatorValue>ME</discriminatorValue>
 <columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
 </FKIndexAssociation>

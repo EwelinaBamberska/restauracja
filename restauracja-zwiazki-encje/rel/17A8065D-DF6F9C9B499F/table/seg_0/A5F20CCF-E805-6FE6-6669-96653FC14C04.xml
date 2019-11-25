@@ -53,7 +53,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="83A36D6D-103C-490E-0366-5769EFA4481B" name="DANIE_NA_ZAMOWIENIU_RACHUNEK_FK">
+<ind_PK_UK id="83A36D6D-103C-490E-0366-5769EFA4481B" name="DANIE_NA_ZAMOWIENIU_RACH_FK">
 <createdBy>filga</createdBy>
 <createdTime>2019-11-21 11:19:35 UTC</createdTime>
 <generatorID>2D67EC3F-6123-5B0F-7725-E919BF5C8CBE</generatorID>
