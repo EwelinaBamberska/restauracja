@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CDC39E0C-5B71-4BF8-12ED-0DFDAFE9D53C" name="Relation_1">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PRACOWNIK_ID_PRAC" id="2C0F57F5-260A-DDAB-217A-8CFFDC244819">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A43992B2-6FFC-832B-71EA-C17EC9FFD0A4" referredColumn="BC773024-534A-77C9-4866-7C6791099946"/>
+</associations>
+</Column>
+<Column name="ROLA_ID_ROLI" id="885C605E-E37E-9927-2ABB-700F0F60A0FB">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="66D4C916-2466-96E7-375F-8DA92DFEC39F" referredColumn="B71727F5-CDE6-3E35-DF12-1B5279ECF7B3"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DF7380B8-E4CB-1772-A57F-F71121E7F716" name="Relation_1_PK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2C0F57F5-260A-DDAB-217A-8CFFDC244819"/>
+<colUsage columnID="885C605E-E37E-9927-2ABB-700F0F60A0FB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D40108DA-8C49-6C6D-173B-FC7D041B1203" name="Relation_1_PRACOWNIK_FK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>E92EEB42-4096-C3BC-E498-F01C3DA50AC3</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2C0F57F5-260A-DDAB-217A-8CFFDC244819"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="545F7135-2DBF-0DC7-7EB7-BFBE3738B7E1" name="Relation_1_ROLA_FK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>E92EEB42-4096-C3BC-E498-F01C3DA50AC3</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="885C605E-E37E-9927-2ABB-700F0F60A0FB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

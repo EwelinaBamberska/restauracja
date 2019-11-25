@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="EE669058-790E-A46C-5971-4160C9246BD4" containerWithKeyObject="A5F20CCF-E805-6FE6-6669-96653FC14C04" localFKIndex="21CE676A-6E30-F3C9-0D8B-9D8651B850AC" name="DANIE_NA_ZAMOWIENIU_MENU_FK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>9F9E8950-5274-15F9-462C-250E51DAAC3C</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<referredTableLongName>MENU</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>AB5B4B3A-5EDF-3FD7-08FF-F51AA9BE2647</referredTableID>
+<keyObject>F96144CA-8817-B28B-143D-1632FD95B9DD</keyObject>
+<referredKeyID>F96144CA-8817-B28B-143D-1632FD95B9DD</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>Nazwa_dania</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

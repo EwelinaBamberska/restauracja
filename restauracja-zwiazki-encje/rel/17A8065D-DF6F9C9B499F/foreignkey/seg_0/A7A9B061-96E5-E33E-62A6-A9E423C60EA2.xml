@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="A7A9B061-96E5-E33E-62A6-A9E423C60EA2" containerWithKeyObject="E2AB8368-A5D1-8308-6246-859CCB2BB032" localFKIndex="86C608CF-9FC1-B982-643E-36488EA7F924" name="KELNER_ROLA_FK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>CB537DB9-DEBC-8AE4-4BB9-D29910827CDB</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<referredTableLongName>ROLA</referredTableLongName>
+<arc>A5489CEA-3A0C-A928-3323-ECCFE36CCD18</arc>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>2F39F773-0C3F-9477-740C-0B80F2837164</referredTableID>
+<keyObject>FCD4ECAE-F207-C154-B3B0-EB5B71BEC754</keyObject>
+<referredKeyID>FCD4ECAE-F207-C154-B3B0-EB5B71BEC754</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_ROLI</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<discriminatorValue>KE</discriminatorValue>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

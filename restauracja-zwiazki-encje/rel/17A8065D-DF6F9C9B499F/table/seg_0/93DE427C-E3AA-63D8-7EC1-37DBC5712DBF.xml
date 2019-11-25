@@ -1,0 +1,51 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="93DE427C-E3AA-63D8-7EC1-37DBC5712DBF" name="KUCHARZ">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>BDD25503-8FD1-00B7-B43C-00A9F3EA79E7</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_ROLI" id="E827825F-FEF5-731E-6672-C39D6D21C26E">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>C19F9F48-95F5-5817-06B0-EEC0F813EBA6</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9B9E48DA-6489-C755-AC39-EE856C5CDC82" referredColumn="B71727F5-CDE6-3E35-DF12-1B5279ECF7B3"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C98B3760-D7B5-912D-9FB9-AAD6BD40AD76" name="KUCHARZ_PK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>BDA39056-FCAA-D2E6-FA1E-25973EF4A9E5</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E827825F-FEF5-731E-6672-C39D6D21C26E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BEFC009C-7A61-3905-02B8-E0A5C70A8582" name="KUCHARZ_ROLA_FK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>A31496DD-59D2-2EA8-0BD0-44E5DF372524</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E827825F-FEF5-731E-6672-C39D6D21C26E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

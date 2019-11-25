@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKArc class="oracle.dbtools.crest.model.design.relational.FKArc" directorySegmentName="seg_0" id="A5489CEA-3A0C-A928-3323-ECCFE36CCD18" name="FKArc_1">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<mandatory>false</mandatory>
+<reverseArc>true</reverseArc>
+<table>2F39F773-0C3F-9477-740C-0B80F2837164</table>
+<discriminatorColumn>ED00CCB9-BED9-A3E8-BA5E-D72D1AE36438</discriminatorColumn>
+<fkeys>
+<fkeyID>978659BC-83A0-2508-C7F6-154DCF2D8B47</fkeyID>
+<fkeyID>9B9E48DA-6489-C755-AC39-EE856C5CDC82</fkeyID>
+<fkeyID>A7A9B061-96E5-E33E-62A6-A9E423C60EA2</fkeyID>
+</fkeys>
+</FKArc>
