@@ -1,0 +1,79 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A5F20CCF-E805-6FE6-6669-96653FC14C04" name="DANIE_NA_ZAMOWIENIU">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>2E00A8AD-E080-5763-5B80-E2213A1FDA9F</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="RACHUNEK_ID_rachunku" id="89133681-D136-17DC-AA58-EB04990C9307">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>003DDAF8-0090-9415-968F-BB0F084A8E3A</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="00919C60-09C0-DF5C-FCD8-ECBD281F40D9" referredColumn="53D16111-4B67-9CF7-D6CF-477503E0AF39"/>
+</associations>
+</Column>
+<Column name="Ilosc" id="1A22FA4E-C19E-BC81-B127-915BB64B0EB2">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>F9CD87C4-24E6-A7AF-8B62-6C8C30DE5867</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT018</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MENU_Nazwa_dania" id="44C8E643-E4B3-1617-2915-F025191FB81F">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>2731C187-197A-DEA0-6AC0-5C4818F1E15C</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>32</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EE669058-790E-A46C-5971-4160C9246BD4" referredColumn="00F3B9AE-F914-4FFC-36F0-8C60BE5AF2AB"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="83A36D6D-103C-490E-0366-5769EFA4481B" name="DANIE_NA_ZAMOWIENIU_RACHUNEK_FK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>2D67EC3F-6123-5B0F-7725-E919BF5C8CBE</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="89133681-D136-17DC-AA58-EB04990C9307"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="21CE676A-6E30-F3C9-0D8B-9D8651B850AC" name="DANIE_NA_ZAMOWIENIU_MENU_FK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>9F9E8950-5274-15F9-462C-250E51DAAC3C</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="44C8E643-E4B3-1617-2915-F025191FB81F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

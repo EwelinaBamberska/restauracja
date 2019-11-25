@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="00919C60-09C0-DF5C-FCD8-ECBD281F40D9" containerWithKeyObject="A5F20CCF-E805-6FE6-6669-96653FC14C04" localFKIndex="83A36D6D-103C-490E-0366-5769EFA4481B" name="DANIE_NA_ZAMOWIENIU_RACHUNEK_FK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>2D67EC3F-6123-5B0F-7725-E919BF5C8CBE</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<referredTableLongName>RACHUNEK</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>78F91B48-2053-80C2-5694-6A2A7E530D1F</referredTableID>
+<keyObject>5546B3E3-E2E2-0DE5-3118-DD60D3BFC126</keyObject>
+<referredKeyID>5546B3E3-E2E2-0DE5-3118-DD60D3BFC126</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_rachunku</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

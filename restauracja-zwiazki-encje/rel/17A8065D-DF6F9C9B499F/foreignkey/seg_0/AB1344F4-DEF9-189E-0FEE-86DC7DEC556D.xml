@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="AB1344F4-DEF9-189E-0FEE-86DC7DEC556D" containerWithKeyObject="10A75F6E-BE36-6B80-5D93-A30E7C8AF7EA" localFKIndex="D05E3BA2-1CDC-5176-AFFE-E347A405DAD4" name="ZAMOWIONY_TOWAR_MAGAZYN_FK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>0A26CE78-64DE-7B8D-81F2-7F8DBBA7CCCA</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<referredTableLongName>MAGAZYN</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>92D404DA-3BA5-6885-63D7-35006597457C</referredTableID>
+<keyObject>E4F8248A-4D87-3A2B-0168-7BA7A72E9D2B</keyObject>
+<referredKeyID>E4F8248A-4D87-3A2B-0168-7BA7A72E9D2B</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>Nazwa_towaru</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<discriminatorColumn>F090440C-BD00-4B63-A68C-97F35AA65979</discriminatorColumn>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

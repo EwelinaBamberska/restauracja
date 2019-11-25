@@ -1,0 +1,63 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E2AB8368-A5D1-8308-6246-859CCB2BB032" name="KELNER">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>019BF415-53CB-EA9E-262D-DC67CF16510F</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_ROLI" id="182E3E23-BFDE-197B-ED11-85EFBCA657D0">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>C19F9F48-95F5-5817-06B0-EEC0F813EBA6</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A7A9B061-96E5-E33E-62A6-A9E423C60EA2" referredColumn="B71727F5-CDE6-3E35-DF12-1B5279ECF7B3"/>
+</associations>
+</Column>
+<Column name="Srednia_ocen" id="EBEC4262-817B-4A48-14E1-7B69281095E3">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>237D9B81-DE91-2754-476A-C0E3F903E960</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8EDB4C23-9AF6-5041-903C-E3D269D2289C" name="KELNER_PK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>BDA39056-FCAA-D2E6-FA1E-25973EF4A9E5</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="182E3E23-BFDE-197B-ED11-85EFBCA657D0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="86C608CF-9FC1-B982-643E-36488EA7F924" name="KELNER_ROLA_FK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>CB537DB9-DEBC-8AE4-4BB9-D29910827CDB</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="182E3E23-BFDE-197B-ED11-85EFBCA657D0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

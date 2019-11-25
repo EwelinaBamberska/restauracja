@@ -1,0 +1,98 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9ED58426-368B-9AEA-599A-0C028155D617" name="PRACOWNIK_NA_ZMIANIE">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>9BE43C1D-7E48-4C2B-88B7-E7E26602B758</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PRACOWNIK_ID_PRAC" id="658EFD93-D4FB-7827-26E6-F0F6E025BBCE">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>BE0E20BF-0AAC-291B-34C2-2307F5DB954B</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C2E77F74-3A68-F825-7D49-D44CF8BD5149" referredColumn="BC773024-534A-77C9-4866-7C6791099946"/>
+</associations>
+</Column>
+<Column name="Data" id="92EEAA61-5C53-6129-C739-32EC54CA4FF2">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>26BC15D0-E8BD-CBAA-9CAE-94780D00D0BE</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Ilosc_godzin" id="DBE30D18-ECFB-A0DA-A9ED-BF61A83C9775">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>D560A14C-62FF-7C10-335C-87FF6710A8DE</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT018</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Stawka" id="35605DB9-BC58-72C3-7C7A-AE87FE15CBF5">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>FDD5ACD0-7C2C-AF6D-C9DB-E9BAB5B05694</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRACOWNIK_NA_ZMIANIE_ID" id="FDC978A3-F020-3E06-B4A3-3FE221E8CACD">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="FACF10FD-3DE1-0D0A-4EF2-EC9316111CB5" name="PRACOWNIK_NA_ZMIANIE_PK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="FDC978A3-F020-3E06-B4A3-3FE221E8CACD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="87672B5C-95E0-BBAB-CA0C-EA412D347617" name="PRACOWNIK_NA_ZMIANIE_PRACOWNIK_FK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>393D5CFF-C467-A3CC-25E5-A95D7E504F39</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="658EFD93-D4FB-7827-26E6-F0F6E025BBCE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

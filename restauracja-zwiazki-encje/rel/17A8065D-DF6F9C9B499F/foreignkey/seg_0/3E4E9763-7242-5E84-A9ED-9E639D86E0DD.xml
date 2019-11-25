@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="3E4E9763-7242-5E84-A9ED-9E639D86E0DD" containerWithKeyObject="10A75F6E-BE36-6B80-5D93-A30E7C8AF7EA" localFKIndex="BCDDDD20-3CD1-6721-B6F0-7B88B9D4DDD8" name="ZAMOWIONY_TOWAR_MENEDZER_FK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>55435948-BA0A-1CCF-B548-ACA57246338C</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<referredTableLongName>MENEDZER</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>6800FA84-F8D5-F01F-E818-92C381F04717</referredTableID>
+<keyObject>277EF6A3-0D92-7388-FF5A-377A7E5D4AAD</keyObject>
+<referredKeyID>277EF6A3-0D92-7388-FF5A-377A7E5D4AAD</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_ROLI</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

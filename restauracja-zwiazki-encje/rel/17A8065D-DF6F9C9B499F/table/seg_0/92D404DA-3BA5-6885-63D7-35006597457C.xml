@@ -1,0 +1,49 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="92D404DA-3BA5-6885-63D7-35006597457C" name="MAGAZYN">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>17F9397F-CC33-F77F-028B-EAAC1B808C06</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Nazwa_towaru" id="F090440C-BD00-4B63-A68C-97F35AA65979">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>27E5632B-56E3-39E4-6ADC-5C8F03612A79</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>32</dataTypeSize>
+<ownDataTypeParameters>32,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Ilosc" id="443B676A-5016-D76C-4525-C8D1200254F5">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>E2DE384B-0AEE-50E3-6BD6-24B823E0E5AE</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E4F8248A-4D87-3A2B-0168-7BA7A72E9D2B" name="MAGAZYN_PK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>54670C05-119F-8AA8-8DA2-129CDBA477B5</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F090440C-BD00-4B63-A68C-97F35AA65979"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

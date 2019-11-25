@@ -70,5 +70,31 @@
 <dataTypeSize>32</dataTypeSize>
 <ownDataTypeParameters>32,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="Czy_dostarczony" id="DD6C04C5-38C1-0869-0B7C-EF091C745F10">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 10:57:34 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<engineerTo>
+<item key="17A8065D-D27C-C0D8-E825-DF6F9C9B499F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT033</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="3A0E4CF6-376A-203F-50BA-3F42E4E7D08B" name="ZAMOWIONY_TOWAR PK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:01:13 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<engineerTo>
+<item key="17A8065D-D27C-C0D8-E825-DF6F9C9B499F" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>7F29355D-D87A-AC70-B0D2-49010755F949</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
 </Entity>

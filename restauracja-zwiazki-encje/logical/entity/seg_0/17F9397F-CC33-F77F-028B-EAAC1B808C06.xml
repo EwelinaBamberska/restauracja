@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="17F9397F-CC33-F77F-028B-EAAC1B808C06" name="TOWAR_NAZWA">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="17F9397F-CC33-F77F-028B-EAAC1B808C06" name="MAGAZYN">
 <createdBy>filga</createdBy>
 <createdTime>2019-10-24 12:35:41 UTC</createdTime>
 <ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
@@ -27,6 +27,18 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>32</dataTypeSize>
 <ownDataTypeParameters>32,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Ilosc" id="E2DE384B-0AEE-50E3-6BD6-24B823E0E5AE">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:08:00 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<engineerTo>
+<item key="17A8065D-D27C-C0D8-E825-DF6F9C9B499F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">

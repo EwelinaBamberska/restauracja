@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="A43992B2-6FFC-832B-71EA-C17EC9FFD0A4" containerWithKeyObject="CDC39E0C-5B71-4BF8-12ED-0DFDAFE9D53C" localFKIndex="D40108DA-8C49-6C6D-173B-FC7D041B1203" name="Relation_1_PRACOWNIK_FK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>E92EEB42-4096-C3BC-E498-F01C3DA50AC3</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<referredTableLongName>PRACOWNIK</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>54644FCE-403A-9DEE-A63C-9D112E745625</referredTableID>
+<keyObject>B4DF7742-9D12-DE63-ACBA-1888CFBF12EC</keyObject>
+<referredKeyID>B4DF7742-9D12-DE63-ACBA-1888CFBF12EC</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_PRAC</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

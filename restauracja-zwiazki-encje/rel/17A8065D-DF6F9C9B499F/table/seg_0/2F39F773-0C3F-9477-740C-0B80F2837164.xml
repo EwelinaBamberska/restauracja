@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2F39F773-0C3F-9477-740C-0B80F2837164" name="ROLA">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>B9A10037-7743-24BC-0D0C-7A8EAE69226F</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_ROLI" id="B71727F5-CDE6-3E35-DF12-1B5279ECF7B3">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>C19F9F48-95F5-5817-06B0-EEC0F813EBA6</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRACOWNIK_NA_ZMIANIE_PRACOWNIK_NA_ZMIANIE_ID" id="71251940-B17C-1FF3-9E2A-E7D04105E002">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="508D9FF7-7DB3-4F82-4ADA-061469D13EB8" referredColumn="FDC978A3-F020-3E06-B4A3-3FE221E8CACD"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="FCD4ECAE-F207-C154-B3B0-EB5B71BEC754" name="ROLA_PK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>BDA39056-FCAA-D2E6-FA1E-25973EF4A9E5</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B71727F5-CDE6-3E35-DF12-1B5279ECF7B3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="17EA5E69-8E7D-8AE9-FE6A-298CE529B61B" name="ROLA__IDX">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>014BCCCB-17B0-AF5F-1F7D-E5E303C9A160</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="71251940-B17C-1FF3-9E2A-E7D04105E002"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9289A9F3-F7BC-2E66-5698-E5E7DDED117E" name="ROLA_PRACOWNIK_NA_ZMIANIE_FK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>014BCCCB-17B0-AF5F-1F7D-E5E303C9A160</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="71251940-B17C-1FF3-9E2A-E7D04105E002"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

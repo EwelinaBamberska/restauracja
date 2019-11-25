@@ -1,0 +1,114 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="10A75F6E-BE36-6B80-5D93-A30E7C8AF7EA" name="ZAMOWIONY_TOWAR">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>79257C4C-65DB-3D62-F5A2-526F5CC1346E</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MENEDZER_ID_ROLI" id="EA1FB3D7-4BBA-1B75-2BA0-26DB894B73AF">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>474B2647-F44F-0CAD-2A21-C1A0CA44D9EB</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3E4E9763-7242-5E84-A9ED-9E639D86E0DD" referredColumn="0766C926-CB96-91FD-1079-90762DD78238"/>
+</associations>
+</Column>
+<Column name="Ilosc_sztuk" id="AC4A3B7A-D320-A770-053A-2BFE5DEFDFF2">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>BC448A42-A866-AACE-D0D1-CE007448231C</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT018</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_zamowienia" id="E1FC4A3E-5B5E-212E-7D66-18F7DB5580D9">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>7F29355D-D87A-AC70-B0D2-49010755F949</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MAGAZYN_Nazwa_towaru" id="13509BF2-4860-E90D-9A72-FE46E385B2B2">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>E8D03BDB-E7AF-78C0-650D-C2BEF95C19D1</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>32</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AB1344F4-DEF9-189E-0FEE-86DC7DEC556D" referredColumn="F090440C-BD00-4B63-A68C-97F35AA65979"/>
+</associations>
+</Column>
+<Column name="Czy_dostarczony" id="7D858FE6-B06C-282B-3057-EBDF7C1BA4D3">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>DD6C04C5-38C1-0869-0B7C-EF091C745F10</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT033</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="14E14050-5125-6A4F-2E26-DF5DD95E1E93" name="ZAMOWIONY_TOWAR_PK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>3A0E4CF6-376A-203F-50BA-3F42E4E7D08B</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E1FC4A3E-5B5E-212E-7D66-18F7DB5580D9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D05E3BA2-1CDC-5176-AFFE-E347A405DAD4" name="ZAMOWIONY_TOWAR_MAGAZYN_FK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>0A26CE78-64DE-7B8D-81F2-7F8DBBA7CCCA</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="13509BF2-4860-E90D-9A72-FE46E385B2B2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BCDDDD20-3CD1-6721-B6F0-7B88B9D4DDD8" name="ZAMOWIONY_TOWAR_MENEDZER_FK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>55435948-BA0A-1CCF-B548-ACA57246338C</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EA1FB3D7-4BBA-1B75-2BA0-26DB894B73AF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,147 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="78F91B48-2053-80C2-5694-6A2A7E530D1F" name="RACHUNEK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>CEC91A68-BAFE-6E01-30BC-74F883AA88EA</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_rachunku" id="53D16111-4B67-9CF7-D6CF-477503E0AF39">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>24BBD153-4558-7C3E-30F0-7708276F9798</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Ocena" id="897D2BCE-03E8-3E88-08C4-EC07308B8C29">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>640C033D-A179-B793-80B7-77189921A463</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Sumaryczna_cena" id="1A0274CE-2F26-E5B3-C809-7756D09AA100">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>A2BE4DBE-F4B1-D8CE-3249-91F3957FB8BD</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT021</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Oplacono" id="3B2B0FCB-68AD-71A1-C540-0EFBE3C77AAE">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>E4B76919-6960-96E8-419B-BD484CE99FEC</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT033</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nr_stolika" id="0012B1E9-4E88-2855-A647-07FDA7DE1CB2">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>6DD24686-1098-FA03-7C9F-030661276C7D</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT018</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MENEDZER_ID_ROLI" id="2CDD28FF-9433-61E4-AD29-2F2E9FED7379">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>6A147871-53C3-C746-A5DC-BEDE96F4BDE6</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CF4C15CA-6C6E-6324-3004-7B3795FB5630" referredColumn="0766C926-CB96-91FD-1079-90762DD78238"/>
+</associations>
+</Column>
+<Column name="KELNER_ID_ROLI" id="BC318E0B-046C-F42F-09A1-29821F609F38">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>D2710C8D-8893-6463-F433-F109E6BF7F0D</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F8AD5FDA-7FF9-51B1-AFD6-9CA7ADA19DF8" referredColumn="182E3E23-BFDE-197B-ED11-85EFBCA657D0"/>
+</associations>
+</Column>
+<Column name="Data" id="873B95DC-6EB1-0D1F-EC20-3A2F5970737E">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>72EAD469-0B0C-D5A8-CD28-6E5097D170DE</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5546B3E3-E2E2-0DE5-3118-DD60D3BFC126" name="RACHUNEK_PK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>B40DEDD1-45CD-A4F1-93C6-E2729FE7023E</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="53D16111-4B67-9CF7-D6CF-477503E0AF39"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="392140C9-FD4D-5F56-3304-C29BD62E8438" name="RACHUNEK_KELNER_FK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>9B834F33-EAB0-1346-8423-F563F99EE02F</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BC318E0B-046C-F42F-09A1-29821F609F38"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2A163B36-4415-096D-6602-09086619768F" name="RACHUNEK_MENEDZER_FK">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 11:19:35 UTC</createdTime>
+<generatorID>55E064F4-0F93-B78A-6D77-9140AE689C02</generatorID>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2CDD28FF-9433-61E4-AD29-2F2E9FED7379"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -106,6 +106,18 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="Data" id="72EAD469-0B0C-D5A8-CD28-6E5097D170DE">
+<createdBy>filga</createdBy>
+<createdTime>2019-11-21 10:43:22 UTC</createdTime>
+<ownerDesignName>restauracja-zwiazki-encje</ownerDesignName>
+<engineerTo>
+<item key="17A8065D-D27C-C0D8-E825-DF6F9C9B499F" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="B40DEDD1-45CD-A4F1-93C6-E2729FE7023E" name="RACHUNEK PK">
