@@ -351,14 +351,13 @@ END;
 -- 
 -- ERRORS                                   0
 -- WARNINGS                                 0
-select * from menu;
 CREATE SEQUENCE ID_PRAC_seq
 START WITH 1 INCREMENT BY 1;
 
-CREATE SEQUENCE ID_ZAMOWIENIA_seq
+CREATE SEQUENCE ID_ZAMOWIENIA_seq -- DOTYCZY ZAMOWIONEGO DO MAGAZYNU TOWARU
 START WITH 1 INCREMENT BY 1;
 
-CREATE SEQUENCE ID_RACHUNKU_seq
+CREATE SEQUENCE ID_RACHUNKU_seq -- DOTYCZY RACHUNKÓW KLIENTÓW
 START WITH 1 INCREMENT BY 1;
 
 CREATE OR REPLACE PACKAGE MENU_FUNCTIONS IS
@@ -386,3 +385,26 @@ set Cena = vNowaCena where nazwa_dania = vNazwa;
 END;
 
 END MENU_FUNCTIONS;
+/
+CREATE OR REPLACE PACKAGE DANIE_NA_ZAMOWIENIU_FUNCTIONS IS
+PROCEDURE Dodaj_Danie(vIlosc Danie_na_zamowieniu.ilosc%type,
+    vNazwa Danie_na_zamowieniu.Menu_nazwa_dania%type);
+PROCEDURE Usun_Danie_Z_Rachunku(vNazwa Menu.Nazwa_Dania%type, vID Rachunek.ID_Rachunku%type);
+END;
+/
+
+select * from danie_na_zamowieniu;
+CREATE OR REPLACE PACKAGE BODY DANIE_NA_ZAMOWIENIU_FUNCTIONS IS
+    PROCEDURE Dodaj_Danie(vIlosc Danie_na_zamowieniu.ilosc%type,
+    vNazwa Danie_na_zamowieniu.Menu_nazwa_dania%type) IS
+        BEGIN
+            INSERT INTO danie_na_zamowieniu VALUES (ID_RACHUNKU_seq.nextval, vIlosc, vNazwa);
+        END;
+    PROCEDURE Usun_Danie_Z_Rachunku(vNazwa Menu.Nazwa_Dania%type, 
+    vID Rachunek.ID_Rachunku%type) IS
+        BEGIN
+            DELETE FROM DANIE_NA_ZAMOWIENIU
+            WHERE menu_nazwa_dania = vNazwa AND rachunek_id_rachunku = vID;
+        END;
+END DANIE_NA_ZAMOWIENIU_FUNCTIONS;
+-- Przydaaby siê procedura do usuwania caych rachunków, nie tylko ich elementów
