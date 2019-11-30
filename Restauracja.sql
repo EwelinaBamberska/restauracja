@@ -309,6 +309,8 @@ END;
 
 
 
+
+
 -- Oracle SQL Developer Data Modeler Summary Report: 
 -- 
 -- CREATE TABLE                            12
@@ -351,6 +353,20 @@ END;
 -- 
 -- ERRORS                                   0
 -- WARNINGS                                 0
+
+
+
+
+--poprawienie tabeli rachunek
+alter table rachunek drop(menedzer_id_roli, kelner_id_roli);
+alter table rachunek add(id_pracownika INTEGER NOT NULL);
+alter table rachunek add(data_rachunku TIMESTAMP NOT NULL);
+alter table rachunek drop(data);
+
+
+
+
+
 CREATE SEQUENCE ID_PRAC_seq
 START WITH 1 INCREMENT BY 1;
 
@@ -407,4 +423,70 @@ CREATE OR REPLACE PACKAGE BODY DANIE_NA_ZAMOWIENIU_FUNCTIONS IS
             WHERE menu_nazwa_dania = vNazwa AND rachunek_id_rachunku = vID;
         END;
 END DANIE_NA_ZAMOWIENIU_FUNCTIONS;
+/
 -- Przydaaby siê procedura do usuwania caych rachunków, nie tylko ich elementów
+
+
+create or replace package rachunek_functions is
+    function sumaryczna_cena(vIdRach Rachunek.id_rachunku%type) return natural;
+    procedure oplac_rachunek(vIdRach Rachunek.id_rachunku%type, vOcena Number);
+    procedure usun_rachunek(vIdRach Rachunek.id_rachunku%type);
+end;
+/
+
+create or replace package body rachunek_functions is
+
+    procedure oplac_rachunek(vIdRach Rachunek.id_rachunku%type, vOcena Number) is
+    begin
+        update rachunek set ocena = vOcena, oplacono = 'TRUE' where id_rachunku = vIdRach;
+    end;
+    
+    function sumaryczna_cena(vIdRach Rachunek.id_rachunku%type) return natural
+    is
+    suma Number(10,2) default 0;
+    cursor c is select * from danie_na_zamowieniu where vIdRach = rachunek_id_rachunku;
+    vCena Menu.cena%type;
+    begin
+        for x in c loop
+            select cena into vCena from Menu where nazwa_dania = x.menu_nazwa_dania;
+            suma := suma + x.ilosc * vCena;
+        end loop;
+        return suma;
+    end;
+    
+    procedure usun_rachunek(vIdRach Rachunek.id_rachunku%type) is
+    begin
+        delete from rachunek where vIdRach = id_rachunku;
+    end;
+end;
+/
+
+
+create or replace package kelner_functions is
+    procedure utworz_rachunek(vNrStolika Rachunek.nr_stolika%type, vIdPrac Pracownik.id_prac%type);
+    function policz_srednia_ocen(vIdPrac Pracownik.id_prac%type) return natural;
+    function otwarte_rachunki(vIdPrac Pracownik.id_prac%type) return natural;
+end;
+/
+
+create or replace package body kelner_functions is
+
+    procedure utworz_rachunek(vNrStolika Rachunek.nr_stolika%type, vIdPrac Pracownik.id_prac%type) is
+    begin
+        insert into rachunek values(id_rachunku_seq.nextval, null, 0, 'FALSE', vNrStolika, vIdPrac, CURRENT_TIMESTAMP);
+    end;
+    
+    function policz_srednia_ocen(vIdPrac Pracownik.id_prac%type) return natural is
+    vSrednia NUMBER := 0;
+    begin
+        select avg(ocena) into vSrednia from rachunek where id_pracownika = vIdPrac group by id_pracownika;
+        return vSrednia;
+    end;
+    
+    function otwarte_rachunki(vIdPrac Pracownik.id_prac%type) return natural is
+    cursor c is select * from rachunek where oplacono = 'TRUE'; --wyrzuca blad
+    begin
+        return c;
+    end;
+end;
+
