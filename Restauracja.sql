@@ -362,7 +362,8 @@ alter table rachunek drop(menedzer_id_roli, kelner_id_roli);
 alter table rachunek add(id_pracownika INTEGER NOT NULL);
 alter table rachunek add(data_rachunku TIMESTAMP NOT NULL);
 alter table rachunek drop(data);
-
+alter table rachunek drop(oplacono);
+alter table rachunek add(oplacono varchar(1));
 
 
 
@@ -428,7 +429,7 @@ END DANIE_NA_ZAMOWIENIU_FUNCTIONS;
 
 
 create or replace package rachunek_functions is
-    function sumaryczna_cena(vIdRach Rachunek.id_rachunku%type) return natural;
+    function sumaryczna_cena(vIdRach Rachunek.id_rachunku%type) return number;
     procedure oplac_rachunek(vIdRach Rachunek.id_rachunku%type, vOcena Number);
     procedure usun_rachunek(vIdRach Rachunek.id_rachunku%type);
 end;
@@ -441,7 +442,7 @@ create or replace package body rachunek_functions is
         update rachunek set ocena = vOcena, oplacono = 'TRUE' where id_rachunku = vIdRach;
     end;
     
-    function sumaryczna_cena(vIdRach Rachunek.id_rachunku%type) return natural
+    function sumaryczna_cena(vIdRach Rachunek.id_rachunku%type) return number
     is
     suma Number(10,2) default 0;
     cursor c is select * from danie_na_zamowieniu where vIdRach = rachunek_id_rachunku;
@@ -464,8 +465,8 @@ end;
 
 create or replace package kelner_functions is
     procedure utworz_rachunek(vNrStolika Rachunek.nr_stolika%type, vIdPrac Pracownik.id_prac%type);
-    function policz_srednia_ocen(vIdPrac Pracownik.id_prac%type) return natural;
-    function otwarte_rachunki(vIdPrac Pracownik.id_prac%type) return natural;
+    function policz_srednia_ocen(vIdPrac Pracownik.id_prac%type) return number;
+--    function otwarte_rachunki(vIdPrac Pracownik.id_prac%type) return natural;
 end;
 /
 
@@ -473,20 +474,96 @@ create or replace package body kelner_functions is
 
     procedure utworz_rachunek(vNrStolika Rachunek.nr_stolika%type, vIdPrac Pracownik.id_prac%type) is
     begin
-        insert into rachunek values(id_rachunku_seq.nextval, null, 0, 'FALSE', vNrStolika, vIdPrac, CURRENT_TIMESTAMP);
+        insert into rachunek values(id_rachunku_seq.nextval, null, 0, vNrStolika, vIdPrac, CURRENT_TIMESTAMP, 'F');
     end;
     
-    function policz_srednia_ocen(vIdPrac Pracownik.id_prac%type) return natural is
+    function policz_srednia_ocen(vIdPrac Pracownik.id_prac%type) return number is
     vSrednia NUMBER := 0;
     begin
         select avg(ocena) into vSrednia from rachunek where id_pracownika = vIdPrac group by id_pracownika;
         return vSrednia;
     end;
     
-    function otwarte_rachunki(vIdPrac Pracownik.id_prac%type) return natural is
-    cursor c is select * from rachunek where oplacono = 'TRUE'; --wyrzuca blad
-    begin
-        return c;
-    end;
+--    function otwarte_rachunki(vIdPrac Pracownik.id_prac%type) return natural is
+--    cursor c is select * from rachunek where oplacono = 'T';
+--    begin
+--        return c;
+--    end;
 end;
+/
+
+create or replace package menedzer_functions is
+    procedure utworz_rachunek(vNrStolika Rachunek.nr_stolika%type, vIdPrac Pracownik.id_prac%type);
+    function policz_srednia_ocen(vIdPrac Pracownik.id_prac%type) return number;
+--    function otwarte_rachunki(vIdPrac Pracownik.id_prac%type) return natural;
+    procedure zamow_towar(vIdMenedzera Pracownik.id_prac%type, vNazwa Magazyn.nazwa_towaru%type, vIlosc Number);
+    procedure odbierz_towar(vIdZamowienia  Zamowiony_towar.id_zamowienia%type);
+    procedure dodaj_pracownika(vImie Pracownik.imie%type, vNazwisko Pracownik.nazwisko%type, vData Pracownik.data_zatrudnienia%type,
+            vCzyKelner Pracownik.czy_Kelner%type, vCzyMenedzer Pracownik.czy_Menedzer%type, vCzyKucharz Pracownik.czy_Kucharz%type);
+    procedure usun_pracownika(vIdPrac Pracownik.id_prac%type);
+end;
+/
+
+create or replace package body menedzer_functions is 
+    procedure utworz_rachunek(vNrStolika Rachunek.nr_stolika%type, vIdPrac Pracownik.id_prac%type) is
+    begin
+        insert into rachunek values(id_rachunku_seq.nextval, null, 0, vNrStolika, vIdPrac, CURRENT_TIMESTAMP, 'F');
+    end;
+    
+    function policz_srednia_ocen(vIdPrac Pracownik.id_prac%type) return number is
+    vSrednia NUMBER := 0;
+    begin
+        select avg(ocena) into vSrednia from rachunek where id_pracownika = vIdPrac group by id_pracownika;
+        return vSrednia;
+    end;
+    
+     procedure zamow_towar(vIdMenedzera Pracownik.id_prac%type, vNazwa Magazyn.nazwa_towaru%type, vIlosc Number) is
+     begin
+        insert into zamowiony_towar values(vIdMenedzera, vIlosc, id_zamowienia_seq.nextval, vNazwa, 'F');
+     end;
+     
+    procedure odbierz_towar(vIdZamowienia  Zamowiony_towar.id_zamowienia%type) is
+    zam zamowiony_towar%rowtype;
+    begin
+        update zamowiony_towar set czy_dostarczony = 'T' where id_zamowienia = vIdZamowienia;
+        select * into zam from zamowiony_towar where id_zamowienia = vIdZamowienia;
+        update magazyn 
+        set ilosc = ilosc + zam.ilosc_sztuk
+        where nazwa_towaru = zam.magazyn_nazwa_towaru;
+    end;
+    
+    procedure dodaj_pracownika(vImie Pracownik.imie%type, vNazwisko Pracownik.nazwisko%type, vData Pracownik.data_zatrudnienia%type,
+            vCzyKelner Pracownik.czy_Kelner%type, vCzyMenedzer Pracownik.czy_Menedzer%type, vCzyKucharz Pracownik.czy_Kucharz%type) is
+    begin
+        insert into pracownik values(id_prac_seq.nextval, vImie, vNazwisko, vData, vCzyKelner, vCzyKucharz, vCzyMenedzer);
+    end;
+    
+    procedure usun_pracownika(vIdPrac Pracownik.id_prac%type) is
+    begin
+        delete from pracownik where id_prac = vIdPrac;
+    end;
+
+end;
+/
+
+create or replace package magazyn_functions is
+    procedure dodaj_towar(vNazwa Magazyn.nazwa_towaru%type, vIlosc Magazyn.ilosc%type);
+    procedure usun_towar(vNazwa Magazyn.nazwa_towaru%type, vIlosc Magazyn.ilosc%type);
+end;
+/
+
+create or replace package body magazyn_functions is
+
+    procedure dodaj_towar(vNazwa Magazyn.nazwa_towaru%type, vIlosc Magazyn.ilosc%type) is
+    begin
+        update magazyn set ilosc = ilosc + vIlosc where vNazwa = nazwa_towaru;
+    end;
+    
+    procedure usun_towar(vNazwa Magazyn.nazwa_towaru%type, vIlosc Magazyn.ilosc%type) is
+    begin
+        update magazyn set ilosc = ilosc - vIlosc where vNazwa = nazwa_towaru;
+    end;
+
+end;
+/
 
