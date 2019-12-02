@@ -309,8 +309,6 @@ END;
 
 
 
-
-
 -- Oracle SQL Developer Data Modeler Summary Report: 
 -- 
 -- CREATE TABLE                            12
@@ -354,9 +352,6 @@ END;
 -- ERRORS                                   0
 -- WARNINGS                                 0
 
-
-
-
 --poprawienie tabeli rachunek
 alter table rachunek drop(menedzer_id_roli, kelner_id_roli);
 alter table rachunek add(id_pracownika INTEGER NOT NULL);
@@ -364,9 +359,6 @@ alter table rachunek add(data_rachunku TIMESTAMP NOT NULL);
 alter table rachunek drop(data);
 alter table rachunek drop(oplacono);
 alter table rachunek add(oplacono varchar(1));
-
-
-
 
 CREATE SEQUENCE ID_PRAC_seq
 START WITH 1 INCREMENT BY 1;
@@ -376,12 +368,12 @@ START WITH 1 INCREMENT BY 1;
 
 CREATE SEQUENCE ID_RACHUNKU_seq -- DOTYCZY RACHUNKÓW KLIENTÓW
 START WITH 1 INCREMENT BY 1;
-
+/
 CREATE OR REPLACE PACKAGE MENU_FUNCTIONS IS
 PROCEDURE Dodaj_Danie(vNazwa Menu.Nazwa_Dania%type, vCena Menu.Cena%type);
 PROCEDURE Usun_Danie(vNazwa Menu.Nazwa_Dania%type);
 PROCEDURE Zmien_Cene(vNazwa Menu.Nazwa_Dania%type, vNowaCena Menu.Cena%type);
-END;
+END MENU_FUNCTIONS;
 /
 CREATE OR REPLACE PACKAGE BODY MENU_FUNCTIONS IS
 
@@ -399,23 +391,23 @@ PROCEDURE Zmien_Cene (vNazwa Menu.Nazwa_Dania%type, vNowaCena Menu.Cena%type) IS
 BEGIN
 UPDATE Menu
 set Cena = vNowaCena where nazwa_dania = vNazwa;
-END;
+END Zmien_Cene;
 
 END MENU_FUNCTIONS;
 /
 CREATE OR REPLACE PACKAGE DANIE_NA_ZAMOWIENIU_FUNCTIONS IS
-PROCEDURE Dodaj_Danie(vIlosc Danie_na_zamowieniu.ilosc%type,
+PROCEDURE Dodaj_Danie(vIdRachunku Rachunek.ID_Rachunku%type, vIlosc Danie_na_zamowieniu.ilosc%type,
     vNazwa Danie_na_zamowieniu.Menu_nazwa_dania%type);
 PROCEDURE Usun_Danie_Z_Rachunku(vNazwa Menu.Nazwa_Dania%type, vID Rachunek.ID_Rachunku%type);
 END;
 /
 
-select * from danie_na_zamowieniu;
 CREATE OR REPLACE PACKAGE BODY DANIE_NA_ZAMOWIENIU_FUNCTIONS IS
-    PROCEDURE Dodaj_Danie(vIlosc Danie_na_zamowieniu.ilosc%type,
+    PROCEDURE Dodaj_Danie(vIdRachunku Rachunek.ID_Rachunku%type, 
+    vIlosc Danie_na_zamowieniu.ilosc%type,
     vNazwa Danie_na_zamowieniu.Menu_nazwa_dania%type) IS
         BEGIN
-            INSERT INTO danie_na_zamowieniu VALUES (ID_RACHUNKU_seq.nextval, vIlosc, vNazwa);
+            INSERT INTO danie_na_zamowieniu VALUES (vIdRachunku, vIlosc, vNazwa);
         END;
     PROCEDURE Usun_Danie_Z_Rachunku(vNazwa Menu.Nazwa_Dania%type, 
     vID Rachunek.ID_Rachunku%type) IS
@@ -425,11 +417,9 @@ CREATE OR REPLACE PACKAGE BODY DANIE_NA_ZAMOWIENIU_FUNCTIONS IS
         END;
 END DANIE_NA_ZAMOWIENIU_FUNCTIONS;
 /
--- Przydaaby siê procedura do usuwania caych rachunków, nie tylko ich elementów
-
 
 create or replace package rachunek_functions is
-    function sumaryczna_cena(vIdRach Rachunek.id_rachunku%type) return number;
+    function sumaryczna_cena(vIdRach Rachunek.id_rachunku%type) return float;
     procedure oplac_rachunek(vIdRach Rachunek.id_rachunku%type, vOcena Number);
     procedure usun_rachunek(vIdRach Rachunek.id_rachunku%type);
 end;
@@ -440,9 +430,9 @@ create or replace package body rachunek_functions is
     procedure oplac_rachunek(vIdRach Rachunek.id_rachunku%type, vOcena Number) is
     begin
         update rachunek set ocena = vOcena, oplacono = 'TRUE' where id_rachunku = vIdRach;
-    end;
+    end oplac_rachunek;
     
-    function sumaryczna_cena(vIdRach Rachunek.id_rachunku%type) return number
+    function sumaryczna_cena(vIdRach Rachunek.id_rachunku%type) return float
     is
     suma Number(10,2) default 0;
     cursor c is select * from danie_na_zamowieniu where vIdRach = rachunek_id_rachunku;
@@ -453,13 +443,13 @@ create or replace package body rachunek_functions is
             suma := suma + x.ilosc * vCena;
         end loop;
         return suma;
-    end;
+    end sumaryczna_cena;
     
     procedure usun_rachunek(vIdRach Rachunek.id_rachunku%type) is
     begin
         delete from rachunek where vIdRach = id_rachunku;
-    end;
-end;
+    end usun_rachunek;
+end rachunek_functions; 
 /
 
 
@@ -491,10 +481,9 @@ create or replace package body kelner_functions is
 --    end;
 end;
 /
-
 create or replace package menedzer_functions is
-    procedure utworz_rachunek(vNrStolika Rachunek.nr_stolika%type, vIdPrac Pracownik.id_prac%type);
-    function policz_srednia_ocen(vIdPrac Pracownik.id_prac%type) return number;
+--    procedure utworz_rachunek(vNrStolika Rachunek.nr_stolika%type, vIdPrac Pracownik.id_prac%type);
+--    function policz_srednia_ocen(vIdPrac Pracownik.id_prac%type) return number;
 --    function otwarte_rachunki(vIdPrac Pracownik.id_prac%type) return natural;
     procedure zamow_towar(vIdMenedzera Pracownik.id_prac%type, vNazwa Magazyn.nazwa_towaru%type, vIlosc Number);
     procedure odbierz_towar(vIdZamowienia  Zamowiony_towar.id_zamowienia%type);
@@ -509,7 +498,7 @@ end;
 /
 
 create or replace package body menedzer_functions is 
-    procedure utworz_rachunek(vNrStolika Rachunek.nr_stolika%type, vIdPrac Pracownik.id_prac%type) is
+ /*   procedure utworz_rachunek(vNrStolika Rachunek.nr_stolika%type, vIdPrac Pracownik.id_prac%type) is
     begin
         insert into rachunek values(id_rachunku_seq.nextval, null, 0, vNrStolika, vIdPrac, CURRENT_TIMESTAMP, 'F');
     end;
@@ -520,7 +509,7 @@ create or replace package body menedzer_functions is
         select avg(ocena) into vSrednia from rachunek where id_pracownika = vIdPrac group by id_pracownika;
         return vSrednia;
     end;
-    
+*/    
      procedure zamow_towar(vIdMenedzera Pracownik.id_prac%type, vNazwa Magazyn.nazwa_towaru%type, vIlosc Number) is
      begin
         insert into zamowiony_towar values(vIdMenedzera, vIlosc, id_zamowienia_seq.nextval, vNazwa, 'F');
@@ -590,3 +579,47 @@ create or replace package body magazyn_functions is
 end;
 /
 
+CREATE OR REPLACE FUNCTION Moje_Godziny(vIdPrac Pracownik.id_prac%type)
+    RETURN INTEGER IS vSuma INTEGER;
+BEGIN
+    SELECT SUM(ILOSC_GODZIN) INTO vSuma  FROM pracownik_na_zmianie WHERE
+    PRACOWNIK_NA_ZMIANIE.DATA BETWEEN CURRENT_DATE  AND (select add_months(sysdate,-1) from dual);
+    Return vSuma;
+END;
+/
+CREATE OR REPLACE PROCEDURE Nadaj_Uprawnienia_Menedzer(vIdPrac Pracownik.id_prac%type) is
+BEGIN
+    UPDATE PRACOWNIK
+    SET Czy_Menedzer = 'T' where id_prac = vIdPrac;
+    END;
+/
+CREATE OR REPLACE PROCEDURE Nadaj_Uprawnienia_Kucharz(vIdPrac Pracownik.id_prac%type) is
+BEGIN
+    UPDATE PRACOWNIK
+    SET Czy_Kucharz= 'T' where id_prac = vIdPrac;
+    END;
+/
+CREATE OR REPLACE PACKAGE Pracownik_na_zmianie_FUNCTIONS IS
+    FUNCTION Policz_Wyplate(vIdPrac Pracownik.id_prac%type) return integer;
+    PROCEDURE Zmien_Stawke (vIdPrac Pracownik.id_prac%type, vStawka NUMBER);
+    
+END Pracownik_na_zmianie_FUNCTIONS ;
+/
+CREATE OR REPLACE PACKAGE BODY Pracownik_na_zmianie_FUNCTIONS IS
+    FUNCTION Policz_Wyplate(vIdPrac Pracownik.id_prac%type) return integer is vWyplata float;
+    vStawka float;
+    vGodziny float;
+    BEGIN
+        SELECT STAWKA INTO vStawka FROM PRACOWNIK_NA_ZMIANIE WHERE PRACOWNIK_ID_PRAC = vIdPrac;
+        vGodziny := Moje_Godziny(vIdPrac);
+        vWyplata := vGodziny * vStawka;
+        RETURN vWyplata;
+    END;
+
+    PROCEDURE Zmien_Stawke (vIdPrac Pracownik.id_prac%type, vStawka NUMBER) IS
+    BEGIN
+        UPDATE PRACOWNIK_NA_ZMIANIE SET STAWKA = vStawka
+        WHERE PRACOWNIK_ID_PRAC = vIdPrac;
+    END;
+
+END;
