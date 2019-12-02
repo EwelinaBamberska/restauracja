@@ -493,7 +493,7 @@ create or replace package menedzer_functions is
     procedure modyfikuj_pracownika(vId Pracownik.id_prac%type, vImie Pracownik.imie%type, vNazwisko Pracownik.nazwisko%type, vData Pracownik.data_zatrudnienia%type,
             vCzyKelner Pracownik.czy_Kelner%type, vCzyMenedzer Pracownik.czy_Menedzer%type, vCzyKucharz Pracownik.czy_Kucharz%type);
     procedure dodaj_godziny(vIdPrac Pracownik.id_prac%type,  vStawka Pracownik_na_zmianie.stawka%type,
-            vStanowisko Pracownik_na_zmianie.nazwa_roli%type, vGodziny Pracownik_na_zmianie.ilosc_godzin%type default 8, vData Pracownik_na_zmianie.data%type default current_date);
+            vStanowisko Pracownik_na_zmianie.pracownik_na_zmianie_id%type, vGodziny Pracownik_na_zmianie.ilosc_godzin%type default 8, vData Pracownik_na_zmianie.data%type default current_date);
 end;
 /
 
