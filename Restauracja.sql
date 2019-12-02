@@ -501,6 +501,10 @@ create or replace package menedzer_functions is
     procedure dodaj_pracownika(vImie Pracownik.imie%type, vNazwisko Pracownik.nazwisko%type, vData Pracownik.data_zatrudnienia%type,
             vCzyKelner Pracownik.czy_Kelner%type, vCzyMenedzer Pracownik.czy_Menedzer%type, vCzyKucharz Pracownik.czy_Kucharz%type);
     procedure usun_pracownika(vIdPrac Pracownik.id_prac%type);
+    procedure modyfikuj_pracownika(vId Pracownik.id_prac%type, vImie Pracownik.imie%type, vNazwisko Pracownik.nazwisko%type, vData Pracownik.data_zatrudnienia%type,
+            vCzyKelner Pracownik.czy_Kelner%type, vCzyMenedzer Pracownik.czy_Menedzer%type, vCzyKucharz Pracownik.czy_Kucharz%type);
+    procedure dodaj_godziny(vIdPrac Pracownik.id_prac%type,  vStawka Pracownik_na_zmianie.stawka%type,
+            vStanowisko Pracownik_na_zmianie.nazwa_roli%type, vGodziny Pracownik_na_zmianie.ilosc_godzin%type default 8, vData Pracownik_na_zmianie.data%type default current_date);
 end;
 /
 
@@ -541,6 +545,25 @@ create or replace package body menedzer_functions is
     procedure usun_pracownika(vIdPrac Pracownik.id_prac%type) is
     begin
         delete from pracownik where id_prac = vIdPrac;
+    end;
+
+    procedure modyfikuj_pracownika(vId Pracownik.id_prac%type, vImie Pracownik.imie%type, vNazwisko Pracownik.nazwisko%type, vData Pracownik.data_zatrudnienia%type,
+            vCzyKelner Pracownik.czy_Kelner%type, vCzyMenedzer Pracownik.czy_Menedzer%type, vCzyKucharz Pracownik.czy_Kucharz%type) is
+    begin
+        update pracownik set
+        imie = vImie,
+        nazwisko = vNazwisko,
+        data_zatrudnienia = vData,
+        czy_kelner = vCzyKelner,
+        czy_menedzer = vCzyMenedzer,
+        czy_kucharz = vCzyKucharz
+        where id_prac = vId;
+    end;
+
+    procedure dodaj_godziny(vIdPrac Pracownik.id_prac%type, vStanowisko Pracownik_na_zmianie.nazwa_roli%type, vStawka Pracownik_na_zmianie.stawka%type,
+            vGodziny Pracownik_na_zmianie.ilosc_godzin%type default 8, vData Pracownik_na_zmianie.data%type default current_date) is
+    begin 
+        insert into pracownik_na_zmianie values(idPrac, vData, vGodziny, vStawka, vStanowisko);
     end;
 
 end;
