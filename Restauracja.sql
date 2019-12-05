@@ -11,6 +11,8 @@ CREATE TABLE danie_na_zamowieniu (
     menu_nazwa_dania       VARCHAR2(32)
 );
 
+
+
 CREATE TABLE kelner (
     id_roli        INTEGER NOT NULL,
     srednia_ocen   FLOAT(2) NOT NULL
@@ -352,6 +354,8 @@ END;
 -- ERRORS                                   0
 -- WARNINGS                                 0
 
+
+
 --poprawienie tabeli rachunek
 alter table rachunek drop(menedzer_id_roli, kelner_id_roli);
 alter table rachunek add(id_pracownika INTEGER NOT NULL);
@@ -395,6 +399,7 @@ END Zmien_Cene;
 
 END MENU_FUNCTIONS;
 /
+
 CREATE OR REPLACE PACKAGE DANIE_NA_ZAMOWIENIU_FUNCTIONS IS
 PROCEDURE Dodaj_Danie(vIdRachunku Rachunek.ID_Rachunku%type, vIlosc Danie_na_zamowieniu.ilosc%type,
     vNazwa Danie_na_zamowieniu.Menu_nazwa_dania%type);
@@ -417,6 +422,7 @@ CREATE OR REPLACE PACKAGE BODY DANIE_NA_ZAMOWIENIU_FUNCTIONS IS
         END;
 END DANIE_NA_ZAMOWIENIU_FUNCTIONS;
 /
+
 
 create or replace package rachunek_functions is
     function sumaryczna_cena(vIdRach Rachunek.id_rachunku%type) return float;
@@ -549,10 +555,10 @@ create or replace package body menedzer_functions is
         where id_prac = vId;
     end;
 
-    procedure dodaj_godziny(vIdPrac Pracownik.id_prac%type, vStanowisko Pracownik_na_zmianie.nazwa_roli%type, vStawka Pracownik_na_zmianie.stawka%type,
-            vGodziny Pracownik_na_zmianie.ilosc_godzin%type default 8, vData Pracownik_na_zmianie.data%type default current_date) is
+    procedure dodaj_godziny(vIdPrac Pracownik.id_prac%type,  vStawka Pracownik_na_zmianie.stawka%type,
+            vStanowisko Pracownik_na_zmianie.pracownik_na_zmianie_id%type, vGodziny Pracownik_na_zmianie.ilosc_godzin%type default 8, vData Pracownik_na_zmianie.data%type default current_date) is
     begin 
-        insert into pracownik_na_zmianie values(idPrac, vData, vGodziny, vStawka, vStanowisko);
+        insert into pracownik_na_zmianie values(vidPrac, vData, vGodziny, vStawka, vStanowisko);
     end;
 
 end;
@@ -623,3 +629,47 @@ CREATE OR REPLACE PACKAGE BODY Pracownik_na_zmianie_FUNCTIONS IS
     END;
 
 END;
+
+
+
+
+
+
+
+
+
+--towar_na_zamowieniu
+CREATE TABLE towar_na_zamowieniu (
+    towar_id_rachunku   INTEGER NOT NULL,
+    ilosc                  SMALLINT NOT NULL,
+    nazwa_towaru       VARCHAR2(32)
+);
+
+ALTER TABLE towar_na_zamowieniu
+    ADD CONSTRAINT towar_na_zamowieniu_menu_fk FOREIGN KEY ( nazwa_towaru )
+        REFERENCES magazyn ( nazwa_towaru );
+        
+ALTER TABLE towar_na_zamowieniu
+    ADD CONSTRAINT towar_na_zamowieniu_rach_fk FOREIGN KEY ( towar_id_rachunku )
+        REFERENCES zamowiony_towar ( id_zamowienia );
+
+
+create or replace package towar_na_zamowieniu_functions is 
+    procedure dodaj_towar(vIdZamowienia Zamowiony_towar.id_zamowienia%type, vIlosc Towar_na_zamowieniu.ilosc%type, vNazwa towar_na_zamowieniu.nazwa_towaru%type);
+    procedure usun_towar_z_zamowienia(vIdZamowienia towar_na_zamowieniu.towar_id_rachunku%type, vNazwa towar_na_zamowieniu.nazwa_towaru%type);
+end;
+/
+
+create or replace package body towar_na_zamowieniu_functions is
+    procedure dodaj_towar(vIdZamowienia Zamowiony_towar.id_zamowienia%type, vIlosc Towar_na_zamowieniu.ilosc%type, vNazwa towar_na_zamowieniu.nazwa_towaru%type) is
+    begin
+        insert into towar_na_zamowieniu values(vIdZamowienia, vIlosc, vNazwa);
+    end;
+
+    procedure usun_towar_z_zamowienia(vIdZamowienia towar_na_zamowieniu.towar_id_rachunku%type, vNazwa towar_na_zamowieniu.nazwa_towaru%type) is
+    begin
+        delete from towar_na_zamowieniu t where t.nazwa_towaru = vNazwa and towar_id_rachunku = vIdZamowienia; 
+    end;
+
+end;
+/
