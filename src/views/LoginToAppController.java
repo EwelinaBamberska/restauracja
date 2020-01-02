@@ -15,7 +15,7 @@ public class LoginToAppController {
     public void sign_to_app(ActionEvent actionEvent){
         String enteredID = sign_in_text_area.getText();
         if (WorkerJdbcClass.getInstance().findIfWorkerExist(Integer.parseInt(enteredID))){
-            System.out.println("Login into");
+            JavaFXUtils.changeScene(actionEvent, "mainViewWaiter.fxml", 800.0, 600.0, getClass());
         }
     }
 }
