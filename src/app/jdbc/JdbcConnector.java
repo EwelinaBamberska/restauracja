@@ -19,7 +19,7 @@ public class JdbcConnector {
                     "jdbc:oracle:thin:@//admlab2.cs.put.poznan.pl:1521/"+
                             "dblab02_students.cs.put.poznan.pl", "inf136679", "inf136679");
             System.out.println("Got it!");
-
+            conn.setAutoCommit(false);
         } catch (SQLException e) {
             throw new Error("Problem", e);
         }

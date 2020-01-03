@@ -1,5 +1,6 @@
 package views;
 
+import app.data.LoggedWorker;
 import app.jdbc.WorkerJdbcClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +16,10 @@ public class LoginToAppController {
     public void sign_to_app(ActionEvent actionEvent){
         String enteredID = sign_in_text_area.getText();
         if (WorkerJdbcClass.getInstance().findIfWorkerExist(Integer.parseInt(enteredID))){
-            JavaFXUtils.changeScene(actionEvent, "mainViewWaiter.fxml", 800.0, 600.0, getClass());
+            if(LoggedWorker.getInstance().isIf_manager())
+                JavaFXUtils.changeScene(actionEvent, "mainViewManager.fxml", 800.0, 600.0, getClass());
+            else if (LoggedWorker.getInstance().isIf_waiter())
+                JavaFXUtils.changeScene(actionEvent, "mainViewWaiter.fxml", 800.0, 600.0, getClass());
         }
     }
 }

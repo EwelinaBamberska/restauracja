@@ -27,4 +27,32 @@ public class LoggedWorker {
     public static LoggedWorker getInstance(){
         return loggedWorker;
     }
+
+    public int getId_prac() {
+        return id_prac;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public boolean isIf_waiter() {
+        return if_waiter;
+    }
+
+    public boolean isIf_cooker() {
+        return if_cooker;
+    }
+
+    public boolean isIf_manager() {
+        return if_manager;
+    }
 }

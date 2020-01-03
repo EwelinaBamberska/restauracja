@@ -2,16 +2,8 @@ package views;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.stage.Stage;
-import oracle.sql.JAVA_STRUCT;
-
-import java.io.IOException;
 
 public class MainViewWaiterController {
     @FXML
@@ -27,10 +19,8 @@ public class MainViewWaiterController {
 
     @FXML
     public void initialize(){
-
+        //TODO:show_list
     }
-
-
 
     public void go_to_create_bill_view(ActionEvent actionEvent) {
         JavaFXUtils.changeScene(actionEvent, "createBillView.fxml", 800.0, 600.0, getClass());

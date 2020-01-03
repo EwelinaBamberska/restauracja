@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class WorkerJdbcClass {
-    Statement stmt = null;
+    private Statement stmt = null;
 
     private static WorkerJdbcClass instance = new WorkerJdbcClass();
 
