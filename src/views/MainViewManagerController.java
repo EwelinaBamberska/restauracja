@@ -45,6 +45,7 @@ public class MainViewManagerController {
     }
 
     public void go_to_orders_options(ActionEvent actionEvent) {
+        JavaFXUtils.changeScene(actionEvent, "ordersView.fxml", 800, 600, getClass());
     }
 
     public void go_to_workers_options(ActionEvent actionEvent) {

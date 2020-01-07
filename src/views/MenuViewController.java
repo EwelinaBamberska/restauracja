@@ -1,8 +1,8 @@
 package views;
 
-import app.data.MenuItemProperty;
-import app.data.MenuList;
-import app.data.MenuPosition;
+import app.data.menu.MenuItemProperty;
+import app.data.menu.MenuList;
+import app.data.menu.MenuPosition;
 import app.jdbc.MenuJdbcClass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -49,6 +49,9 @@ public class MenuViewController implements Initializable {
 
     private void initializeTableColumns() {
         menu_items_table.setEditable(true);
+        menu_items_table.setPrefHeight(centre_menu_view_vbox.getHeight());
+        menu_items_table.setMinHeight(centre_menu_view_vbox.getHeight());
+        menu_items_table.setMaxHeight(centre_menu_view_vbox.getHeight());
 
         TableColumn<MenuItemProperty,String> positionNameColumn = new TableColumn<>("Nazwa dania");
         TableColumn<MenuItemProperty, String> positionPriceColumn = new TableColumn<>("Cena");

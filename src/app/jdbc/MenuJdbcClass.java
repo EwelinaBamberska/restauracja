@@ -1,8 +1,7 @@
 package app.jdbc;
 
-import app.data.LoggedWorker;
-import app.data.MenuList;
-import app.data.MenuPosition;
+import app.data.menu.MenuList;
+import app.data.menu.MenuPosition;
 
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
@@ -15,9 +14,9 @@ public class MenuJdbcClass {
         return menuJdbcClass;
     }
 
-    private Statement stmt = null;
 
     public void getMenuItemsFromDatabase() {
+        Statement stmt = null;
         String query = "select * from menu";
         try {
             stmt = JdbcConnector.getInstance().getConn().createStatement();
@@ -41,9 +40,10 @@ public class MenuJdbcClass {
     }
 
     public void addMenuPosition(MenuPosition position){
+        CallableStatement stmt = null;
         String query = "{CALL menu_functions.dodaj_danie(?, ?)}";
         try {
-            CallableStatement stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
+            stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
             stmt.setString(1, position.getName());
             stmt.setFloat(2, Float.parseFloat(String.valueOf(position.getPrice())));
             stmt.executeQuery();
@@ -62,9 +62,10 @@ public class MenuJdbcClass {
     }
 
     public void deleteMenuPosition(String position){
+        CallableStatement stmt = null;
         String query = "{CALL menu_functions.usun_danie(?)}";
         try {
-            CallableStatement stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
+            stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
             stmt.setString(1, position);
             stmt.executeQuery();
             JdbcConnector.getInstance().getConn().commit();
@@ -82,9 +83,10 @@ public class MenuJdbcClass {
     }
 
     public void modifyPrice(String name, Double newPrice) {
+        CallableStatement stmt = null;
         String query = "{CALL menu_functions.zmien_cene(?, ?)}";
         try {
-            CallableStatement stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
+            stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
             stmt.setString(1, name);
             stmt.setFloat(2, Float.parseFloat(String.valueOf(newPrice)));
             stmt.executeQuery();

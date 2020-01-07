@@ -1,4 +1,4 @@
-package app.data;
+package app.data.menu;
 
 import javafx.beans.property.SimpleStringProperty;
 

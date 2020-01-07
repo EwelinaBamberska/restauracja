@@ -1,6 +1,7 @@
 package app.jdbc;
 
-import app.data.LoggedWorker;
+import app.data.worker.Worker;
+import app.data.worker.LoggedWorker;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +16,7 @@ public class WorkerJdbcClass {
         return instance;
     }
 
-    public boolean findIfWorkerExist(int id) {
+    public boolean logWorker(int id) {
         String query = "select * from pracownik where id_prac =" + id;
         try {
             stmt = JdbcConnector.getInstance().getConn().createStatement();
@@ -39,5 +40,31 @@ public class WorkerJdbcClass {
             }
         }
         return false;
+    }
+
+    public Worker getWorkerById(int managerId) {
+        String query = "select * from pracownik where id_prac =" + managerId;
+        try {
+            stmt = JdbcConnector.getInstance().getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            if(rs.next()) {
+                Worker worker = new Worker(rs.getInt(1), rs.getString(2),
+                        rs.getString(3), rs.getDate(4), rs.getString(5),
+                        rs.getString(6), rs.getString(7));
+                return worker;
+            }
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                }catch (SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return null;
     }
 }

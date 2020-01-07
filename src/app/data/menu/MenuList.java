@@ -1,4 +1,4 @@
-package app.data;
+package app.data.menu;
 
 import java.util.ArrayList;
 import java.util.List;
