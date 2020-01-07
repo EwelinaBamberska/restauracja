@@ -39,8 +39,10 @@ public class MenuViewController implements Initializable {
     }
 
     private void showItemsInMenu() {
+        System.out.println("Baza");
         if(!MenuList.getInstance().isDownloadedData())
             MenuJdbcClass.getInstance().getMenuItemsFromDatabase();
+        System.out.println(MenuList.getInstance().getMenuPositionList().size());
         menu_items_table.getItems().clear();
         ObservableList<MenuItemProperty> menuItems = FXCollections.observableArrayList();
             MenuList.getInstance().getMenuPositionList().forEach(position -> menuItems.add(new MenuItemProperty(position.getName(), position.getPrice())));
@@ -49,9 +51,9 @@ public class MenuViewController implements Initializable {
 
     private void initializeTableColumns() {
         menu_items_table.setEditable(true);
-        menu_items_table.setPrefHeight(centre_menu_view_vbox.getHeight());
-        menu_items_table.setMinHeight(centre_menu_view_vbox.getHeight());
-        menu_items_table.setMaxHeight(centre_menu_view_vbox.getHeight());
+//        menu_items_table.setPrefHeight(centre_menu_view_vbox.getHeight());
+//        menu_items_table.setMinHeight(centre_menu_view_vbox.getHeight());
+//        menu_items_table.setMaxHeight(centre_menu_view_vbox.getHeight());
 
         TableColumn<MenuItemProperty,String> positionNameColumn = new TableColumn<>("Nazwa dania");
         TableColumn<MenuItemProperty, String> positionPriceColumn = new TableColumn<>("Cena");

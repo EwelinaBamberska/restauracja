@@ -88,6 +88,7 @@ public class OrdersViewController implements Initializable {
                         delete.setOnAction((ActionEvent event)->{
                             OrderItemProperty data = getTableView().getItems().get(getIndex());
                             //TODO: odbierz zamowienie
+                            OrderJdbcClass.getInstance().getOrder(data.getOrderId());
                         });
                     }
 
