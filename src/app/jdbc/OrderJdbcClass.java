@@ -132,7 +132,7 @@ public class OrderJdbcClass {
         }
     }
 
-    public void getOrder(String orderId) {
+    public void claimOrder(String orderId) {
         CallableStatement stmt = null;
         String query = "{CALL menedzer_functions.odbierz_towar(?)}";
         try {

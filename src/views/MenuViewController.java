@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
@@ -28,9 +29,15 @@ public class MenuViewController implements Initializable {
     @FXML
     private TextField name_text_field;
     @FXML
-    private TextField price_text_field;
+    private TextField priceTextField;
     @FXML
-    private Button add_new_position_button;
+    private Button addNewPositionButton;
+    @FXML
+    private TextField findItemInMenuTextView;
+    @FXML
+    private Button findItemInMenuButton;
+    @FXML
+    private HBox topHBox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -39,10 +46,8 @@ public class MenuViewController implements Initializable {
     }
 
     private void showItemsInMenu() {
-        System.out.println("Baza");
         if(!MenuList.getInstance().isDownloadedData())
             MenuJdbcClass.getInstance().getMenuItemsFromDatabase();
-        System.out.println(MenuList.getInstance().getMenuPositionList().size());
         menu_items_table.getItems().clear();
         ObservableList<MenuItemProperty> menuItems = FXCollections.observableArrayList();
             MenuList.getInstance().getMenuPositionList().forEach(position -> menuItems.add(new MenuItemProperty(position.getName(), position.getPrice())));
@@ -113,9 +118,9 @@ public class MenuViewController implements Initializable {
 
     public void add_new_position(ActionEvent actionEvent) {
         String name = name_text_field.getCharacters().toString();
-        String price = price_text_field.getCharacters().toString().replace(",", ".");
+        String price = priceTextField.getCharacters().toString().replace(",", ".");
         name_text_field.clear();
-        price_text_field.clear();
+        priceTextField.clear();
         Double priceValue = Double.parseDouble(price);
         MenuPosition newPosition = new MenuPosition(name, priceValue);
         MenuList.getInstance().addMenuPosition(newPosition);
@@ -125,5 +130,24 @@ public class MenuViewController implements Initializable {
 
     public void go_to_menu(ActionEvent actionEvent) {
         JavaFXUtils.changeScene(actionEvent, "mainViewManager.fxml", 800, 600, getClass());
+    }
+
+    public void findItemInMenu(ActionEvent actionEvent) {
+        String regexToFind = findItemInMenuTextView.getCharacters().toString();
+        if(!MenuList.getInstance().isDownloadedData())
+            MenuJdbcClass.getInstance().getMenuItemsFromDatabase();
+        menu_items_table.getItems().clear();
+        ObservableList<MenuItemProperty> menuItems = FXCollections.observableArrayList();
+        MenuList.getInstance().getMenuPositionListRegex(regexToFind).forEach(position -> menuItems.add(new MenuItemProperty(position.getName(), position.getPrice())));
+        menu_items_table.setItems(menuItems);
+        Button showAllButton = JavaFXUtils.createButton("Pokaż wszystkie.");
+        showAllButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                showItemsInMenu();
+                topHBox.getChildren().remove(topHBox.getChildren().size() - 1);
+            }
+        });
+        topHBox.getChildren().add(showAllButton);
     }
 }

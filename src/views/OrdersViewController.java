@@ -28,6 +28,12 @@ public class OrdersViewController implements Initializable {
     private Button back_to_menu_button;
     @FXML
     private Button create_new_order_button;
+    @FXML
+    private CheckBox unclaimedOrdersCheckBox;
+    @FXML
+    private CheckBox claimedOrdersCheckBox;
+    @FXML
+    private CheckBox myOrdersCheckBox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -40,7 +46,8 @@ public class OrdersViewController implements Initializable {
             OrderJdbcClass.getInstance().getOrdersFromDatabase();
         orders_items_table.getItems().clear();
         ObservableList<OrderItemProperty> orderItems = FXCollections.observableArrayList();
-        OrderList.getInstance().getOrderList().forEach(position -> orderItems.add(new OrderItemProperty(position.getManagerName(), position.getOrderId(), position.isIfDelivered())));
+        OrderList.getInstance().getOrderList(unclaimedOrdersCheckBox.isSelected(), claimedOrdersCheckBox.isSelected(), myOrdersCheckBox.isSelected())
+                .forEach(position -> orderItems.add(new OrderItemProperty(position.getManagerName(), position.getOrderId(), position.isIfDelivered())));
         orders_items_table.setItems(orderItems);
     }
 
@@ -65,7 +72,6 @@ public class OrdersViewController implements Initializable {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                     OrderItemProperty rowData = row.getItem();
-                    //TODO: show next table view with list of products on order
 //                    orders_items_table.setPrefWidth(centre_orders_view_hbox.getWidth() / 2);
 //                    orders_items_table.setMinWidth(centre_orders_view_hbox.getWidth() / 2);
 //                    orders_items_table.setMaxWidth(centre_orders_view_hbox.getWidth() / 2);
@@ -87,8 +93,9 @@ public class OrdersViewController implements Initializable {
                     {
                         delete.setOnAction((ActionEvent event)->{
                             OrderItemProperty data = getTableView().getItems().get(getIndex());
-                            //TODO: odbierz zamowienie
-                            OrderJdbcClass.getInstance().getOrder(data.getOrderId());
+
+                            OrderJdbcClass.getInstance().claimOrder(data.getOrderId());
+                            OrderList.getInstance().claimOrder(Integer.valueOf(data.getOrderId()));
                         });
                     }
 
@@ -134,4 +141,9 @@ public class OrdersViewController implements Initializable {
     public void create_new_order(ActionEvent actionEvent) {
         JavaFXUtils.changeScene(actionEvent, "createOrderView.fxml", 800, 600, getClass());
     }
+
+    public void showOrdersAction(ActionEvent actionEvent) {
+        showOrders();
+    }
+
 }

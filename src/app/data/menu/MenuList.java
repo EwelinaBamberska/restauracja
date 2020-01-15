@@ -1,5 +1,6 @@
 package app.data.menu;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,5 +55,15 @@ public class MenuList {
                 break;
             }
         }
+    }
+
+    public List<MenuPosition> getMenuPositionListRegex(String regexToFind) {
+        List<MenuPosition> positions = new ArrayList<>();
+        for (MenuPosition m:
+             menuPositionList) {
+            if (m.getName().contains(regexToFind))
+                positions.add(m);
+        }
+        return positions;
     }
 }

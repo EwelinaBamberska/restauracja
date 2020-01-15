@@ -32,12 +32,14 @@ public class MainViewManagerController {
     }
 
     public void go_to_take_item_from_magazine(ActionEvent actionEvent) {
+        JavaFXUtils.changeScene(actionEvent, "takeItemFromMagazineView.fxml", 800, 600, getClass());
     }
 
     public void show_work_hours(ActionEvent actionEvent) {
     }
 
     public void log_out(ActionEvent actionEvent) {
+        JavaFXUtils.changeScene(actionEvent, "loginToApp.fxml", 800, 600, getClass());
     }
 
     public void go_to_menu_options(ActionEvent actionEvent) {
@@ -49,8 +51,10 @@ public class MainViewManagerController {
     }
 
     public void go_to_workers_options(ActionEvent actionEvent) {
+        JavaFXUtils.changeScene(actionEvent, "allWorkersView.fxml", 800, 600, getClass());
     }
 
     public void go_to_magazine_options(ActionEvent actionEvent) {
+        JavaFXUtils.changeScene(actionEvent, "magazineView.fxml", 800, 600, getClass());
     }
 }

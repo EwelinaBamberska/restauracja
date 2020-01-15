@@ -491,7 +491,7 @@ create or replace package menedzer_functions is
 --    procedure utworz_rachunek(vNrStolika Rachunek.nr_stolika%type, vIdPrac Pracownik.id_prac%type);
 --    function policz_srednia_ocen(vIdPrac Pracownik.id_prac%type) return number;
 --    function otwarte_rachunki(vIdPrac Pracownik.id_prac%type) return natural;
-    procedure zamow_towar(vIdMenedzera Pracownik.id_prac%type, vNazwa Magazyn.nazwa_towaru%type, vIlosc Number);
+    procedure zamow_towar(vIdMenedzera Pracownik.id_prac%type, vId_zam Zamowiony_towar.id_zamowienia%type);
     procedure odbierz_towar(vIdZamowienia  Zamowiony_towar.id_zamowienia%type);
     procedure dodaj_pracownika(vImie Pracownik.imie%type, vNazwisko Pracownik.nazwisko%type, vData Pracownik.data_zatrudnienia%type,
             vCzyKelner Pracownik.czy_Kelner%type, vCzyMenedzer Pracownik.czy_Menedzer%type, vCzyKucharz Pracownik.czy_Kucharz%type);
@@ -516,19 +516,20 @@ create or replace package body menedzer_functions is
         return vSrednia;
     end;
 */    
-     procedure zamow_towar(vIdMenedzera Pracownik.id_prac%type, vNazwa Magazyn.nazwa_towaru%type, vIlosc Number) is
+     procedure zamow_towar(vIdMenedzera Pracownik.id_prac%type, vId_zam zamowiony_towar.id_zamowienia%type) is
      begin
-        insert into zamowiony_towar values(vIdMenedzera, vIlosc, id_zamowienia_seq.nextval, vNazwa, 'F');
+        insert into zamowiony_towar values(vIdMenedzera, vId_zam, 'F');
      end;
      
     procedure odbierz_towar(vIdZamowienia  Zamowiony_towar.id_zamowienia%type) is
-    zam zamowiony_towar%rowtype;
+    cursor c is select * from towar_na_zamowieniu where towar_id_rachunku = vIdZamowienia;
     begin
         update zamowiony_towar set czy_dostarczony = 'T' where id_zamowienia = vIdZamowienia;
-        select * into zam from zamowiony_towar where id_zamowienia = vIdZamowienia;
-        update magazyn 
-        set ilosc = ilosc + zam.ilosc_sztuk
-        where nazwa_towaru = zam.magazyn_nazwa_towaru;
+        for x in c loop
+            update magazyn m
+            set m.ilosc = m.ilosc + x.ilosc 
+            where m.nazwa_towaru = x.nazwa_towaru;
+        end loop;
     end;
     
     procedure dodaj_pracownika(vImie Pracownik.imie%type, vNazwisko Pracownik.nazwisko%type, vData Pracownik.data_zatrudnienia%type,
@@ -673,3 +674,9 @@ create or replace package body towar_na_zamowieniu_functions is
 
 end;
 /
+
+alter table zamowiony_towar drop(czy_dostarczony);
+alter table zamowiony_towar add(czy_dostarczony VARCHAR2(1));
+
+commit;
+select * from menu;

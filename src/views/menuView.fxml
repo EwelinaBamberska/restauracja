@@ -24,12 +24,12 @@
                   <Insets left="3.0" right="3.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="price_text_field" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" prefHeight="40.0" prefWidth="200.0">
+            <TextField fx:id="priceTextField" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" prefHeight="40.0" prefWidth="200.0">
                <HBox.margin>
                   <Insets left="3.0" right="3.0" />
                </HBox.margin>
             </TextField>
-            <Button fx:id="add_new_position_button" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#add_new_position" prefHeight="40.0" prefWidth="100.0" text="Dodaj nową pozycję" wrapText="true">
+            <Button fx:id="addNewPositionButton" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#add_new_position" prefHeight="40.0" prefWidth="100.0" text="Dodaj nową pozycję" wrapText="true">
                <HBox.margin>
                   <Insets left="3.0" right="3.0" />
                </HBox.margin>
@@ -41,9 +41,15 @@
       </HBox>
    </bottom>
    <top>
-      <HBox maxHeight="40.0" minHeight="40.0" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox fx:id="topHBox" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="back_to_menu_button" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#go_to_menu" prefHeight="40.0" prefWidth="100.0" text="Wróć do menu" wrapText="true" />
+            <TextField fx:id="findItemInMenuTextView" maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0">
+               <HBox.margin>
+                  <Insets left="20.0" right="3.0" />
+               </HBox.margin>
+            </TextField>
+            <Button fx:id="findItemInMenuButton" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#findItemInMenu" prefHeight="40.0" prefWidth="100.0" text="Button" />
          </children>
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

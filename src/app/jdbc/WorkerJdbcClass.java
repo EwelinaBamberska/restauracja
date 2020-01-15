@@ -3,6 +3,7 @@ package app.jdbc;
 import app.data.worker.Worker;
 import app.data.worker.LoggedWorker;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -66,5 +67,17 @@ public class WorkerJdbcClass {
             }
         }
         return null;
+    }
+
+    public void getWorkers() {
+    }
+
+    public void fireWorker(Worker workerToShow) {
+    }
+
+    public void modifyWorker(Worker workerToShow) {
+    }
+
+    public void saveHoursToDB(int id_prac, Date parseToDate, float parseFloat) {
     }
 }

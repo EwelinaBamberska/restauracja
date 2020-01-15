@@ -1,5 +1,6 @@
 package app.data.order;
 
+import app.data.worker.LoggedWorker;
 import com.sun.org.apache.xpath.internal.operations.Or;
 
 import java.util.ArrayList;
@@ -17,8 +18,18 @@ public class OrderList {
     private OrderList() {
     }
 
-    public List<Order> getOrderList() {
-        return orderList;
+    public List<Order> getOrderList(boolean unclaimedOrders, boolean claimedOrdersCheckBoxSelected, boolean myOrdersCheckBoxSelected) {
+        List<Order> orders = new ArrayList<>();
+        for (Order o:
+             orderList) {
+            if(myOrdersCheckBoxSelected && o.getManagerId() == LoggedWorker.getInstance().getId_prac())
+                orders.add(o);
+            else if(unclaimedOrders && !o.isIfDelivered())
+                orders.add(o);
+            else if(claimedOrdersCheckBoxSelected && o.isIfDelivered())
+                orders.add(o);
+        }
+        return orders;
     }
 
     public void setOrderList(List<Order> orderList) {
@@ -33,18 +44,6 @@ public class OrderList {
         this.downloadedData = downloadedData;
     }
 
-    public void removePosition(String name) {
-        Order positionToDelete = null;
-        for (Order p:
-                orderList) {
-//            if(name.equals(p.getName())) {
-//                positionToDelete = p;
-//                break;
-//            }
-        }
-        orderList.remove(positionToDelete);
-    }
-
     public Order getOrder(Integer id) {
         for (Order o:
                 orderList){
@@ -56,5 +55,13 @@ public class OrderList {
 
     public void addOrder(Order order) {
         orderList.add(order);
+    }
+
+    public void claimOrder(int orderId) {
+        for (Order o:
+             orderList) {
+            if (o.getOrderId() == orderId)
+                o.setIfDelivered(true);
+        }
     }
 }
