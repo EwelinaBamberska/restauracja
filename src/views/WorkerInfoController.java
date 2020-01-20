@@ -42,6 +42,8 @@ public class WorkerInfoController implements Initializable {
     private Button saveHoursButton;
     @FXML
     private VBox centerVBox;
+    @FXML
+    private TextField hourRateTextField;
 
     private enum Position{Menedżer, Kelner, Kucharz}
     private Position actualPosition;
@@ -134,7 +136,8 @@ public class WorkerInfoController implements Initializable {
     public void saveHours(ActionEvent actionEvent) {
         WorkerJdbcClass.getInstance().saveHoursToDB(workerToShow.getId_prac(),
                 (Date) JavaFXUtils.parseToDate(workDayDatePicker.getValue()),
-                Float.parseFloat(amountOfHoursTextField.getText().replace(",", ".")));
+                Float.parseFloat(amountOfHoursTextField.getText().replace(",", ".")),
+                Float.parseFloat(hourRateTextField.getText().replace(",", ".")));
     }
 
     public void setChangedData(InputMethodEvent inputMethodEvent) {

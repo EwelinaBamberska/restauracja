@@ -91,9 +91,7 @@ public class OrderJdbcClass {
             stmt.executeQuery();
             JdbcConnector.getInstance().getConn().commit();
             return orderId;
-        } catch (SQLIntegrityConstraintViolationException e){
-            System.out.println("Nie można zamówić towaru, którego nie ma w magazynie.");
-        } catch (SQLException e) {
+        }catch (SQLException e) {
             throw new Error("Problem", e);
         } finally {
             if (stmt != null) {
@@ -104,7 +102,6 @@ public class OrderJdbcClass {
                 }
             }
         }
-        return -1;
     }
 
     public void addItemInOrder(ItemInOrder item) {
@@ -117,8 +114,6 @@ public class OrderJdbcClass {
             stmt.setString(3, item.getName());
             stmt.executeQuery();
             JdbcConnector.getInstance().getConn().commit();
-        } catch (SQLIntegrityConstraintViolationException e){
-            System.out.println("Nie można zamówić towaru, którego nie ma w magazynie.");
         } catch (SQLException e) {
             throw new Error("Problem", e);
         } finally {

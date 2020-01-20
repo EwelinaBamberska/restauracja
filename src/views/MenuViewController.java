@@ -39,6 +39,8 @@ public class MenuViewController implements Initializable {
     @FXML
     private HBox topHBox;
 
+    private boolean showingRegexButton = false;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeTableColumns();
@@ -140,14 +142,18 @@ public class MenuViewController implements Initializable {
         ObservableList<MenuItemProperty> menuItems = FXCollections.observableArrayList();
         MenuList.getInstance().getMenuPositionListRegex(regexToFind).forEach(position -> menuItems.add(new MenuItemProperty(position.getName(), position.getPrice())));
         menu_items_table.setItems(menuItems);
-        Button showAllButton = JavaFXUtils.createButton("Pokaż wszystkie.");
-        showAllButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                showItemsInMenu();
-                topHBox.getChildren().remove(topHBox.getChildren().size() - 1);
-            }
-        });
-        topHBox.getChildren().add(showAllButton);
+        if(!showingRegexButton) {
+            Button showAllButton = JavaFXUtils.createButton("Pokaż wszystkie.");
+            showAllButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    showItemsInMenu();
+                    topHBox.getChildren().remove(topHBox.getChildren().size() - 1);
+                    showingRegexButton = false;
+                }
+            });
+            topHBox.getChildren().add(showAllButton);
+            showingRegexButton = true;
+        }
     }
 }

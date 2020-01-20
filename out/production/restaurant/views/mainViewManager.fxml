@@ -31,7 +31,7 @@
                         <Insets left="3.0" right="3.0" />
                     </HBox.margin>
                 </Button>
-                <Button fx:id="log_out_button" maxHeight="50.0" maxWidth="100.0" minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#log_out" prefHeight="50.0" prefWidth="100.0" text="Wyloguj" wrapText="true">
+                <Button fx:id="log_out_button" maxHeight="50.0" maxWidth="150.0" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" onAction="#log_out" prefHeight="50.0" prefWidth="150.0" text="Wyloguj" wrapText="true">
                     <HBox.margin>
                         <Insets left="3.0" right="3.0" />
                     </HBox.margin>

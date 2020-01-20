@@ -6,14 +6,18 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.sql.Date;
 
 public class JavaFXUtils {
 
@@ -38,15 +42,27 @@ public class JavaFXUtils {
     }
 
     public static final LocalDate parseToLocalDate(Date date){
-        LocalDate convertedDate = date.toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDate();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        convertedDate = LocalDate.parse(convertedDate.format(formatter));
+        LocalDate convertedDate = date.toLocalDate();
+//                .atZone(ZoneId.systemDefault())
+//                .toLocalDate();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+//        convertedDate = LocalDate.parse(convertedDate.format(formatter));
+//        DateTimeFormatter formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
+//        final ZonedDateTime parsed = ZonedDateTime.parse(convertedDate.toString(), formatter);
         return convertedDate;
     }
 
     public static final Date parseToDate(LocalDate localDate){
         return java.sql.Date.valueOf(localDate);
+    }
+
+    public static TextFlow buildTextFlow(String text, String filter) {
+        int filterIndex = text.toLowerCase().indexOf(filter.toLowerCase());
+        Text textBefore = new Text(text.substring(0, filterIndex));
+        Text textAfter = new Text(text.substring(filterIndex + filter.length()));
+        Text textFilter = new Text(text.substring(filterIndex,  filterIndex + filter.length())); //instead of "filter" to keep all "case sensitive"
+        textFilter.setFill(Color.ORANGE);
+//        textFilter.setFont(Font.font("Helvetica", FontWeight.BOLD, 12));
+        return new TextFlow(textBefore, textFilter, textAfter);
     }
 }

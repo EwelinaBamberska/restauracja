@@ -61,7 +61,7 @@ public class MenuList {
         List<MenuPosition> positions = new ArrayList<>();
         for (MenuPosition m:
              menuPositionList) {
-            if (m.getName().contains(regexToFind))
+            if (m.getName().toUpperCase().contains(regexToFind.toUpperCase()))
                 positions.add(m);
         }
         return positions;

@@ -22,12 +22,15 @@ public class OrderList {
         List<Order> orders = new ArrayList<>();
         for (Order o:
              orderList) {
-            if(myOrdersCheckBoxSelected && o.getManagerId() == LoggedWorker.getInstance().getId_prac())
+            if(myOrdersCheckBoxSelected && o.getManagerId() == LoggedWorker.getInstance().getId_prac()) {
                 orders.add(o);
-            else if(unclaimedOrders && !o.isIfDelivered())
+            }
+            else if(unclaimedOrders && !o.isIfDelivered()) {
                 orders.add(o);
-            else if(claimedOrdersCheckBoxSelected && o.isIfDelivered())
+            }
+            else if(claimedOrdersCheckBoxSelected && o.isIfDelivered()) {
                 orders.add(o);
+            }
         }
         return orders;
     }
@@ -47,7 +50,7 @@ public class OrderList {
     public Order getOrder(Integer id) {
         for (Order o:
                 orderList){
-            if (o.getManagerId() == id)
+            if (o.getOrderId() == id)
                 return o;
         }
         return null;

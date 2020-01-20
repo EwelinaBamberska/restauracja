@@ -1,16 +1,8 @@
 package views;
 
-import app.data.menu.MenuItemProperty;
-import app.data.menu.MenuList;
-import app.data.order.ItemInOrderProperty;
-import app.data.order.OrderItemProperty;
-import app.data.order.OrderList;
 import app.data.worker.WorkerItemProperty;
 import app.data.worker.WorkerList;
-import app.jdbc.MenuJdbcClass;
-import app.jdbc.OrderJdbcClass;
 import app.jdbc.WorkerJdbcClass;
-import com.sun.corba.se.spi.orbutil.threadpool.Work;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,7 +17,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
@@ -63,7 +54,7 @@ public class AllWorkersViewController implements Initializable {
     }
 
     private void initializeTableView() {
-        TableColumn<WorkerItemProperty,String> firstNameColumn = new TableColumn<>("Imie");
+        TableColumn<WorkerItemProperty, String> firstNameColumn = new TableColumn<>("Imie");
         TableColumn<WorkerItemProperty, String> surnameColumn = new TableColumn<>("Nazwisko");
         TableColumn<WorkerItemProperty, String> positionColumn = new TableColumn<>("Stanowisko");
         TableColumn<WorkerItemProperty, String> idColumn = new TableColumn<>("Id pracownika");
@@ -83,7 +74,7 @@ public class AllWorkersViewController implements Initializable {
                     WorkerItemProperty rowData = row.getItem();
                     FXMLLoader loader = new FXMLLoader(
                             getClass().getResource(
-                                    "customerDialog.fxml"
+                                    "workerInfoView.fxml"
                             )
                     );
 
@@ -138,5 +129,4 @@ public class AllWorkersViewController implements Initializable {
         });
         topHBox.getChildren().add(showAllButton);
     }
-
 }

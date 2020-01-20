@@ -370,7 +370,7 @@ START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE ID_ZAMOWIENIA_seq -- DOTYCZY ZAMOWIONEGO DO MAGAZYNU TOWARU
 START WITH 1 INCREMENT BY 1;
 
-CREATE SEQUENCE ID_RACHUNKU_seq -- DOTYCZY RACHUNKÓW KLIENTÓW
+CREATE SEQUENCE ID_RACHUNKU_seq -- DOTYCZY RACHUNKï¿½W KLIENTï¿½W
 START WITH 1 INCREMENT BY 1;
 /
 CREATE OR REPLACE PACKAGE MENU_FUNCTIONS IS
@@ -557,7 +557,8 @@ create or replace package body menedzer_functions is
     end;
 
     procedure dodaj_godziny(vIdPrac Pracownik.id_prac%type,  vStawka Pracownik_na_zmianie.stawka%type,
-            vStanowisko Pracownik_na_zmianie.pracownik_na_zmianie_id%type, vGodziny Pracownik_na_zmianie.ilosc_godzin%type default 8, vData Pracownik_na_zmianie.data%type default current_date) is
+            vStanowisko Pracownik_na_zmianie.pracownik_na_zmianie_id%type default 1, vGodziny Pracownik_na_zmianie.ilosc_godzin%type default 8,
+             vData Pracownik_na_zmianie.data%type default current_date) is
     begin 
         insert into pracownik_na_zmianie values(vidPrac, vData, vGodziny, vStawka, vStanowisko);
     end;
@@ -568,10 +569,15 @@ end;
 create or replace package magazyn_functions is
     procedure dodaj_towar(vNazwa Magazyn.nazwa_towaru%type, vIlosc Magazyn.ilosc%type);
     procedure usun_towar(vNazwa Magazyn.nazwa_towaru%type, vIlosc Magazyn.ilosc%type);
+    procedure nowy_towar(vNazwa Magazyn.nazwa_towaru%type, vIlosc Magazyn.ilosc%type);
 end;
 /
 
 create or replace package body magazyn_functions is
+    procedure nowy_towar(vNazwa Magazyn.nazwa_towaru%type, vIlosc Magazyn.ilosc%type) is
+    begin
+      insert into magazyn values(vNazwa, vIlosc);
+    end;
 
     procedure dodaj_towar(vNazwa Magazyn.nazwa_towaru%type, vIlosc Magazyn.ilosc%type) is
     begin

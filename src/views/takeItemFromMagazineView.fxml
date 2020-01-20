@@ -1,14 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import views.AutocompletionTextField?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="views.TakeITemFromMagazineViewController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.TakeITemFromMagazineViewController">
+   <top>
+      <HBox maxHeight="46.0" minHeight="46.0" prefHeight="46.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="3.0" top="3.0" />
+         </padding>
+         <children>
+            <Button fx:id="backToMenuButton" maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="40.0" prefWidth="150.0" text="Wróć">
+               <HBox.margin>
+                  <Insets left="3.0" right="3.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <AutocompletionTextField fx:id="itemNameTextField" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" onKeyReleased="#showEntries" prefHeight="40.0" prefWidth="200.0" promptText="Nazwa towaru">
+               <HBox.margin>
+                  <Insets left="3.0" right="3.0" />
+               </HBox.margin></AutocompletionTextField>
+            <TextField fx:id="itemAmountTextField" layoutX="13.0" layoutY="10.0" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" prefHeight="40.0" prefWidth="200.0" promptText="Ilość">
+               <HBox.margin>
+                  <Insets left="3.0" right="3.0" />
+               </HBox.margin>
+            </TextField>
+            <Button fx:id="takeFromMagazineButton" maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" mnemonicParsing="false" onAction="#takeFromMagazine" prefHeight="40.0" prefWidth="150.0" text="Usuń z magazynu">
+               <HBox.margin>
+                  <Insets left="3.0" right="3.0" />
+               </HBox.margin>
+            </Button>
+         </children></HBox>
+   </center>
+</BorderPane>
