@@ -104,8 +104,8 @@
                   <MenuButton fx:id="positionButton" maxHeight="40.0" minHeight="40.0" mnemonicParsing="false" prefHeight="40.0" text="MenuButton">
                     <items>
                       <MenuItem fx:id="managerMenuItem" mnemonicParsing="false" onAction="#changePositionToManager" text="Menedżer" />
-                      <MenuItem fx:id="waiterMenuItem" mnemonicParsing="false" onAction="#changePositionToWaiter" text="Waiter" />
-                        <MenuItem fx:id="cookMenuItem" mnemonicParsing="false" onAction="#changePositionToCook" text="Waiter" />
+                      <MenuItem fx:id="waiterMenuItem" mnemonicParsing="false" onAction="#changePositionToWaiter" text="Kelner" />
+                        <MenuItem fx:id="cookMenuItem" mnemonicParsing="false" onAction="#changePositionToCook" text="Kucharz" />
                     </items>
                      <HBox.margin>
                         <Insets left="3.0" right="3.0" />

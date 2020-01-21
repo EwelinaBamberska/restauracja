@@ -39,14 +39,14 @@
                         <Insets left="3.0" right="3.0" />
                      </padding>
                   </TableView>
-                  <TableView fx:id="items_table_view" prefHeight="200.0" prefWidth="200.0" visible="false">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <padding>
-                        <Insets left="3.0" right="3.0" />
-                     </padding>
-                  </TableView>
+                  <!--<TableView fx:id="items_table_view" prefHeight="200.0" prefWidth="200.0" visible="false">-->
+                     <!--<HBox.margin>-->
+                        <!--<Insets />-->
+                     <!--</HBox.margin>-->
+                     <!--<padding>-->
+                        <!--<Insets left="3.0" right="3.0" />-->
+                     <!--</padding>-->
+                  <!--</TableView>-->
                </children>
             </HBox>
          </children>

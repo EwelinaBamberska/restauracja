@@ -8,6 +8,7 @@ import app.data.worker.LoggedWorker;
 import app.data.worker.Worker;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class OrderJdbcClass {
     private static OrderJdbcClass instance = new OrderJdbcClass();
@@ -21,8 +22,9 @@ public class OrderJdbcClass {
         try {
             stmt = JdbcConnector.getInstance().getConn().createStatement();
             ResultSet rs = stmt.executeQuery(query);
+            OrderList.getInstance().setOrderList(new ArrayList<>());
             while(rs.next()) {
-                int managerId = rs.getInt(1);
+                int managerId = LoggedWorker.getInstance().getId_prac();
                 Worker manager = WorkerJdbcClass.getInstance().getWorkerById(managerId);
                 Order order = new Order(managerId, rs.getInt(2), rs.getString(3), manager.getName() + " " + manager.getSurname());
                 OrderList.getInstance().addOrder(order);
@@ -44,9 +46,11 @@ public class OrderJdbcClass {
     public void getProductsInOrdersFromDatabase(Integer valueOf) {
         Statement stmt = null;
         String query = "select * from towar_na_zamowieniu where towar_id_rachunku = " + valueOf;
+
         try {
             stmt = JdbcConnector.getInstance().getConn().createStatement();
             ResultSet rs = stmt.executeQuery(query);
+            OrderList.getInstance().getOrder(valueOf).setProducts(new ArrayList<>());
             while(rs.next()) {
                 ItemInOrder item = new ItemInOrder(rs.getString(3), rs.getInt(2), rs.getInt(1));
                 OrderList.getInstance().getOrder(valueOf).addItemToList(item);
@@ -127,12 +131,34 @@ public class OrderJdbcClass {
         }
     }
 
-    public void claimOrder(String orderId) {
+    public void claimOrder(int orderId) {
         CallableStatement stmt = null;
         String query = "{CALL menedzer_functions.odbierz_towar(?)}";
         try {
             stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
             stmt.setInt(1, Integer.valueOf(orderId));
+            stmt.executeQuery();
+            JdbcConnector.getInstance().getConn().commit();
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                }catch (SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void deleteItemFromOrder(Integer id, String name) {
+        CallableStatement stmt = null;
+        String query = "{CALL towar_na_zamowieniu_functions.usun_towar_z_zamowienia(?, ?)}";
+        try {
+            stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
+            stmt.setInt(1, id);
+            stmt.setString(2, name);
             stmt.executeQuery();
             JdbcConnector.getInstance().getConn().commit();
         } catch (SQLException e) {

@@ -1,7 +1,5 @@
 package app.jdbc;
 
-import app.data.order.Order;
-import app.data.order.OrderList;
 import app.data.worker.Worker;
 import app.data.worker.LoggedWorker;
 import app.data.worker.WorkerList;
@@ -170,6 +168,50 @@ public class WorkerJdbcClass {
             stmt.setFloat(4, hours);
             stmt.executeQuery();
             JdbcConnector.getInstance().getConn().commit();
+        }catch (SQLException e) {
+            throw new Error("Problem", e);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                }catch (SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private int getNextValOrderSeq(){
+        String sql = "select id_prac_seq.nextval from DUAL";
+        try {
+            PreparedStatement ps = JdbcConnector.getInstance().getConn().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            int nextID_from_seq = -1;
+            if (rs.next())
+                nextID_from_seq = rs.getInt(1);
+            return nextID_from_seq;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    public int addWorker(String name, String surname, Date date, String waiter, String manager, String cook) {
+        CallableStatement stmt = null;
+        String query = "{CALL menedzer_functions.dodaj_pracownika(?, ?, ?, ?, ?, ?, ?)}";
+        try {
+            int workerId = getNextValOrderSeq();
+            stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
+            stmt.setInt(1, workerId);
+            stmt.setString(2, name);
+            stmt.setString(3, surname);
+            stmt.setDate(4, date);
+            stmt.setString(5, waiter);
+            stmt.setString(6, manager);
+            stmt.setString(7, cook);
+            stmt.executeQuery();
+            JdbcConnector.getInstance().getConn().commit();
+            return workerId;
         }catch (SQLException e) {
             throw new Error("Problem", e);
         } finally {

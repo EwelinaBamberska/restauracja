@@ -106,7 +106,7 @@ public class AllWorkersViewController implements Initializable {
     }
 
     public void goToAddWorkerView(ActionEvent actionEvent) {
-        JavaFXUtils.changeScene(actionEvent, "workerInfoView.fxml", 800, 600, getClass());
+        JavaFXUtils.changeScene(actionEvent, "addWorkerView.fxml", 800, 600, getClass());
     }
 
     public void findWorker(ActionEvent actionEvent) {

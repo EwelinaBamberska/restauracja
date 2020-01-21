@@ -161,9 +161,11 @@ ALTER TABLE zamowiony_towar
     ADD CONSTRAINT zamowiony_towar_magazyn_fk FOREIGN KEY ( magazyn_nazwa_towaru )
         REFERENCES magazyn ( nazwa_towaru );
 
-ALTER TABLE zamowiony_towar
-    ADD CONSTRAINT zamowiony_towar_menedzer_fk FOREIGN KEY ( menedzer_id_roli )
-        REFERENCES menedzer ( id_roli );
+--ALTER TABLE zamowiony_towar
+--    ADD CONSTRAINT zamowiony_towar_menedzer_fk FOREIGN KEY ( menedzer_id_roli )
+--        REFERENCES menedzer ( id_roli );
+alter table zamowiony_towar drop constraint zamowiony_towar_menedzer_fk;
+commit;
 
 ALTER TABLE danie_na_zamowieniu
     ADD CONSTRAINT danie_na_zamowieniu_menu_fk FOREIGN KEY ( menu_nazwa_dania )
@@ -493,7 +495,7 @@ create or replace package menedzer_functions is
 --    function otwarte_rachunki(vIdPrac Pracownik.id_prac%type) return natural;
     procedure zamow_towar(vIdMenedzera Pracownik.id_prac%type, vId_zam Zamowiony_towar.id_zamowienia%type);
     procedure odbierz_towar(vIdZamowienia  Zamowiony_towar.id_zamowienia%type);
-    procedure dodaj_pracownika(vImie Pracownik.imie%type, vNazwisko Pracownik.nazwisko%type, vData Pracownik.data_zatrudnienia%type,
+    procedure dodaj_pracownika(vIdPrac Pracownik.id_prac%type, vImie Pracownik.imie%type, vNazwisko Pracownik.nazwisko%type, vData Pracownik.data_zatrudnienia%type,
             vCzyKelner Pracownik.czy_Kelner%type, vCzyMenedzer Pracownik.czy_Menedzer%type, vCzyKucharz Pracownik.czy_Kucharz%type);
     procedure usun_pracownika(vIdPrac Pracownik.id_prac%type);
     procedure modyfikuj_pracownika(vId Pracownik.id_prac%type, vImie Pracownik.imie%type, vNazwisko Pracownik.nazwisko%type, vData Pracownik.data_zatrudnienia%type,
@@ -532,10 +534,10 @@ create or replace package body menedzer_functions is
         end loop;
     end;
     
-    procedure dodaj_pracownika(vImie Pracownik.imie%type, vNazwisko Pracownik.nazwisko%type, vData Pracownik.data_zatrudnienia%type,
+    procedure dodaj_pracownika(vIdPrac Pracownik.id_prac%type, vImie Pracownik.imie%type, vNazwisko Pracownik.nazwisko%type, vData Pracownik.data_zatrudnienia%type,
             vCzyKelner Pracownik.czy_Kelner%type, vCzyMenedzer Pracownik.czy_Menedzer%type, vCzyKucharz Pracownik.czy_Kucharz%type) is
     begin
-        insert into pracownik values(id_prac_seq.nextval, vImie, vNazwisko, vData, vCzyKelner, vCzyKucharz, vCzyMenedzer);
+        insert into pracownik values(vIdPrac, vImie, vNazwisko, vData, vCzyKelner, vCzyKucharz, vCzyMenedzer);
     end;
     
     procedure usun_pracownika(vIdPrac Pracownik.id_prac%type) is
@@ -686,3 +688,7 @@ alter table zamowiony_towar add(czy_dostarczony VARCHAR2(1));
 
 commit;
 select * from menu;
+select * from magazyn;
+select * from zamowiony_towar;
+select * from towar_na_zamowieniu;
+select * from pracownik;

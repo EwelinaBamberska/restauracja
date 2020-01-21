@@ -15,11 +15,13 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.util.ArrayList;
@@ -127,6 +129,7 @@ public class CreateOrderViewController implements Initializable {
         for (ItemInOrder item:
              itemsInCreatedOrder) {
             item.setOrderId(orderId);
+            System.out.println(item.getName());
             OrderList.getInstance().getOrder(orderId).addItemToList(new ItemInOrder(item.getName(), item.getAmountOfProduct(), item.getOrderId()));
             OrderJdbcClass.getInstance().addItemInOrder(item);
         }

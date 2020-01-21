@@ -30,7 +30,6 @@ public class MagazineList {
              itemsInMagazine) {
             if(m.getName().contains(regexToFind)) {
                 items.add(m);
-                System.out.println(m.getName());
             }
         }
         return items;
