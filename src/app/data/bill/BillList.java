@@ -23,4 +23,6 @@ public class BillList {
     public void setBills(List<Bill> bills) {
         this.bills = bills;
     }
+
+
 }
