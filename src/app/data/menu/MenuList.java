@@ -20,7 +20,7 @@ public class MenuList {
     }
 
     public void addMenuPosition(MenuPosition position){
-        this.menuPositionList.add(position);
+            this.menuPositionList.add(position);
     }
 
     public static MenuList getInstance(){
@@ -61,7 +61,7 @@ public class MenuList {
         List<MenuPosition> positions = new ArrayList<>();
         for (MenuPosition m:
              menuPositionList) {
-            if (m.getName().toUpperCase().contains(regexToFind.toUpperCase()))
+            if (m.getName().contains(regexToFind))
                 positions.add(m);
         }
         return positions;

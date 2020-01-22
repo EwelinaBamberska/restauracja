@@ -1,13 +1,8 @@
 package views;
 
-import app.data.magazine.MagazineItem;
-import app.data.magazine.MagazineList;
 import app.data.order.ItemInOrder;
 import app.data.order.ItemInOrderProperty;
-import app.data.order.Order;
-import app.data.order.OrderList;
-import app.data.worker.LoggedWorker;
-import app.jdbc.MagazineJdbcClass;
+import app.jdbc.MenuJdbcClass;
 import app.jdbc.OrderJdbcClass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,13 +10,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.util.ArrayList;
@@ -38,7 +30,7 @@ public class CreateOrderViewController implements Initializable {
     @FXML
     private TableView items_table;
     @FXML
-    private AutocompletionTextField name_text_field;
+    private TextField name_text_field;
     @FXML
     private TextField amount_text_field;
     @FXML
@@ -123,14 +115,9 @@ public class CreateOrderViewController implements Initializable {
 
     public void submit_button(ActionEvent actionEvent) {
         int orderId = OrderJdbcClass.getInstance().createOrder();
-        OrderList.getInstance().addOrder(new Order(LoggedWorker.getInstance().getId_prac(), orderId, "F",
-                LoggedWorker.getInstance().getName() + " " + LoggedWorker.getInstance().getSurname()));
-
         for (ItemInOrder item:
              itemsInCreatedOrder) {
             item.setOrderId(orderId);
-            System.out.println(item.getName());
-            OrderList.getInstance().getOrder(orderId).addItemToList(new ItemInOrder(item.getName(), item.getAmountOfProduct(), item.getOrderId()));
             OrderJdbcClass.getInstance().addItemInOrder(item);
         }
         go_to_orders_view(actionEvent);
@@ -158,11 +145,5 @@ public class CreateOrderViewController implements Initializable {
                 return i;
         }
         return null;
-    }
-
-    public void showItemsInMagazine(KeyEvent keyEvent) {
-        MagazineJdbcClass.getInstance().getItems();
-        List<MagazineItem> itemsToShow = MagazineList.getInstance().getItemsInMagazineRegex(name_text_field.getText());
-        itemsToShow.forEach(item -> name_text_field.getEntries().add(item.getName()));
     }
 }

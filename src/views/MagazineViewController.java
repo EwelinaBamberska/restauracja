@@ -48,7 +48,7 @@ public class MagazineViewController implements Initializable {
     private void showIngredients() {
         MagazineJdbcClass.getInstance().getItems();
         ingredientsTableView.getItems().clear();
-        ObservableList<MagazineItemProperty> items = FXCollections.observableArrayList();
+        ObservableList<MagazineItemProperty> items= FXCollections.observableArrayList();
         MagazineList.getInstance().getItemsInMagazine()
                 .forEach(position -> items.add(new MagazineItemProperty(position.getAmount(), position.getName())));
         ingredientsTableView.setItems(items);
