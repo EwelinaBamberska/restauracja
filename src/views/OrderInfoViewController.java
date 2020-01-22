@@ -77,6 +77,7 @@ public class OrderInfoViewController implements Initializable {
                 actualOrder.setIfDelivered(true);
                 deliverLabel.setText("Zamówienie odebrane.");
                 topHBox.getChildren().remove(1);
+                bottomVBox.setVisible(false);
             }
         });
     }

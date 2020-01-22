@@ -1,7 +1,6 @@
 package app.jdbc;
 
 import app.data.magazine.MagazineItem;
-import app.data.magazine.MagazineList;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -65,5 +64,49 @@ public class MagazineJdbcClass {
     }
 
     public void takeItem(String name, int amount) {
+        CallableStatement stmt = null;
+        String query = "{CALL magazyn_functions.usun_towar(?, ?)}";
+        try {
+            stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
+            stmt.setString(1, name);
+            stmt.setInt(2, amount);
+            stmt.executeQuery();
+            JdbcConnector.getInstance().getConn().commit();
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                }catch (SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public int getAmountOfItem(String name) {
+        PreparedStatement stmt = null;
+        String query = "select ilosc from magazyn where nazwa_towaru = ?";
+        try {
+            stmt = JdbcConnector.getInstance().getConn().prepareStatement(query);
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()) {
+                return rs.getInt(1);
+            }
+            JdbcConnector.getInstance().getConn().commit();
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                }catch (SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return -1;
     }
 }

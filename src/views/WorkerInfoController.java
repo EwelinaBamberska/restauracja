@@ -74,6 +74,7 @@ public class WorkerInfoController implements Initializable {
             actualPosition = Position.Menedżer;
             positionButton.setText(String.valueOf(Position.Menedżer));
         }
+        addChangeButton();
     }
 
     public void goToWorkerView(ActionEvent actionEvent) {
@@ -83,35 +84,35 @@ public class WorkerInfoController implements Initializable {
 
     public void deleteWorker(ActionEvent actionEvent) {
         WorkerJdbcClass.getInstance().fireWorker(workerToShow);
-        WorkerList.getInstance().deleteWorker(workerToShow);
+//        WorkerList.getInstance().deleteWorker(workerToShow);
         goToWorkerView(actionEvent);
     }
 
     public void changePositionToManager(ActionEvent actionEvent) {
         actualPosition = Position.Menedżer;
         positionButton.setText(String.valueOf(Position.Menedżer));
-        if(!ifDataModified){
-            ifDataModified = true;
-            addChangeButton();
-        }
+//        if(!ifDataModified){
+//            ifDataModified = true;
+//            addChangeButton();
+//        }
     }
 
     public void changePositionToWaiter(ActionEvent actionEvent) {
         actualPosition = Position.Kelner;
         positionButton.setText(String.valueOf(Position.Kelner));
-        if(!ifDataModified){
-            ifDataModified = true;
-            addChangeButton();
-        }
+//        if(!ifDataModified){
+//            ifDataModified = true;
+//            addChangeButton();
+//        }
     }
 
     public void changePositionToCook(ActionEvent actionEvent) {
         actualPosition = Position.Kucharz;
         positionButton.setText(String.valueOf(Position.Kucharz));
-        if(!ifDataModified){
-            ifDataModified = true;
-            addChangeButton();
-        }
+//        if(!ifDataModified){
+//            ifDataModified = true;
+//            addChangeButton();
+//        }
     }
 
     private void addChangeButton() {
@@ -129,8 +130,8 @@ public class WorkerInfoController implements Initializable {
                 else
                     workerToShow.setManager();
                 WorkerJdbcClass.getInstance().modifyWorker(workerToShow);
-                centerVBox.getChildren().remove(4);
-                ifDataModified = false;
+//                centerVBox.getChildren().remove(4);
+//                ifDataModified = false;
             }
         });
         centerVBox.getChildren().add(4, modifyDataButton);
@@ -144,9 +145,9 @@ public class WorkerInfoController implements Initializable {
     }
 
     public void setChangedData(InputMethodEvent inputMethodEvent) {
-        if(!ifDataModified){
-            ifDataModified = true;
-            addChangeButton();
-        }
+//        if(!ifDataModified){
+//            ifDataModified = true;
+//            addChangeButton();
+//        }
     }
 }

@@ -45,7 +45,7 @@ public class TakeITemFromMagazineViewController implements Initializable {
     public void takeFromMagazine(ActionEvent actionEvent) {
         String name = itemNameTextField.getText();
         int amount = Integer.valueOf(itemAmountTextField.getText());
-        int magazineAmount = MagazineList.getInstance().getAmountOfItem(name);
+        int magazineAmount = MagazineJdbcClass.getInstance().getAmountOfItem(name);
         if (amount <= magazineAmount){
             MagazineJdbcClass.getInstance().takeItem(name, amount);
             goToMainMenu(actionEvent);

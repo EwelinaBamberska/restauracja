@@ -42,15 +42,10 @@ public class OrderJdbcClass {
         try {
             stmt = JdbcConnector.getInstance().getConn().createStatement();
             ResultSet rs = stmt.executeQuery(query);
-//            OrderList.getInstance().setOrderList(new ArrayList<>());
             while(rs.next()) {
-                int managerId = LoggedWorker.getInstance().getId_prac();
-                Worker manager = WorkerJdbcClass.getInstance().getWorkerById(managerId);
-                Order order = new Order(managerId, rs.getInt(2), rs.getString(3), manager.getName() + " " + manager.getSurname());
-//                OrderList.getInstance().addOrder(order);
+                Order order = new Order(rs.getInt(1), rs.getInt(2), rs.getString(3));
                 orders.add(order);
             }
-//            OrderList.getInstance().setDownloadedData(true);
         } catch (SQLException e) {
             throw new Error("Problem", e);
         } finally {
@@ -200,6 +195,25 @@ public class OrderJdbcClass {
 
     public Order getOrder(Integer valueOf) {
         Order order = null;
+        Statement stmt = null;
+        String query = "select * from zamowiony_towar where id_zamowienia = " + valueOf;
+        try {
+            stmt = JdbcConnector.getInstance().getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()) {
+                order = new Order(rs.getInt(1), rs.getInt(2), rs.getString(3));
+            }
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                }catch (SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        }
         return order;
     }
 }

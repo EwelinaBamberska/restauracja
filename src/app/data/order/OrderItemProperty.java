@@ -7,8 +7,8 @@ public class OrderItemProperty {
     private SimpleStringProperty orderId;
     private SimpleStringProperty delivered;
 
-    public OrderItemProperty(String managerName, int orderId, boolean delivered){
-        this.managerName = new SimpleStringProperty(managerName);
+    public OrderItemProperty(int managerName, int orderId, boolean delivered){
+        this.managerName = new SimpleStringProperty(String.valueOf(managerName));
         this.orderId = new SimpleStringProperty(String.valueOf(orderId));
         this.delivered = (delivered) ? new SimpleStringProperty("Dostarczono") : new SimpleStringProperty("Otwarte");
     }

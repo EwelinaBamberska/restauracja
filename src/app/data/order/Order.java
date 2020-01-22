@@ -12,11 +12,10 @@ public class Order {
     private List<ItemInOrder> products = new ArrayList<>();
     private boolean productsDownloaded = false;
 
-    public Order(int managerId , int orderId, String ifDelivered, String managerName){
+    public Order(int managerId , int orderId, String ifDelivered){
         this.managerId = managerId;
         this.orderId = orderId;
         this.ifDelivered = ifDelivered.equals("T");
-        this.managerName = managerName;
     }
 
     public int getManagerId() {

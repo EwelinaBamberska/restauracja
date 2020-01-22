@@ -51,12 +51,12 @@ public class OrdersViewController implements Initializable {
         orders_items_table.getItems().clear();
         ObservableList<OrderItemProperty> orderItems = FXCollections.observableArrayList();
 //        OrderList.getInstance().getOrderList(unclaimedOrdersCheckBox.isSelected(), claimedOrdersCheckBox.isSelected(), myOrdersCheckBox.isSelected())
-        ordersInDB.forEach(position -> orderItems.add(new OrderItemProperty(position.getManagerName(), position.getOrderId(), position.isIfDelivered())));
+        ordersInDB.forEach(position -> orderItems.add(new OrderItemProperty(position.getManagerId(), position.getOrderId(), position.isIfDelivered())));
         orders_items_table.setItems(orderItems);
     }
 
     private void initializeTableViews() {
-        TableColumn<OrderItemProperty,String> managerNameColumn = new TableColumn<>("Meneger");
+        TableColumn<OrderItemProperty,String> managerNameColumn = new TableColumn<>("Meneger ID");
         TableColumn<OrderItemProperty, String> orderIdColumn = new TableColumn<>("Identyfikator zamówienia");
         orders_items_table.getColumns().addAll(orderIdColumn, managerNameColumn);
 
