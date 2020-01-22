@@ -30,14 +30,19 @@ public class LoginToAppController implements Initializable {
 
     public void sign_to_app(ActionEvent actionEvent){
         String enteredID = sign_in_text_area.getText();
-        if (WorkerJdbcClass.getInstance().logWorker(Integer.parseInt(enteredID))){
-            if(LoggedWorker.getInstance().isIf_manager())
-                JavaFXUtils.changeScene(actionEvent, "mainViewManager.fxml", 800.0, 600.0, getClass());
-            else if (LoggedWorker.getInstance().isIf_waiter())
-                JavaFXUtils.changeScene(actionEvent, "mainViewWaiter.fxml", 800.0, 600.0, getClass());
+
+        try {
+            if (WorkerJdbcClass.getInstance().logWorker(Integer.parseInt(enteredID))) {
+                if (LoggedWorker.getInstance().isIf_manager())
+                    JavaFXUtils.changeScene(actionEvent, "mainViewManager.fxml", 800.0, 600.0, getClass());
+                else if (LoggedWorker.getInstance().isIf_waiter())
+                    JavaFXUtils.changeScene(actionEvent, "mainViewWaiter.fxml", 800.0, 600.0, getClass());
+            } else
+                views.ErrorBox.showError("Error", "Nonexistent ID ");
+        }catch (NumberFormatException e){
+            views.ErrorBox.showError("Error", "Input can only be a number");
         }
     }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         sign_in_text_area.setOnKeyPressed(new EventHandler<KeyEvent>() {
