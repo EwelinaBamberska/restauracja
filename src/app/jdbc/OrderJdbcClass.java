@@ -1,6 +1,5 @@
 package app.jdbc;
 
-import app.data.menu.MenuList;
 import app.data.order.ItemInOrder;
 import app.data.order.Order;
 import app.data.order.OrderList;
@@ -16,20 +15,42 @@ public class OrderJdbcClass {
     
     private OrderJdbcClass(){}
 
-    public void getOrdersFromDatabase() {
+    public ArrayList<Order> getOrdersFromDatabase(boolean unclaimedOrders, boolean claimedOrdersCheckBoxSelected, boolean myOrdersCheckBoxSelected) {
         Statement stmt = null;
         String query = "select * from zamowiony_towar";
+        if(!unclaimedOrders && !claimedOrdersCheckBoxSelected && !myOrdersCheckBoxSelected)
+            return new ArrayList<Order>();
+        if(unclaimedOrders && claimedOrdersCheckBoxSelected && ! myOrdersCheckBoxSelected)
+            query = "select * from zamowiony_towar";
+        else if(myOrdersCheckBoxSelected && unclaimedOrders && claimedOrdersCheckBoxSelected)
+            query = "select * from zamowiony_towar where menedzer_id_roli = " + LoggedWorker.getInstance().getId_prac();
+        else if(myOrdersCheckBoxSelected){
+            if (unclaimedOrders) {
+                query = "select * from zamowiony_towar where menedzer_id_roli = " + LoggedWorker.getInstance().getId_prac() +
+                         "and czy_dostarczony = 'F'";
+            }else if (claimedOrdersCheckBoxSelected) {
+                query = "select * from zamowiony_towar where menedzer_id_roli = " + LoggedWorker.getInstance().getId_prac() +
+                        "and czy_dostarczony = 'T'";
+            }
+        } else {
+            if(unclaimedOrders)
+                query = "select * from zamowiony_towar where czy_dostarczony = 'F'";
+            else if (claimedOrdersCheckBoxSelected)
+                query = "select * from zamowiony_towar where czy_dostarczony = 'T'";
+        }
+        ArrayList<Order> orders = new ArrayList<>();
         try {
             stmt = JdbcConnector.getInstance().getConn().createStatement();
             ResultSet rs = stmt.executeQuery(query);
-            OrderList.getInstance().setOrderList(new ArrayList<>());
+//            OrderList.getInstance().setOrderList(new ArrayList<>());
             while(rs.next()) {
                 int managerId = LoggedWorker.getInstance().getId_prac();
                 Worker manager = WorkerJdbcClass.getInstance().getWorkerById(managerId);
                 Order order = new Order(managerId, rs.getInt(2), rs.getString(3), manager.getName() + " " + manager.getSurname());
-                OrderList.getInstance().addOrder(order);
+//                OrderList.getInstance().addOrder(order);
+                orders.add(order);
             }
-            OrderList.getInstance().setDownloadedData(true);
+//            OrderList.getInstance().setDownloadedData(true);
         } catch (SQLException e) {
             throw new Error("Problem", e);
         } finally {
@@ -41,21 +62,23 @@ public class OrderJdbcClass {
                 }
             }
         }
+        return orders;
     }
 
-    public void getProductsInOrdersFromDatabase(Integer valueOf) {
+    public ArrayList<ItemInOrder> getProductsInOrdersFromDatabase(Integer valueOf) {
         Statement stmt = null;
         String query = "select * from towar_na_zamowieniu where towar_id_rachunku = " + valueOf;
-
+        ArrayList<ItemInOrder> items = new ArrayList<>();
         try {
             stmt = JdbcConnector.getInstance().getConn().createStatement();
             ResultSet rs = stmt.executeQuery(query);
-            OrderList.getInstance().getOrder(valueOf).setProducts(new ArrayList<>());
+//            OrderList.getInstance().getOrder(valueOf).setProducts(new ArrayList<>());
             while(rs.next()) {
                 ItemInOrder item = new ItemInOrder(rs.getString(3), rs.getInt(2), rs.getInt(1));
-                OrderList.getInstance().getOrder(valueOf).addItemToList(item);
+//                OrderList.getInstance().getOrder(valueOf).addItemToList(item);
+                items.add(item);
             }
-            OrderList.getInstance().getOrder(valueOf).setDownloadedData(true);
+//            OrderList.getInstance().getOrder(valueOf).setDownloadedData(true);
         } catch (SQLException e) {
             throw new Error("Problem", e);
         } finally {
@@ -67,6 +90,7 @@ public class OrderJdbcClass {
                 }
             }
         }
+        return items;
     }
     
     private int getNextValOrderSeq(){
@@ -172,5 +196,10 @@ public class OrderJdbcClass {
                 }
             }
         }
+    }
+
+    public Order getOrder(Integer valueOf) {
+        Order order = null;
+        return order;
     }
 }

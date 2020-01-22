@@ -1,5 +1,6 @@
 package views;
 
+import app.data.order.Order;
 import app.data.order.OrderItemProperty;
 import app.data.order.OrderList;
 import app.jdbc.OrderJdbcClass;
@@ -18,6 +19,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class OrdersViewController implements Initializable {
@@ -44,12 +46,12 @@ public class OrdersViewController implements Initializable {
     }
 
     private void showOrders() {
-        if(!OrderList.getInstance().isDownloadedData())
-            OrderJdbcClass.getInstance().getOrdersFromDatabase();
+//        if(!OrderList.getInstance().isDownloadedData())
+        ArrayList<Order> ordersInDB = OrderJdbcClass.getInstance().getOrdersFromDatabase(unclaimedOrdersCheckBox.isSelected(), claimedOrdersCheckBox.isSelected(), myOrdersCheckBox.isSelected());
         orders_items_table.getItems().clear();
         ObservableList<OrderItemProperty> orderItems = FXCollections.observableArrayList();
-        OrderList.getInstance().getOrderList(unclaimedOrdersCheckBox.isSelected(), claimedOrdersCheckBox.isSelected(), myOrdersCheckBox.isSelected())
-                .forEach(position -> orderItems.add(new OrderItemProperty(position.getManagerName(), position.getOrderId(), position.isIfDelivered())));
+//        OrderList.getInstance().getOrderList(unclaimedOrdersCheckBox.isSelected(), claimedOrdersCheckBox.isSelected(), myOrdersCheckBox.isSelected())
+        ordersInDB.forEach(position -> orderItems.add(new OrderItemProperty(position.getManagerName(), position.getOrderId(), position.isIfDelivered())));
         orders_items_table.setItems(orderItems);
     }
 
@@ -85,7 +87,7 @@ public class OrdersViewController implements Initializable {
 
                     OrderInfoViewController controller =
                             loader.<OrderInfoViewController>getController();
-                    controller.initData(OrderList.getInstance().getOrder(Integer.valueOf(rowData.getOrderId())));
+                    controller.initData(OrderJdbcClass.getInstance().getOrder(Integer.valueOf(rowData.getOrderId())));
 
                     stage.show();
                 }

@@ -123,14 +123,14 @@ public class CreateOrderViewController implements Initializable {
 
     public void submit_button(ActionEvent actionEvent) {
         int orderId = OrderJdbcClass.getInstance().createOrder();
-        OrderList.getInstance().addOrder(new Order(LoggedWorker.getInstance().getId_prac(), orderId, "F",
-                LoggedWorker.getInstance().getName() + " " + LoggedWorker.getInstance().getSurname()));
+//        OrderList.getInstance().addOrder(new Order(LoggedWorker.getInstance().getId_prac(), orderId, "F",
+//                LoggedWorker.getInstance().getName() + " " + LoggedWorker.getInstance().getSurname()));
 
         for (ItemInOrder item:
              itemsInCreatedOrder) {
             item.setOrderId(orderId);
             System.out.println(item.getName());
-            OrderList.getInstance().getOrder(orderId).addItemToList(new ItemInOrder(item.getName(), item.getAmountOfProduct(), item.getOrderId()));
+//            OrderList.getInstance().getOrder(orderId).addItemToList(new ItemInOrder(item.getName(), item.getAmountOfProduct(), item.getOrderId()));
             OrderJdbcClass.getInstance().addItemInOrder(item);
         }
         go_to_orders_view(actionEvent);
@@ -161,8 +161,10 @@ public class CreateOrderViewController implements Initializable {
     }
 
     public void showItemsInMagazine(KeyEvent keyEvent) {
-        MagazineJdbcClass.getInstance().getItems();
-        List<MagazineItem> itemsToShow = MagazineList.getInstance().getItemsInMagazineRegex(name_text_field.getText());
-        itemsToShow.forEach(item -> name_text_field.getEntries().add(item.getName()));
+        ArrayList<MagazineItem> items = MagazineJdbcClass.getInstance().getItems();
+        ArrayList<MagazineItem> regexArray = new ArrayList<>();
+        items.forEach(position -> {if(position.getName().contains(name_text_field.getText())) regexArray.add(position);});
+//        List<MagazineItem> itemsToShow = MagazineList.getInstance().getItemsInMagazineRegex(name_text_field.getText());
+        regexArray.forEach(item -> name_text_field.getEntries().add(item.getName()));
     }
 }

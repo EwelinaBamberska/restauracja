@@ -15,16 +15,18 @@ public class MagazineJdbcClass {
         return instance;
     }
 
-    public void getItems() {
+    public ArrayList<MagazineItem> getItems() {
         Statement stmt = null;
         String query = "select * from magazyn";
+        ArrayList<MagazineItem> items = new ArrayList<>();
         try {
             stmt = JdbcConnector.getInstance().getConn().createStatement();
             ResultSet rs = stmt.executeQuery(query);
-            MagazineList.getInstance().setItemsInMagazine(new ArrayList<>());
+//            MagazineList.getInstance().setItemsInMagazine(new ArrayList<>());
             while(rs.next()) {
                 MagazineItem item = new MagazineItem(rs.getInt(2), rs.getString(1));
-                MagazineList.getInstance().addItem(item);
+//                MagazineList.getInstance().addItem(item);
+                items.add(item);
             }
         } catch (SQLException e) {
             throw new Error("Problem", e);
@@ -37,6 +39,7 @@ public class MagazineJdbcClass {
                 }
             }
         }
+        return items;
     }
 
     public void addItem(MagazineItem newItem) {

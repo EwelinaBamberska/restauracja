@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.List;
 
@@ -81,10 +82,10 @@ public class OrderInfoViewController implements Initializable {
     }
 
     private void showItemsInTable() {
-        OrderJdbcClass.getInstance().getProductsInOrdersFromDatabase(Integer.valueOf(actualOrder.getOrderId()));
+        ArrayList<ItemInOrder> itemsInOrder = OrderJdbcClass.getInstance().getProductsInOrdersFromDatabase(Integer.valueOf(actualOrder.getOrderId()));
         itemsTableView.getItems().clear();
         ObservableList<ItemInOrderProperty> orderItems = FXCollections.observableArrayList();
-        actualOrder.getProducts().forEach(position -> orderItems.add(new ItemInOrderProperty(position.getName(), position.getAmountOfProduct(), position.getOrderId())));
+        itemsInOrder.forEach(position -> orderItems.add(new ItemInOrderProperty(position.getName(), position.getAmountOfProduct(), position.getOrderId())));
         itemsTableView.setItems(orderItems);
     }
 
@@ -112,7 +113,7 @@ public class OrderInfoViewController implements Initializable {
                                 ItemInOrderProperty data = getTableView().getItems().get(getIndex());
 
                                 OrderJdbcClass.getInstance().deleteItemFromOrder(Integer.valueOf(data.getOrderId()), data.getName());
-                                actualOrder.deleteItem(data.getName());
+//                                actualOrder.deleteItem(data.getName());
                                 showItemsInTable();
                             });
                         }
@@ -142,16 +143,21 @@ public class OrderInfoViewController implements Initializable {
     }
 
     public void showHints(KeyEvent keyEvent) {
-        MagazineJdbcClass.getInstance().getItems();
-        List<MagazineItem> itemsToShow = MagazineList.getInstance().getItemsInMagazineRegex(nameOfAddedItemTextField.getText());
-        itemsToShow.forEach(item -> nameOfAddedItemTextField.getEntries().add(item.getName()));
+        ArrayList<MagazineItem> itemsInMagazine = MagazineJdbcClass.getInstance().getItems();
+        ArrayList<MagazineItem> regexItems = new ArrayList<>();
+        itemsInMagazine.forEach(pos -> {
+            if(pos.getName().toUpperCase().contains(nameOfAddedItemTextField.getText().toUpperCase()))
+                regexItems.add(pos);});
+//        List<MagazineItem> itemsToShow = MagazineList.getInstance().getItemsInMagazineRegex(nameOfAddedItemTextField.getText());
+        regexItems.forEach(item -> nameOfAddedItemTextField.getEntries().add(item.getName()));
     }
 
     public void addItemToOrder(ActionEvent actionEvent) {
         String name = nameOfAddedItemTextField.getText();
         int amount = Integer.valueOf(amountOfAddedItemTextField.getText());
         ItemInOrder item = new ItemInOrder(name, amount, actualOrder.getOrderId());
-        actualOrder.addItemToList(item);
+//        actualOrder.addItemToList(item);
+
         OrderJdbcClass.getInstance().addItemInOrder(item);
         nameOfAddedItemTextField.clear();
         amountOfAddedItemTextField.clear();
