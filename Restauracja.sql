@@ -161,11 +161,9 @@ ALTER TABLE zamowiony_towar
     ADD CONSTRAINT zamowiony_towar_magazyn_fk FOREIGN KEY ( magazyn_nazwa_towaru )
         REFERENCES magazyn ( nazwa_towaru );
 
---ALTER TABLE zamowiony_towar
---    ADD CONSTRAINT zamowiony_towar_menedzer_fk FOREIGN KEY ( menedzer_id_roli )
---        REFERENCES menedzer ( id_roli );
-alter table zamowiony_towar drop constraint zamowiony_towar_menedzer_fk;
-commit;
+ALTER TABLE zamowiony_towar
+    ADD CONSTRAINT zamowiony_towar_menedzer_fk FOREIGN KEY ( menedzer_id_roli )
+        REFERENCES menedzer ( id_roli );
 
 ALTER TABLE danie_na_zamowieniu
     ADD CONSTRAINT danie_na_zamowieniu_menu_fk FOREIGN KEY ( menu_nazwa_dania )
@@ -372,7 +370,7 @@ START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE ID_ZAMOWIENIA_seq -- DOTYCZY ZAMOWIONEGO DO MAGAZYNU TOWARU
 START WITH 1 INCREMENT BY 1;
 
-CREATE SEQUENCE ID_RACHUNKU_seq -- DOTYCZY RACHUNKï¿½W KLIENTï¿½W
+CREATE SEQUENCE ID_RACHUNKU_seq -- DOTYCZY RACHUNKÓW KLIENTÓW
 START WITH 1 INCREMENT BY 1;
 /
 CREATE OR REPLACE PACKAGE MENU_FUNCTIONS IS
@@ -495,7 +493,7 @@ create or replace package menedzer_functions is
 --    function otwarte_rachunki(vIdPrac Pracownik.id_prac%type) return natural;
     procedure zamow_towar(vIdMenedzera Pracownik.id_prac%type, vId_zam Zamowiony_towar.id_zamowienia%type);
     procedure odbierz_towar(vIdZamowienia  Zamowiony_towar.id_zamowienia%type);
-    procedure dodaj_pracownika(vIdPrac Pracownik.id_prac%type, vImie Pracownik.imie%type, vNazwisko Pracownik.nazwisko%type, vData Pracownik.data_zatrudnienia%type,
+    procedure dodaj_pracownika(vImie Pracownik.imie%type, vNazwisko Pracownik.nazwisko%type, vData Pracownik.data_zatrudnienia%type,
             vCzyKelner Pracownik.czy_Kelner%type, vCzyMenedzer Pracownik.czy_Menedzer%type, vCzyKucharz Pracownik.czy_Kucharz%type);
     procedure usun_pracownika(vIdPrac Pracownik.id_prac%type);
     procedure modyfikuj_pracownika(vId Pracownik.id_prac%type, vImie Pracownik.imie%type, vNazwisko Pracownik.nazwisko%type, vData Pracownik.data_zatrudnienia%type,
@@ -534,10 +532,10 @@ create or replace package body menedzer_functions is
         end loop;
     end;
     
-    procedure dodaj_pracownika(vIdPrac Pracownik.id_prac%type, vImie Pracownik.imie%type, vNazwisko Pracownik.nazwisko%type, vData Pracownik.data_zatrudnienia%type,
+    procedure dodaj_pracownika(vImie Pracownik.imie%type, vNazwisko Pracownik.nazwisko%type, vData Pracownik.data_zatrudnienia%type,
             vCzyKelner Pracownik.czy_Kelner%type, vCzyMenedzer Pracownik.czy_Menedzer%type, vCzyKucharz Pracownik.czy_Kucharz%type) is
     begin
-        insert into pracownik values(vIdPrac, vImie, vNazwisko, vData, vCzyKelner, vCzyKucharz, vCzyMenedzer);
+        insert into pracownik values(id_prac_seq.nextval, vImie, vNazwisko, vData, vCzyKelner, vCzyKucharz, vCzyMenedzer);
     end;
     
     procedure usun_pracownika(vIdPrac Pracownik.id_prac%type) is
@@ -559,8 +557,7 @@ create or replace package body menedzer_functions is
     end;
 
     procedure dodaj_godziny(vIdPrac Pracownik.id_prac%type,  vStawka Pracownik_na_zmianie.stawka%type,
-            vStanowisko Pracownik_na_zmianie.pracownik_na_zmianie_id%type default 1, vGodziny Pracownik_na_zmianie.ilosc_godzin%type default 8,
-             vData Pracownik_na_zmianie.data%type default current_date) is
+            vStanowisko Pracownik_na_zmianie.pracownik_na_zmianie_id%type, vGodziny Pracownik_na_zmianie.ilosc_godzin%type default 8, vData Pracownik_na_zmianie.data%type default current_date) is
     begin 
         insert into pracownik_na_zmianie values(vidPrac, vData, vGodziny, vStawka, vStanowisko);
     end;
@@ -571,15 +568,10 @@ end;
 create or replace package magazyn_functions is
     procedure dodaj_towar(vNazwa Magazyn.nazwa_towaru%type, vIlosc Magazyn.ilosc%type);
     procedure usun_towar(vNazwa Magazyn.nazwa_towaru%type, vIlosc Magazyn.ilosc%type);
-    procedure nowy_towar(vNazwa Magazyn.nazwa_towaru%type, vIlosc Magazyn.ilosc%type);
 end;
 /
 
 create or replace package body magazyn_functions is
-    procedure nowy_towar(vNazwa Magazyn.nazwa_towaru%type, vIlosc Magazyn.ilosc%type) is
-    begin
-      insert into magazyn values(vNazwa, vIlosc);
-    end;
 
     procedure dodaj_towar(vNazwa Magazyn.nazwa_towaru%type, vIlosc Magazyn.ilosc%type) is
     begin
@@ -688,7 +680,3 @@ alter table zamowiony_towar add(czy_dostarczony VARCHAR2(1));
 
 commit;
 select * from menu;
-select * from magazyn;
-select * from zamowiony_towar;
-select * from towar_na_zamowieniu;
-select * from pracownik;

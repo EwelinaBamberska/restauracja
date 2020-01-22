@@ -104,8 +104,8 @@
                   <MenuButton fx:id="positionButton" maxHeight="40.0" minHeight="40.0" mnemonicParsing="false" prefHeight="40.0" text="MenuButton">
                     <items>
                       <MenuItem fx:id="managerMenuItem" mnemonicParsing="false" onAction="#changePositionToManager" text="Menedżer" />
-                      <MenuItem fx:id="waiterMenuItem" mnemonicParsing="false" onAction="#changePositionToWaiter" text="Kelner" />
-                        <MenuItem fx:id="cookMenuItem" mnemonicParsing="false" onAction="#changePositionToCook" text="Kucharz" />
+                      <MenuItem fx:id="waiterMenuItem" mnemonicParsing="false" onAction="#changePositionToWaiter" text="Waiter" />
+                        <MenuItem fx:id="cookMenuItem" mnemonicParsing="false" onAction="#changePositionToCook" text="Waiter" />
                     </items>
                      <HBox.margin>
                         <Insets left="3.0" right="3.0" />
@@ -143,12 +143,6 @@
                         <Insets left="3.0" right="3.0" />
                      </HBox.margin>
                   </TextField>
-                  <Label maxHeight="40.0" maxWidth="70.0" minHeight="40.0" minWidth="70.0" prefHeight="40.0" prefWidth="70.0" text="Stawka">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
-                  <TextField fx:id="hourRateTextField" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" prefHeight="40.0" prefWidth="100.0" promptText="Stawka godzinowa" />
                   <Button fx:id="saveHoursButton" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#saveHours" prefHeight="40.0" prefWidth="100.0" text="Zapisz">
                      <HBox.margin>
                         <Insets left="3.0" right="3.0" />
