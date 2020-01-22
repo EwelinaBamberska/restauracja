@@ -39,8 +39,6 @@ public class MenuViewController implements Initializable {
     @FXML
     private HBox topHBox;
 
-    private boolean showingRegexButton = false;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeTableColumns();
@@ -52,7 +50,7 @@ public class MenuViewController implements Initializable {
             MenuJdbcClass.getInstance().getMenuItemsFromDatabase();
         menu_items_table.getItems().clear();
         ObservableList<MenuItemProperty> menuItems = FXCollections.observableArrayList();
-            MenuList.getInstance().getMenuPositionList().forEach(position -> menuItems.add(new MenuItemProperty(position.getName(), position.getPrice())));
+        MenuList.getInstance().getMenuPositionList().forEach(position -> menuItems.add(new MenuItemProperty(position.getName(), position.getPrice())));
         menu_items_table.setItems(menuItems);
     }
 
@@ -118,16 +116,38 @@ public class MenuViewController implements Initializable {
         menu_items_table.getColumns().add(deleteButton);
     }
 
+
     public void add_new_position(ActionEvent actionEvent) {
+        int checking = 0;
         String name = name_text_field.getCharacters().toString();
         String price = priceTextField.getCharacters().toString().replace(",", ".");
-        name_text_field.clear();
-        priceTextField.clear();
-        Double priceValue = Double.parseDouble(price);
-        MenuPosition newPosition = new MenuPosition(name, priceValue);
-        MenuList.getInstance().addMenuPosition(newPosition);
-        MenuJdbcClass.getInstance().addMenuPosition(newPosition);
-        showItemsInMenu();
+        if (app.data.DataValidation.checkEmpty(name) == "" || app.data.DataValidation.checkEmpty(price) == "") {
+            views.ErrorBox.showError("Error", "Input can't be empty");
+            checking++;
+        }
+        if (app.data.DataValidation.checkSpecialChars(name) == "") {
+            views.ErrorBox.showError("Error", "Special characters are not allowed in names");
+            checking++;
+        }
+        if(app.data.DataValidation.checkSize(32,name)==""){
+            views.ErrorBox.showError("Error", "Name must be at most 32 characters long");
+            checking++;
+        }
+        if(checking == 0) {
+            name_text_field.clear();
+            priceTextField.clear();
+            try {
+                Double priceValue = Double.parseDouble(price);
+
+                MenuPosition newPosition = new MenuPosition(name, priceValue);
+                MenuList.getInstance().addMenuPosition(newPosition);
+                MenuJdbcClass.getInstance().addMenuPosition(newPosition);
+                showItemsInMenu();
+            }catch(NumberFormatException e){
+                ErrorBox.showError("Error","Price contains only numbers and  a comma");
+
+            }
+        }
     }
 
     public void go_to_menu(ActionEvent actionEvent) {
@@ -142,18 +162,15 @@ public class MenuViewController implements Initializable {
         ObservableList<MenuItemProperty> menuItems = FXCollections.observableArrayList();
         MenuList.getInstance().getMenuPositionListRegex(regexToFind).forEach(position -> menuItems.add(new MenuItemProperty(position.getName(), position.getPrice())));
         menu_items_table.setItems(menuItems);
-        if(!showingRegexButton) {
-            Button showAllButton = JavaFXUtils.createButton("Pokaż wszystkie.");
-            showAllButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    showItemsInMenu();
-                    topHBox.getChildren().remove(topHBox.getChildren().size() - 1);
-                    showingRegexButton = false;
-                }
-            });
+        Button showAllButton = JavaFXUtils.createButton("Pokaż wszystkie.");
+        showAllButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                showItemsInMenu();
+                topHBox.getChildren().remove(topHBox.getChildren().size() - 1);
+            }
+        });
+        if(topHBox.getChildren().size()== 3)
             topHBox.getChildren().add(showAllButton);
-            showingRegexButton = true;
-        }
     }
 }
