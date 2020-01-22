@@ -1,5 +1,6 @@
 package views;
 
+import app.data.worker.Worker;
 import app.data.worker.WorkerItemProperty;
 import app.data.worker.WorkerList;
 import app.jdbc.WorkerJdbcClass;
@@ -20,6 +21,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AllWorkersViewController implements Initializable {
@@ -43,12 +45,12 @@ public class AllWorkersViewController implements Initializable {
     }
 
     private void showWorkers() {
-        if(!WorkerList.getInstance().isIfDataDownloaded())
-            WorkerJdbcClass.getInstance().getWorkers();
+//        if(!WorkerList.getInstance().isIfDataDownloaded())
+        ArrayList<Worker> workers = WorkerJdbcClass.getInstance().getWorkers();
         workersTableView.getItems().clear();
         ObservableList<WorkerItemProperty> workersList = FXCollections.observableArrayList();
-        WorkerList.getInstance().getWorkers()
-                .forEach(position -> workersList.add(new WorkerItemProperty(position.getId_prac(),
+//        WorkerList.getInstance().getWorkers()
+        workers.forEach(position -> workersList.add(new WorkerItemProperty(position.getId_prac(),
                         position.getName(), position.getSurname(), position.isIf_manager(), position.isIf_cooker(), position.isIf_waiter())));
         workersTableView.setItems(workersList);
     }
@@ -91,7 +93,7 @@ public class AllWorkersViewController implements Initializable {
 
                     WorkerInfoController controller =
                             loader.<WorkerInfoController>getController();
-                    controller.initData(WorkerList.getInstance().getWorkerById(Integer.valueOf(rowData.getId_prac())));
+                    controller.initData(WorkerJdbcClass.getInstance().getWorkerById(Integer.valueOf(rowData.getId_prac())));
 
                     stage.show();
                     //return stage
@@ -111,12 +113,16 @@ public class AllWorkersViewController implements Initializable {
 
     public void findWorker(ActionEvent actionEvent) {
         String regexToFind = findWorkerTextField.getCharacters().toString();
-        if(!WorkerList.getInstance().isIfDataDownloaded())
-            WorkerJdbcClass.getInstance().getWorkers();
+//        if(!WorkerList.getInstance().isIfDataDownloaded())
+        ArrayList<Worker> workersInDB = WorkerJdbcClass.getInstance().getWorkers();
         workersTableView.getItems().clear();
         ObservableList<WorkerItemProperty> workers = FXCollections.observableArrayList();
-        WorkerList.getInstance().getWorkerRegex(regexToFind).
-                forEach(position -> workers.add(new WorkerItemProperty(position.getId_prac(), position.getName(),
+
+        ArrayList<Worker> regexWorkers = new ArrayList<>();
+        workersInDB.forEach(position -> {if(position.passToRegex(regexToFind)) regexWorkers.add(position);});
+
+//        WorkerList.getInstance().getWorkerRegex(regexToFind).
+        regexWorkers.forEach(position -> workers.add(new WorkerItemProperty(position.getId_prac(), position.getName(),
                         position.getSurname(), position.isIf_manager(), position.isIf_cooker(), position.isIf_waiter())));
         workersTableView.setItems(workers);
         Button showAllButton = JavaFXUtils.createButton("Pokaż wszystkich.");

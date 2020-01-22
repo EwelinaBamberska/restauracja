@@ -63,7 +63,8 @@ public class AddWorkerViewController implements Initializable {
         if(!name.equals("") && !surname.equals("") && workDatePicker != null && actualPosition != null) {
             int id = WorkerJdbcClass.getInstance().addWorker(name, surname, date, waiter, manager, cook);
             Worker newWorker = new Worker(id, name, surname, date, waiter, cook, manager);
-            WorkerList.getInstance().addWorker(newWorker);
+//            WorkerList.getInstance().addWorker(newWorker);
+            goToWorkerView(actionEvent);
         }
         else {
             //BŁĄD Dane nieuzupełnione

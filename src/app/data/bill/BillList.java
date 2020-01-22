@@ -23,4 +23,13 @@ public class BillList {
     public void setBills(List<Bill> bills) {
         this.bills = bills;
     }
+
+    public Bill getBillByID(Integer valueOf) {
+        for (Bill b:
+             bills) {
+            if(b.getBillId() == valueOf)
+                return b;
+        }
+        return null;
+    }
 }

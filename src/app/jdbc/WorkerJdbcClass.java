@@ -5,6 +5,7 @@ import app.data.worker.LoggedWorker;
 import app.data.worker.WorkerList;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class WorkerJdbcClass {
     private Statement stmt = null;
@@ -67,18 +68,21 @@ public class WorkerJdbcClass {
         return null;
     }
 
-    public void getWorkers() {
+    public ArrayList<Worker> getWorkers() {
         Statement stmt = null;
         String query = "select * from pracownik";
+        ArrayList<Worker> workers = new ArrayList<>();
         try {
             stmt = JdbcConnector.getInstance().getConn().createStatement();
             ResultSet rs = stmt.executeQuery(query);
+//            WorkerList.getInstance().setWorkers(new ArrayList<>());
             while(rs.next()) {
                 Worker worker = new Worker(rs.getInt(1), rs.getString(2), rs.getString(3),
                     rs.getDate(4), rs.getString(5), rs.getString(6), rs.getString(7));
-                WorkerList.getInstance().addWorker(worker);
+//                WorkerList.getInstance().addWorker(worker);
+                workers.add(worker);
             }
-            WorkerList.getInstance().setIfDataDownloaded(true);
+//            WorkerList.getInstance().setIfDataDownloaded(true);
         } catch (SQLException e) {
             throw new Error("Problem", e);
         } finally {
@@ -90,6 +94,7 @@ public class WorkerJdbcClass {
                 }
             }
         }
+        return workers;
     }
 
     public void fireWorker(Worker workerToFire) {
