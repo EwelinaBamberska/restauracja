@@ -1,6 +1,10 @@
 package views;
 
+<<<<<<< HEAD
 import app.data.order.ItemInOrderProperty;
+=======
+import app.data.order.Order;
+>>>>>>> e474bd95ce9da7c4a7ddd4798f584bf70e181962
 import app.data.order.OrderItemProperty;
 import app.data.order.OrderList;
 import app.jdbc.OrderJdbcClass;
@@ -15,6 +19,7 @@ import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class OrdersViewController implements Initializable {
@@ -42,22 +47,26 @@ public class OrdersViewController implements Initializable {
     }
 
     private void showOrders() {
-        if(!OrderList.getInstance().isDownloadedData())
-            OrderJdbcClass.getInstance().getOrdersFromDatabase();
+//        if(!OrderList.getInstance().isDownloadedData())
+        ArrayList<Order> ordersInDB = OrderJdbcClass.getInstance().getOrdersFromDatabase(unclaimedOrdersCheckBox.isSelected(), claimedOrdersCheckBox.isSelected(), myOrdersCheckBox.isSelected());
         orders_items_table.getItems().clear();
         ObservableList<OrderItemProperty> orderItems = FXCollections.observableArrayList();
-        OrderList.getInstance().getOrderList(unclaimedOrdersCheckBox.isSelected(), claimedOrdersCheckBox.isSelected(), myOrdersCheckBox.isSelected())
-                .forEach(position -> orderItems.add(new OrderItemProperty(position.getManagerName(), position.getOrderId(), position.isIfDelivered())));
+//        OrderList.getInstance().getOrderList(unclaimedOrdersCheckBox.isSelected(), claimedOrdersCheckBox.isSelected(), myOrdersCheckBox.isSelected())
+        ordersInDB.forEach(position -> orderItems.add(new OrderItemProperty(position.getManagerId(), position.getOrderId(), position.isIfDelivered())));
         orders_items_table.setItems(orderItems);
     }
 
     private void initializeTableViews() {
+<<<<<<< HEAD
 //        System.out.println(centre_orders_view_hbox.getWidth() + " " + centre_orders_view_hbox.getHeight());
 //        orders_items_table.setPrefSize(centre_orders_view_hbox.getWidth(), centre_orders_view_hbox.getHeight());
 //        orders_items_table.setMinSize(centre_orders_view_hbox.getWidth(), centre_orders_view_hbox.getHeight());
 //        orders_items_table.setMaxSize(centre_orders_view_hbox.getWidth(), centre_orders_view_hbox.getHeight());
 
         TableColumn<OrderItemProperty,String> managerNameColumn = new TableColumn<>("Meneger");
+=======
+        TableColumn<OrderItemProperty,String> managerNameColumn = new TableColumn<>("Meneger ID");
+>>>>>>> e474bd95ce9da7c4a7ddd4798f584bf70e181962
         TableColumn<OrderItemProperty, String> orderIdColumn = new TableColumn<>("Identyfikator zamówienia");
         orders_items_table.getColumns().addAll(orderIdColumn, managerNameColumn);
 
@@ -72,6 +81,7 @@ public class OrdersViewController implements Initializable {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                     OrderItemProperty rowData = row.getItem();
+<<<<<<< HEAD
 //                    orders_items_table.setPrefWidth(centre_orders_view_hbox.getWidth() / 2);
 //                    orders_items_table.setMinWidth(centre_orders_view_hbox.getWidth() / 2);
 //                    orders_items_table.setMaxWidth(centre_orders_view_hbox.getWidth() / 2);
@@ -80,6 +90,30 @@ public class OrdersViewController implements Initializable {
 //                    items_table_view.setMinSize(centre_orders_view_hbox.getWidth() / 2, centre_orders_view_hbox.getHeight());
                     items_table_view.setVisible(true);
                     showItemsInOrder(rowData.getOrderId());
+=======
+                    FXMLLoader loader = new FXMLLoader(
+                            getClass().getResource(
+                                    "orderInfoView.fxml"
+                            )
+                    );
+
+                    Stage stage = new Stage(StageStyle.DECORATED);
+                    try {
+                        stage.setScene(
+                                new Scene(
+                                        (Pane) loader.load()
+                                )
+                        );
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    OrderInfoViewController controller =
+                            loader.<OrderInfoViewController>getController();
+                    controller.initData(OrderJdbcClass.getInstance().getOrder(Integer.valueOf(rowData.getOrderId())));
+
+                    stage.show();
+>>>>>>> e474bd95ce9da7c4a7ddd4798f584bf70e181962
                 }
             });
             return row ;

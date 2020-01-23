@@ -100,4 +100,8 @@ public class Worker {
         this.if_manager = false;
         this.if_cooker = false;
     }
+
+    public boolean passToRegex(String regexToFind) {
+        return this.toString().contains(regexToFind);
+    }
 }

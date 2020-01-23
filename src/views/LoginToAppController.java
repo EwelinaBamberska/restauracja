@@ -32,5 +32,39 @@ public class LoginToAppController {
         }catch (NumberFormatException e){
             views.ErrorBox.showError("Error", "Input can only be a number");
         }
+<<<<<<< HEAD
+=======
+    }
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        sign_in_text_area.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                if (keyEvent.getCode() == KeyCode.ENTER)  {
+                    String enteredID = sign_in_text_area.getText();
+                    if (WorkerJdbcClass.getInstance().logWorker(Integer.parseInt(enteredID))){
+                        if(LoggedWorker.getInstance().isIf_manager()) {
+                            try {
+                                Stage stage = (Stage) ((Node) keyEvent.getSource()).getScene().getWindow();
+                                Parent parent = FXMLLoader.load(getClass().getResource("mainViewManager.fxml"));
+                                stage.setScene(new Scene(parent, 800, 600));
+                            } catch (IOException e){
+                                e.printStackTrace();
+                            }
+                        }
+                        else if (LoggedWorker.getInstance().isIf_waiter()){
+                            try {
+                                Stage stage = (Stage) ((Node) keyEvent.getSource()).getScene().getWindow();
+                                Parent parent = FXMLLoader.load(getClass().getResource("mainViewWaiter.fxml"));
+                                stage.setScene(new Scene(parent, 800, 600));
+                            } catch (IOException e){
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+>>>>>>> e474bd95ce9da7c4a7ddd4798f584bf70e181962
     }
 }

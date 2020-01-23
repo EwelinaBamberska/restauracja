@@ -18,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MagazineViewController implements Initializable {
@@ -46,11 +47,17 @@ public class MagazineViewController implements Initializable {
     }
 
     private void showIngredients() {
-        MagazineJdbcClass.getInstance().getItems();
+        ArrayList<MagazineItem> itemsInDB = MagazineJdbcClass.getInstance().getItems();
         ingredientsTableView.getItems().clear();
+<<<<<<< HEAD
         ObservableList<MagazineItemProperty> items= FXCollections.observableArrayList();
         MagazineList.getInstance().getItemsInMagazine()
                 .forEach(position -> items.add(new MagazineItemProperty(position.getAmount(), position.getName())));
+=======
+        ObservableList<MagazineItemProperty> items = FXCollections.observableArrayList();
+//        MagazineList.getInstance().getItemsInMagazine()
+        itemsInDB.forEach(position -> items.add(new MagazineItemProperty(position.getAmount(), position.getName())));
+>>>>>>> e474bd95ce9da7c4a7ddd4798f584bf70e181962
         ingredientsTableView.setItems(items);
     }
 
@@ -69,11 +76,13 @@ public class MagazineViewController implements Initializable {
 
     public void findIngredient(ActionEvent actionEvent) {
         String regexToFind = findIngredientTextField.getText();
-        MagazineJdbcClass.getInstance().getItems();
+        ArrayList<MagazineItem> itemsInDB = MagazineJdbcClass.getInstance().getItems();
         ingredientsTableView.getItems().clear();
         ObservableList<MagazineItemProperty> items= FXCollections.observableArrayList();
-        MagazineList.getInstance().getItemsInMagazineRegex(regexToFind)
-                .forEach(position -> items.add(new MagazineItemProperty(position.getAmount(), position.getName())));
+        ArrayList<MagazineItem> regexItems = new ArrayList<>();
+        itemsInDB.forEach(position -> {if(position.getName().contains(regexToFind)) regexItems.add(position);});
+//        MagazineList.getInstance().getItemsInMagazineRegex(regexToFind)
+                regexItems.forEach(position -> items.add(new MagazineItemProperty(position.getAmount(), position.getName())));
         ingredientsTableView.setItems(items);
         Button showAllButton = JavaFXUtils.createButton("Pokaż wszystko.");
         showAllButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -84,6 +93,7 @@ public class MagazineViewController implements Initializable {
             }
         });
         topHBox.getChildren().add(showAllButton);
+        findIngredientTextField.clear();
     }
 
     public void addIngredient(ActionEvent actionEvent) {

@@ -19,6 +19,7 @@ import javafx.util.Callback;
 
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MenuViewController implements Initializable {
@@ -46,19 +47,16 @@ public class MenuViewController implements Initializable {
     }
 
     private void showItemsInMenu() {
-        if(!MenuList.getInstance().isDownloadedData())
-            MenuJdbcClass.getInstance().getMenuItemsFromDatabase();
+//        if(!MenuList.getInstance().isDownloadedData())
+        ArrayList<MenuPosition> menuPositions = MenuJdbcClass.getInstance().getMenuItemsFromDatabase();
         menu_items_table.getItems().clear();
         ObservableList<MenuItemProperty> menuItems = FXCollections.observableArrayList();
-            MenuList.getInstance().getMenuPositionList().forEach(position -> menuItems.add(new MenuItemProperty(position.getName(), position.getPrice())));
+        menuPositions.forEach(position -> menuItems.add(new MenuItemProperty(position.getName(), position.getPrice())));
         menu_items_table.setItems(menuItems);
     }
 
     private void initializeTableColumns() {
         menu_items_table.setEditable(true);
-//        menu_items_table.setPrefHeight(centre_menu_view_vbox.getHeight());
-//        menu_items_table.setMinHeight(centre_menu_view_vbox.getHeight());
-//        menu_items_table.setMaxHeight(centre_menu_view_vbox.getHeight());
 
         TableColumn<MenuItemProperty,String> positionNameColumn = new TableColumn<>("Nazwa dania");
         TableColumn<MenuItemProperty, String> positionPriceColumn = new TableColumn<>("Cena");
@@ -75,7 +73,7 @@ public class MenuViewController implements Initializable {
                         MenuItemProperty position = ((MenuItemProperty) t.getTableView().getItems().get(
                                 t.getTablePosition().getRow()));
                         Double newPrice = Double.parseDouble(t.getNewValue().toString().replace(",", "."));
-                        MenuList.getInstance().modifyPriceOfPosisiton(position.getName(), newPrice);
+//                        MenuList.getInstance().modifyPriceOfPosisiton(position.getName(), newPrice);
                         MenuJdbcClass.getInstance().modifyPrice(position.getName(), newPrice);
                     }
                 }
@@ -93,7 +91,7 @@ public class MenuViewController implements Initializable {
                     {
                         delete.setOnAction((ActionEvent event)->{
                             MenuItemProperty data = getTableView().getItems().get(getIndex());
-                            MenuList.getInstance().removePosition(data.getName());
+//                            MenuList.getInstance().removePosition(data.getName());
                             MenuJdbcClass.getInstance().deleteMenuPosition(data.getName());
                             showItemsInMenu();
                         });
@@ -140,7 +138,11 @@ public class MenuViewController implements Initializable {
                 Double priceValue = Double.parseDouble(price);
 
                 MenuPosition newPosition = new MenuPosition(name, priceValue);
+<<<<<<< HEAD
                 MenuList.getInstance().addMenuPosition(newPosition);
+=======
+//                MenuList.getInstance().addMenuPosition(newPosition);
+>>>>>>> e474bd95ce9da7c4a7ddd4798f584bf70e181962
                 MenuJdbcClass.getInstance().addMenuPosition(newPosition);
                 showItemsInMenu();
             }catch(NumberFormatException e){
@@ -156,11 +158,15 @@ public class MenuViewController implements Initializable {
 
     public void findItemInMenu(ActionEvent actionEvent) {
         String regexToFind = findItemInMenuTextView.getCharacters().toString();
-        if(!MenuList.getInstance().isDownloadedData())
-            MenuJdbcClass.getInstance().getMenuItemsFromDatabase();
+//        if(!MenuList.getInstance().isDownloadedData())
+        ArrayList<MenuPosition> itemsInDB = MenuJdbcClass.getInstance().getMenuItemsFromDatabase();
         menu_items_table.getItems().clear();
         ObservableList<MenuItemProperty> menuItems = FXCollections.observableArrayList();
-        MenuList.getInstance().getMenuPositionListRegex(regexToFind).forEach(position -> menuItems.add(new MenuItemProperty(position.getName(), position.getPrice())));
+
+        ArrayList<MenuPosition> regexPos= new ArrayList<>();
+        itemsInDB.forEach(pos ->{if(pos.getName().toUpperCase().contains(regexToFind.toUpperCase())) regexPos.add(pos);});
+
+        regexPos.forEach(position -> menuItems.add(new MenuItemProperty(position.getName(), position.getPrice())));
         menu_items_table.setItems(menuItems);
         Button showAllButton = JavaFXUtils.createButton("Pokaż wszystkie.");
         showAllButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -171,6 +177,10 @@ public class MenuViewController implements Initializable {
             }
         });
         if(topHBox.getChildren().size()== 3)
+<<<<<<< HEAD
         topHBox.getChildren().add(showAllButton);
+=======
+            topHBox.getChildren().add(showAllButton);
+>>>>>>> e474bd95ce9da7c4a7ddd4798f584bf70e181962
     }
 }
