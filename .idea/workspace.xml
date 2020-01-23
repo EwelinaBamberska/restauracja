@@ -2,79 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/ojdbc81.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/data/DataValidation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/ErrorBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ojdbc8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ojdbc8.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Restauracja.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Restauracja.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/app/data/magazine/MagazineList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/app/data/menu/MenuList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/app/data/order/Order.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/app/data/order/OrderList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/app/data/worker/WorkerList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/app/jdbc/MagazineJdbcClass.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/app/jdbc/OrderJdbcClass.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/app/jdbc/WorkerJdbcClass.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/AddWorkerViewController$Position.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/AddWorkerViewController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/AllWorkersViewController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/AllWorkersViewController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/AutocompletionTextField.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/CreateOrderViewController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/CreateOrderViewController$2$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/CreateOrderViewController$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/CreateOrderViewController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/JavaFXUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/LoginToAppController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/LoginToAppController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/MainViewManagerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/restaurant/views/MainViewManagerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/MenuViewController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/restaurant/views/MenuViewController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/MenuViewController$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/restaurant/views/MenuViewController$2$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/MenuViewController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/restaurant/views/MenuViewController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/MenuViewController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/restaurant/views/MenuViewController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/MenuViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/restaurant/views/MenuViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/OrderInfoViewController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/OrderInfoViewController$2$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/OrderInfoViewController$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/OrderInfoViewController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/OrdersViewController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/TakeITemFromMagazineViewController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/WorkerInfoController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/WorkerInfoController$Position.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/WorkerInfoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/createOrderView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/restaurant/views/createOrderView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/loginToApp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/restaurant/views/loginToApp.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/mainViewManager.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/restaurant/views/mainViewManager.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/menuView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/restaurant/views/menuView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/ordersView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/restaurant/views/ordersView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/takeItemFromMagazineView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/restaurant/views/takeItemFromMagazineView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/restaurant/views/workerInfoView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/restaurant/views/workerInfoView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restaurant.iml" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/data/magazine/MagazineList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/magazine/MagazineList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/data/menu/MenuList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/menu/MenuList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/data/order/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/order/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/data/order/OrderList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/order/OrderList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/data/worker/WorkerList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data/worker/WorkerList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/jdbc/MagazineJdbcClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/jdbc/MagazineJdbcClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/jdbc/OrderJdbcClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/jdbc/OrderJdbcClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/jdbc/WorkerJdbcClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/jdbc/WorkerJdbcClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/AllWorkersViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/AllWorkersViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/CreateOrderViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/CreateOrderViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/JavaFXUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/JavaFXUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/LoginToAppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LoginToAppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/MagazineViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MagazineViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/MenuViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MenuViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/OrdersViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/OrdersViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/TakeITemFromMagazineViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/TakeITemFromMagazineViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/WorkerInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/WorkerInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/createOrderView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/createOrderView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/loginToApp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/loginToApp.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/menuView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/menuView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/ordersView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ordersView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/takeItemFromMagazineView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/takeItemFromMagazineView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/workerInfoView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/workerInfoView.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -130,7 +58,7 @@
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.8162209">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -200,11 +128,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/views/MainViewManagerController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="210">
-                  <caret line="50" column="40" selection-end-line="153" />
+                <state relative-caret-position="36">
+                  <caret line="118" lean-forward="true" selection-start-line="37" selection-start-column="4" selection-end-line="118" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -213,10 +141,20 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/views/allWorkersView.fxml">
+              <provider editor-type-id="JavaFX-Scene-Builder" />
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="17">
+                  <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/app/data/bill/BillItemProperty.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="357">
-                  <caret line="21" column="58" selection-start-line="21" selection-start-column="58" selection-end-line="21" selection-end-column="58" />
+                <state relative-caret-position="547">
+                  <caret line="108" column="5" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="108" selection-end-column="5" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -228,8 +166,8 @@
             <entry file="file://$PROJECT_DIR$/src/views/mainViewManager.fxml">
               <provider editor-type-id="JavaFX-Scene-Builder" />
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="850">
-                  <caret line="50" column="96" selection-start-line="50" selection-start-column="96" selection-end-line="50" selection-end-column="96" />
+                <state relative-caret-position="459">
+                  <caret line="63" column="22" lean-forward="true" selection-start-line="45" selection-start-column="12" selection-end-line="63" selection-end-column="22" />
                 </state>
               </provider>
             </entry>
@@ -281,16 +219,16 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/views/AddWorkerViewController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-646">
-                  <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+                <state relative-caret-position="204">
+                  <caret line="64" column="25" selection-start-line="64" selection-start-column="25" selection-end-line="64" selection-end-column="25" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/views/JavaFXUtils.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="595">
@@ -420,11 +358,11 @@
     </treeState>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="627" />
-    <option name="y" value="257" />
-    <option name="width" value="1750" />
-    <option name="height" value="980" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="951" />
+    <option name="y" value="-9" />
+    <option name="width" value="978" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -477,7 +415,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1579723078384" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../restauracja" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -601,16 +539,15 @@
       <workItem from="1578755928282" duration="73000" />
       <workItem from="1579023572170" duration="21000" />
       <workItem from="1579106257356" duration="17190000" />
-      <workItem from="1579724868113" duration="390000" />
+      <workItem from="1579724868113" duration="2849000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89210000" />
+    <option name="totallyTimeSpent" value="91669000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.22147651" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -632,7 +569,7 @@
       <window_info anchor="bottom" id="Changes" order="10" />
       <window_info anchor="bottom" id="Profiler" order="11" />
       <window_info anchor="bottom" id="Event Log" order="12" />
-      <window_info anchor="bottom" id="Messages" order="13" visible="true" weight="0.32719547" />
+      <window_info anchor="bottom" id="Messages" order="13" visible="true" weight="0.060906515" />
       <window_info anchor="bottom" id="Docker" order="14" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="15" />
       <window_info anchor="bottom" id="Terminal" order="16" />
@@ -759,14 +696,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="522">
           <caret line="63" column="38" selection-start-line="63" selection-start-column="38" selection-end-line="63" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/allWorkersView.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-85">
-          <caret line="26" column="33" lean-forward="true" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -1022,14 +951,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/mainViewManager.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="50" column="96" selection-start-line="50" selection-start-column="96" selection-end-line="50" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/jdbc/BillJdbcClass.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1055,27 +976,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/data/bill/BillItemProperty.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="58" selection-start-line="21" selection-start-column="58" selection-end-line="21" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/AutocompletionTextField.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="142">
           <caret line="73" column="56" selection-start-line="73" selection-start-column="56" selection-end-line="73" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/AddWorkerViewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-646">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1086,10 +990,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/AddWorkerViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="64" column="25" selection-start-line="64" selection-start-column="25" selection-end-line="64" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/MainViewManagerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="50" column="40" selection-end-line="153" />
+        <state relative-caret-position="36">
+          <caret line="118" lean-forward="true" selection-start-line="37" selection-start-column="4" selection-end-line="118" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/allWorkersView.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/mainViewManager.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="63" column="22" lean-forward="true" selection-start-line="45" selection-start-column="12" selection-end-line="63" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/data/bill/BillItemProperty.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="108" column="5" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="108" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
