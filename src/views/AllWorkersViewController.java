@@ -2,7 +2,6 @@ package views;
 
 import app.data.worker.Worker;
 import app.data.worker.WorkerItemProperty;
-import app.data.worker.WorkerList;
 import app.jdbc.WorkerJdbcClass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -74,7 +73,7 @@ public class AllWorkersViewController implements Initializable {
                     WorkerItemProperty rowData = row.getItem();
                     FXMLLoader loader = new FXMLLoader(
                             getClass().getResource(
-                                    "workerInfoView.fxml"
+                                    "customerDialog.fxml"
                             )
                     );
 
@@ -106,7 +105,7 @@ public class AllWorkersViewController implements Initializable {
     }
 
     public void goToAddWorkerView(ActionEvent actionEvent) {
-        JavaFXUtils.changeScene(actionEvent, "addWorkerView.fxml", 800, 600, getClass());
+        JavaFXUtils.changeScene(actionEvent, "workerInfoView.fxml", 800, 600, getClass());
     }
 
     public void findWorker(ActionEvent actionEvent) {
@@ -131,4 +130,5 @@ public class AllWorkersViewController implements Initializable {
         });
         topHBox.getChildren().add(showAllButton);
     }
+
 }

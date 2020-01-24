@@ -1,28 +1,12 @@
 package views;
 
-import app.data.bill.Bill;
-import app.data.bill.BillItemProperty;
-import app.data.bill.BillList;
-import app.data.worker.LoggedWorker;
-import app.data.worker.WorkerItemProperty;
-import app.data.worker.WorkerList;
-import app.jdbc.BillJdbcClass;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MainViewManagerController implements Initializable {
@@ -43,8 +27,6 @@ public class MainViewManagerController implements Initializable {
     @FXML
     private Button workers_button;
     @FXML
-    private TableView open_bills_list;
-    @FXML
     private CheckBox toPaidCheckBox;
     @FXML
     private CheckBox paidCheckBox;
@@ -52,6 +34,8 @@ public class MainViewManagerController implements Initializable {
     private CheckBox onlyManagerCheckBox;
     @FXML
     private TableView billsTableView;
+    @FXML
+    private TableView open_bills_list;
 
 
     @Override
@@ -69,6 +53,7 @@ public class MainViewManagerController implements Initializable {
     }
 
     public void show_work_hours(ActionEvent actionEvent) {
+        JavaFXUtils.changeScene(actionEvent, "showWorkHours.fxml",800, 600, getClass());
     }
 
     public void log_out(ActionEvent actionEvent) {

@@ -6,11 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.Date;
@@ -76,7 +74,6 @@ public class WorkerInfoController implements Initializable {
     }
 
     public void goToWorkerView(ActionEvent actionEvent) {
-        ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
         JavaFXUtils.changeScene(actionEvent, "allWorkersView.fxml", 800, 600, getClass());
     }
 

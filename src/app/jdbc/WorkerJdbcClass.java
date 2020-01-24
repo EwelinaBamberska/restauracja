@@ -2,8 +2,11 @@ package app.jdbc;
 
 import app.data.worker.Worker;
 import app.data.worker.LoggedWorker;
-import app.data.worker.WorkerList;
 
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.*;
 import java.util.ArrayList;
 

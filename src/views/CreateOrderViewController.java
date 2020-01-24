@@ -116,10 +116,10 @@ public class CreateOrderViewController implements Initializable {
 
     public void submit_button(ActionEvent actionEvent) {
         int orderId = OrderJdbcClass.getInstance().createOrder();
+
         for (ItemInOrder item:
              itemsInCreatedOrder) {
             item.setOrderId(orderId);
-            System.out.println(item.getName());
             OrderJdbcClass.getInstance().addItemInOrder(item);
         }
         go_to_orders_view(actionEvent);

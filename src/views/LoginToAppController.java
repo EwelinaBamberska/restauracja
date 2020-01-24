@@ -1,7 +1,7 @@
 package views;
 
 import app.data.worker.LoggedWorker;
-
+import app.data.worker.Worker;
 import app.jdbc.WorkerJdbcClass;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,12 +15,11 @@ import javafx.scene.input.KeyEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoginToAppController implements Initializable {
+public class LoginToAppController implements Initializable{
     @FXML
     private Button sign_in_button;
     @FXML
     private TextArea sign_in_text_area;
-
     public void sign_to_app(ActionEvent actionEvent){
         String enteredID = sign_in_text_area.getText();
 
@@ -40,6 +39,7 @@ public class LoginToAppController implements Initializable {
             views.ErrorBox.showError("Error", "Input can only be a number");
         }
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         sign_in_text_area.setOnKeyPressed(new EventHandler<KeyEvent>() {

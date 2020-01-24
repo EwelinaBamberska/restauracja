@@ -7,8 +7,8 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import views.AutocompletionTextField?>
 
+<?import views.AutocompletionTextField?>
 <BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.CreateOrderViewController">
    <top>
       <HBox maxHeight="46.0" minHeight="46.0" prefHeight="46.0" BorderPane.alignment="CENTER">
@@ -44,6 +44,7 @@
                     </HBox.margin>
                 </AutocompletionTextField>
                 <TextField fx:id="amount_text_field" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" prefHeight="40.0" prefWidth="200.0" promptText="Amount">
+
                     <HBox.margin>
                         <Insets left="3.0" right="3.0" />
                     </HBox.margin>
