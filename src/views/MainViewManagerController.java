@@ -36,6 +36,7 @@ public class MainViewManagerController {
     }
 
     public void show_work_hours(ActionEvent actionEvent) {
+        JavaFXUtils.changeScene(actionEvent, "showWorkHours.fxml",800, 600, getClass());
     }
 
     public void log_out(ActionEvent actionEvent) {
