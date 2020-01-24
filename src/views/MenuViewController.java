@@ -136,7 +136,6 @@ public class MenuViewController implements Initializable {
             priceTextField.clear();
             try {
                 Double priceValue = Double.parseDouble(price);
-
                 MenuPosition newPosition = new MenuPosition(name, priceValue);
 <<<<<<< HEAD
                 MenuList.getInstance().addMenuPosition(newPosition);
