@@ -6,9 +6,10 @@ import java.util.List;
 public class WorkerList {
     private List<Worker> workers = new ArrayList<>();
     private boolean ifDataDownloaded = false;
-    private static WorkerList instance = new WorkerList();
+    private static WorkerList instance;
 
-    private WorkerList(){
+    public WorkerList(){
+        instance = this;
     }
 
     public static WorkerList getInstance(){
@@ -52,9 +53,5 @@ public class WorkerList {
 
     public void deleteWorker(Worker workerToShow) {
         workers.remove(workerToShow);
-    }
-
-    public void addWorker(Worker worker) {
-        this.workers.add(worker);
     }
 }

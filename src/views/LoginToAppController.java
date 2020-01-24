@@ -1,33 +1,23 @@
 package views;
 
 import app.data.worker.LoggedWorker;
-
+import app.data.worker.Worker;
 import app.jdbc.WorkerJdbcClass;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class LoginToAppController implements Initializable {
+public class LoginToAppController {
     @FXML
     private Button sign_in_button;
     @FXML
     private TextArea sign_in_text_area;
-
     public void sign_to_app(ActionEvent actionEvent){
         String enteredID = sign_in_text_area.getText();
 
@@ -42,6 +32,8 @@ public class LoginToAppController implements Initializable {
         }catch (NumberFormatException e){
             views.ErrorBox.showError("Error", "Input can only be a number");
         }
+<<<<<<< HEAD
+=======
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -73,5 +65,6 @@ public class LoginToAppController implements Initializable {
                 }
             }
         });
+>>>>>>> e474bd95ce9da7c4a7ddd4798f584bf70e181962
     }
 }

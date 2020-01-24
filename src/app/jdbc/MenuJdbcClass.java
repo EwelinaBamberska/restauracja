@@ -7,6 +7,7 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class MenuJdbcClass {
     private static MenuJdbcClass menuJdbcClass = new MenuJdbcClass();
@@ -15,17 +16,19 @@ public class MenuJdbcClass {
     }
 
 
-    public void getMenuItemsFromDatabase() {
+    public ArrayList<MenuPosition> getMenuItemsFromDatabase() {
         Statement stmt = null;
         String query = "select * from menu";
+        ArrayList<MenuPosition> itemsInDB = new ArrayList<>();
         try {
             stmt = JdbcConnector.getInstance().getConn().createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while(rs.next()) {
                 MenuPosition position = new MenuPosition(rs.getString(1), rs.getDouble(2));
-                MenuList.getInstance().addMenuPosition(position);
+//                MenuList.getInstance().addMenuPosition(position);
+                itemsInDB.add(position);
             }
-            MenuList.getInstance().setDownloadedData(true);
+//            MenuList.getInstance().setDownloadedData(true);
         } catch (SQLException e) {
             throw new Error("Problem", e);
         } finally {
@@ -37,6 +40,7 @@ public class MenuJdbcClass {
                 }
             }
         }
+        return itemsInDB;
     }
 
     public void addMenuPosition(MenuPosition position){

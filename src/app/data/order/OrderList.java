@@ -22,20 +22,12 @@ public class OrderList {
         List<Order> orders = new ArrayList<>();
         for (Order o:
              orderList) {
-            if(myOrdersCheckBoxSelected && o.getManagerId() == LoggedWorker.getInstance().getId_prac()) {
-                if (unclaimedOrders && !o.isIfDelivered()) {
-                    orders.add(o);
-                } else if (claimedOrdersCheckBoxSelected && o.isIfDelivered()) {
-                    orders.add(o);
-                }
-            }
-            else {
-                if (unclaimedOrders && !o.isIfDelivered()) {
-                    orders.add(o);
-                } else if (claimedOrdersCheckBoxSelected && o.isIfDelivered()) {
-                    orders.add(o);
-                }
-            }
+            if(myOrdersCheckBoxSelected && o.getManagerId() == LoggedWorker.getInstance().getId_prac())
+                orders.add(o);
+            else if(unclaimedOrders && !o.isIfDelivered())
+                orders.add(o);
+            else if(claimedOrdersCheckBoxSelected && o.isIfDelivered())
+                orders.add(o);
         }
         return orders;
     }
@@ -55,7 +47,7 @@ public class OrderList {
     public Order getOrder(Integer id) {
         for (Order o:
                 orderList){
-            if (o.getOrderId() == id)
+            if (o.getManagerId() == id)
                 return o;
         }
         return null;
@@ -70,16 +62,6 @@ public class OrderList {
              orderList) {
             if (o.getOrderId() == orderId)
                 o.setIfDelivered(true);
-        }
-    }
-
-    public void deleteItemFromOrder(Integer valueOf, String name) {
-        for (Order o:
-             orderList) {
-            if(o.getOrderId() == valueOf){
-                o.deleteItem(name);
-                break;
-            }
         }
     }
 }

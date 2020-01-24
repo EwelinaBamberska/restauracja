@@ -12,11 +12,10 @@ public class Order {
     private List<ItemInOrder> products = new ArrayList<>();
     private boolean productsDownloaded = false;
 
-    public Order(int managerId , int orderId, String ifDelivered, String managerName){
+    public Order(int managerId , int orderId, String ifDelivered){
         this.managerId = managerId;
         this.orderId = orderId;
         this.ifDelivered = ifDelivered.equals("T");
-        this.managerName = managerName;
     }
 
     public int getManagerId() {
@@ -59,6 +58,14 @@ public class Order {
         this.products = products;
     }
 
+    public boolean isProductsDownloaded() {
+        return productsDownloaded;
+    }
+
+    public void setProductsDownloaded(boolean productsDownloaded) {
+        this.productsDownloaded = productsDownloaded;
+    }
+
     public void addItemToList(ItemInOrder item){
         products.add(item);
     }
@@ -72,27 +79,4 @@ public class Order {
     }
 
 
-    public void deleteItem(String name) {
-        ItemInOrder itemToDelete = null;
-        for (ItemInOrder item:
-             products) {
-            if(item.getName().equals(name)){
-                itemToDelete = item;
-                break;
-            }
-        }
-        if(itemToDelete != null)
-            products.remove(itemToDelete);
-    }
-
-    public List<ItemInOrder> getProductsByRegex(String text) {
-        List<ItemInOrder> items = new ArrayList<>();
-        for (ItemInOrder item:
-             products) {
-            if(item.getName().toUpperCase().contains(text.toUpperCase())){
-                items.add(item);
-            }
-        }
-        return items;
-    }
 }

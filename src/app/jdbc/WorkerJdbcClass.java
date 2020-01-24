@@ -2,9 +2,16 @@ package app.jdbc;
 
 import app.data.worker.Worker;
 import app.data.worker.LoggedWorker;
-import app.data.worker.WorkerList;
 
+<<<<<<< HEAD
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+=======
 import java.sql.*;
+import java.util.ArrayList;
+>>>>>>> e474bd95ce9da7c4a7ddd4798f584bf70e181962
 
 public class WorkerJdbcClass {
     private Statement stmt = null;
@@ -67,18 +74,24 @@ public class WorkerJdbcClass {
         return null;
     }
 
+<<<<<<< HEAD
     public void getWorkers() {
+=======
+    public ArrayList<Worker> getWorkers() {
         Statement stmt = null;
         String query = "select * from pracownik";
+        ArrayList<Worker> workers = new ArrayList<>();
         try {
             stmt = JdbcConnector.getInstance().getConn().createStatement();
             ResultSet rs = stmt.executeQuery(query);
+//            WorkerList.getInstance().setWorkers(new ArrayList<>());
             while(rs.next()) {
                 Worker worker = new Worker(rs.getInt(1), rs.getString(2), rs.getString(3),
                     rs.getDate(4), rs.getString(5), rs.getString(6), rs.getString(7));
-                WorkerList.getInstance().addWorker(worker);
+//                WorkerList.getInstance().addWorker(worker);
+                workers.add(worker);
             }
-            WorkerList.getInstance().setIfDataDownloaded(true);
+//            WorkerList.getInstance().setIfDataDownloaded(true);
         } catch (SQLException e) {
             throw new Error("Problem", e);
         } finally {
@@ -90,6 +103,7 @@ public class WorkerJdbcClass {
                 }
             }
         }
+        return workers;
     }
 
     public void fireWorker(Worker workerToFire) {
@@ -154,74 +168,15 @@ public class WorkerJdbcClass {
                 }
             }
         }
+>>>>>>> e474bd95ce9da7c4a7ddd4798f584bf70e181962
     }
 
-    public void saveHoursToDB(int id_prac, Date date, float hours, float rate) {
-        CallableStatement stmt = null;
-        String query = "{CALL menedzer_functions.dodaj_godziny(?, ?, ?, ?, ?)}";
-        try {
-            stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
-            stmt.setInt(1, id_prac);
-            stmt.setFloat(2, rate);
-            stmt.setInt(3, 1);
-            stmt.setDate(5, date);
-            stmt.setFloat(4, hours);
-            stmt.executeQuery();
-            JdbcConnector.getInstance().getConn().commit();
-        }catch (SQLException e) {
-            throw new Error("Problem", e);
-        } finally {
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                }catch (SQLException ex){
-                    ex.printStackTrace();
-                }
-            }
-        }
+    public void fireWorker(Worker workerToShow) {
     }
 
-    private int getNextValOrderSeq(){
-        String sql = "select id_prac_seq.nextval from DUAL";
-        try {
-            PreparedStatement ps = JdbcConnector.getInstance().getConn().prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            int nextID_from_seq = -1;
-            if (rs.next())
-                nextID_from_seq = rs.getInt(1);
-            return nextID_from_seq;
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        return -1;
+    public void modifyWorker(Worker workerToShow) {
     }
 
-    public int addWorker(String name, String surname, Date date, String waiter, String manager, String cook) {
-        CallableStatement stmt = null;
-        String query = "{CALL menedzer_functions.dodaj_pracownika(?, ?, ?, ?, ?, ?, ?)}";
-        try {
-            int workerId = getNextValOrderSeq();
-            stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
-            stmt.setInt(1, workerId);
-            stmt.setString(2, name);
-            stmt.setString(3, surname);
-            stmt.setDate(4, date);
-            stmt.setString(5, waiter);
-            stmt.setString(6, manager);
-            stmt.setString(7, cook);
-            stmt.executeQuery();
-            JdbcConnector.getInstance().getConn().commit();
-            return workerId;
-        }catch (SQLException e) {
-            throw new Error("Problem", e);
-        } finally {
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                }catch (SQLException ex){
-                    ex.printStackTrace();
-                }
-            }
-        }
+    public void saveHoursToDB(int id_prac, Date parseToDate, float parseFloat) {
     }
 }

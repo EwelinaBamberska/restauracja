@@ -7,11 +7,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.Date;
@@ -44,8 +42,6 @@ public class WorkerInfoController implements Initializable {
     private Button saveHoursButton;
     @FXML
     private VBox centerVBox;
-    @FXML
-    private TextField hourRateTextField;
 
     private enum Position{Menedżer, Kelner, Kucharz}
     private Position actualPosition;
@@ -74,44 +70,44 @@ public class WorkerInfoController implements Initializable {
             actualPosition = Position.Menedżer;
             positionButton.setText(String.valueOf(Position.Menedżer));
         }
+        addChangeButton();
     }
 
     public void goToWorkerView(ActionEvent actionEvent) {
-        ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
         JavaFXUtils.changeScene(actionEvent, "allWorkersView.fxml", 800, 600, getClass());
     }
 
     public void deleteWorker(ActionEvent actionEvent) {
         WorkerJdbcClass.getInstance().fireWorker(workerToShow);
-        WorkerList.getInstance().deleteWorker(workerToShow);
+//        WorkerList.getInstance().deleteWorker(workerToShow);
         goToWorkerView(actionEvent);
     }
 
     public void changePositionToManager(ActionEvent actionEvent) {
         actualPosition = Position.Menedżer;
         positionButton.setText(String.valueOf(Position.Menedżer));
-        if(!ifDataModified){
-            ifDataModified = true;
-            addChangeButton();
-        }
+//        if(!ifDataModified){
+//            ifDataModified = true;
+//            addChangeButton();
+//        }
     }
 
     public void changePositionToWaiter(ActionEvent actionEvent) {
         actualPosition = Position.Kelner;
         positionButton.setText(String.valueOf(Position.Kelner));
-        if(!ifDataModified){
-            ifDataModified = true;
-            addChangeButton();
-        }
+//        if(!ifDataModified){
+//            ifDataModified = true;
+//            addChangeButton();
+//        }
     }
 
     public void changePositionToCook(ActionEvent actionEvent) {
         actualPosition = Position.Kucharz;
         positionButton.setText(String.valueOf(Position.Kucharz));
-        if(!ifDataModified){
-            ifDataModified = true;
-            addChangeButton();
-        }
+//        if(!ifDataModified){
+//            ifDataModified = true;
+//            addChangeButton();
+//        }
     }
 
     private void addChangeButton() {
@@ -129,8 +125,8 @@ public class WorkerInfoController implements Initializable {
                 else
                     workerToShow.setManager();
                 WorkerJdbcClass.getInstance().modifyWorker(workerToShow);
-                centerVBox.getChildren().remove(4);
-                ifDataModified = false;
+//                centerVBox.getChildren().remove(4);
+//                ifDataModified = false;
             }
         });
         centerVBox.getChildren().add(4, modifyDataButton);
@@ -139,14 +135,13 @@ public class WorkerInfoController implements Initializable {
     public void saveHours(ActionEvent actionEvent) {
         WorkerJdbcClass.getInstance().saveHoursToDB(workerToShow.getId_prac(),
                 (Date) JavaFXUtils.parseToDate(workDayDatePicker.getValue()),
-                Float.parseFloat(amountOfHoursTextField.getText().replace(",", ".")),
-                Float.parseFloat(hourRateTextField.getText().replace(",", ".")));
+                Float.parseFloat(amountOfHoursTextField.getText().replace(",", ".")));
     }
 
     public void setChangedData(InputMethodEvent inputMethodEvent) {
-        if(!ifDataModified){
-            ifDataModified = true;
-            addChangeButton();
-        }
+//        if(!ifDataModified){
+//            ifDataModified = true;
+//            addChangeButton();
+//        }
     }
 }
