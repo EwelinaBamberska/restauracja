@@ -45,21 +45,19 @@ public class AllWorkersViewController implements Initializable {
     }
 
     private void showWorkers() {
-//        if(!WorkerList.getInstance().isIfDataDownloaded())
         ArrayList<Worker> workers = WorkerJdbcClass.getInstance().getWorkers();
         workersTableView.getItems().clear();
         ObservableList<WorkerItemProperty> workersList = FXCollections.observableArrayList();
-//        WorkerList.getInstance().getWorkers()
         workers.forEach(position -> workersList.add(new WorkerItemProperty(position.getId_prac(),
                         position.getName(), position.getSurname(), position.isIf_manager(), position.isIf_cooker(), position.isIf_waiter())));
         workersTableView.setItems(workersList);
     }
 
     private void initializeTableView() {
-        TableColumn<WorkerItemProperty, String> firstNameColumn = new TableColumn<>("Imie");
-        TableColumn<WorkerItemProperty, String> surnameColumn = new TableColumn<>("Nazwisko");
-        TableColumn<WorkerItemProperty, String> positionColumn = new TableColumn<>("Stanowisko");
-        TableColumn<WorkerItemProperty, String> idColumn = new TableColumn<>("Id pracownika");
+        TableColumn<WorkerItemProperty, String> firstNameColumn = new TableColumn<>("Name");
+        TableColumn<WorkerItemProperty, String> surnameColumn = new TableColumn<>("Surname");
+        TableColumn<WorkerItemProperty, String> positionColumn = new TableColumn<>("Position");
+        TableColumn<WorkerItemProperty, String> idColumn = new TableColumn<>("Worker id");
         workersTableView.getColumns().addAll(idColumn, firstNameColumn, surnameColumn, positionColumn);
 
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<WorkerItemProperty, String>("name"));
@@ -113,7 +111,6 @@ public class AllWorkersViewController implements Initializable {
 
     public void findWorker(ActionEvent actionEvent) {
         String regexToFind = findWorkerTextField.getCharacters().toString();
-//        if(!WorkerList.getInstance().isIfDataDownloaded())
         ArrayList<Worker> workersInDB = WorkerJdbcClass.getInstance().getWorkers();
         workersTableView.getItems().clear();
         ObservableList<WorkerItemProperty> workers = FXCollections.observableArrayList();
@@ -121,11 +118,10 @@ public class AllWorkersViewController implements Initializable {
         ArrayList<Worker> regexWorkers = new ArrayList<>();
         workersInDB.forEach(position -> {if(position.passToRegex(regexToFind)) regexWorkers.add(position);});
 
-//        WorkerList.getInstance().getWorkerRegex(regexToFind).
         regexWorkers.forEach(position -> workers.add(new WorkerItemProperty(position.getId_prac(), position.getName(),
                         position.getSurname(), position.isIf_manager(), position.isIf_cooker(), position.isIf_waiter())));
         workersTableView.setItems(workers);
-        Button showAllButton = JavaFXUtils.createButton("Pokaż wszystkich.");
+        Button showAllButton = JavaFXUtils.createButton("Show all.");
         showAllButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

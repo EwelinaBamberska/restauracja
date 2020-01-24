@@ -67,13 +67,10 @@ public class OrderJdbcClass {
         try {
             stmt = JdbcConnector.getInstance().getConn().createStatement();
             ResultSet rs = stmt.executeQuery(query);
-//            OrderList.getInstance().getOrder(valueOf).setProducts(new ArrayList<>());
             while(rs.next()) {
                 ItemInOrder item = new ItemInOrder(rs.getString(3), rs.getInt(2), rs.getInt(1));
-//                OrderList.getInstance().getOrder(valueOf).addItemToList(item);
                 items.add(item);
             }
-//            OrderList.getInstance().getOrder(valueOf).setDownloadedData(true);
         } catch (SQLException e) {
             throw new Error("Problem", e);
         } finally {

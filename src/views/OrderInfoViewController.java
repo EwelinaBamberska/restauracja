@@ -43,7 +43,6 @@ public class OrderInfoViewController implements Initializable {
     @FXML
     private VBox bottomVBox;
 
-    @FXML
     private Order actualOrder;
 
     @Override
@@ -54,11 +53,10 @@ public class OrderInfoViewController implements Initializable {
     public void initData(Order order) {
         this.actualOrder = order;
         if(!actualOrder.isIfDelivered()) {
-            deliverLabel.setText("Zamówienie nieodebrane.");
-            System.out.println("Nieodebrane");
+            deliverLabel.setText("Order is not received.");
         }
         else {
-            deliverLabel.setText("Zamówienie odebrane.");
+            deliverLabel.setText("Order is received.");
             bottomVBox.setVisible(false);
         }
         initializeTable();
@@ -68,14 +66,14 @@ public class OrderInfoViewController implements Initializable {
     }
 
     private void addDeliverButton() {
-        Button deliverButton = JavaFXUtils.createButton("Odbierz");
+        Button deliverButton = JavaFXUtils.createButton("Receive");
         topHBox.getChildren().add(deliverButton);
         deliverButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 OrderJdbcClass.getInstance().claimOrder(actualOrder.getOrderId());
                 actualOrder.setIfDelivered(true);
-                deliverLabel.setText("Zamówienie odebrane.");
+                deliverLabel.setText("Order is received.");
                 topHBox.getChildren().remove(1);
                 bottomVBox.setVisible(false);
             }
@@ -91,8 +89,8 @@ public class OrderInfoViewController implements Initializable {
     }
 
     private void initializeTable() {
-        TableColumn<ItemInOrderProperty,String> productNameColumn = new TableColumn<>("Nazwa towaru");
-        TableColumn<ItemInOrderProperty, String> productAmountColumn = new TableColumn<>("Ilość");
+        TableColumn<ItemInOrderProperty,String> productNameColumn = new TableColumn<>("Product name");
+        TableColumn<ItemInOrderProperty, String> productAmountColumn = new TableColumn<>("Amount");
 
         itemsTableView.getColumns().addAll(productNameColumn, productAmountColumn);
 
@@ -101,13 +99,13 @@ public class OrderInfoViewController implements Initializable {
 
 
         if(!actualOrder.isIfDelivered()) {
-            TableColumn<ItemInOrderProperty, Void> deleteButton = new TableColumn<>("Usuń produkt z zamówienia");
+            TableColumn<ItemInOrderProperty, Void> deleteButton = new TableColumn<>("Delete product from order.");
 
             Callback<TableColumn<ItemInOrderProperty, Void>, TableCell<ItemInOrderProperty, Void>> cellFactory1 = new Callback<TableColumn<ItemInOrderProperty, Void>, TableCell<ItemInOrderProperty, Void>>() {
                 @Override
                 public TableCell<ItemInOrderProperty, Void> call(final TableColumn<ItemInOrderProperty, Void> param) {
                     final TableCell<ItemInOrderProperty, Void> cell = new TableCell<ItemInOrderProperty, Void>() {
-                        private final Button delete = new Button("Usuń");
+                        private final Button delete = new Button("Delete");
 
                         {
                             delete.setOnAction((ActionEvent event) -> {
@@ -149,7 +147,6 @@ public class OrderInfoViewController implements Initializable {
         itemsInMagazine.forEach(pos -> {
             if(pos.getName().toUpperCase().contains(nameOfAddedItemTextField.getText().toUpperCase()))
                 regexItems.add(pos);});
-//        List<MagazineItem> itemsToShow = MagazineList.getInstance().getItemsInMagazineRegex(nameOfAddedItemTextField.getText());
         regexItems.forEach(item -> nameOfAddedItemTextField.getEntries().add(item.getName()));
     }
 
@@ -157,7 +154,6 @@ public class OrderInfoViewController implements Initializable {
         String name = nameOfAddedItemTextField.getText();
         int amount = Integer.valueOf(amountOfAddedItemTextField.getText());
         ItemInOrder item = new ItemInOrder(name, amount, actualOrder.getOrderId());
-//        actualOrder.addItemToList(item);
 
         OrderJdbcClass.getInstance().addItemInOrder(item);
         nameOfAddedItemTextField.clear();

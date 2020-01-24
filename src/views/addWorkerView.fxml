@@ -15,7 +15,7 @@
     <top>
         <HBox maxHeight="46.0" minHeight="46.0" prefHeight="46.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="backToWorkerViewButton" maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" mnemonicParsing="false" onAction="#goToWorkerView" prefHeight="40.0" prefWidth="150.0" text="Wróć">
+                <Button fx:id="backToWorkerViewButton" maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" mnemonicParsing="false" onAction="#goToWorkerView" prefHeight="40.0" prefWidth="150.0" text="Back">
                     <HBox.margin>
                         <Insets left="3.0" right="3.0" />
                     </HBox.margin>
@@ -29,7 +29,7 @@
     <bottom>
         <HBox maxHeight="46.0" minHeight="46.0" prefHeight="46.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="addWorkerButton" maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" mnemonicParsing="false" onAction="#addWorker" prefHeight="40.0" prefWidth="150.0" text="Zatrudnij">
+                <Button fx:id="addWorkerButton" maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" mnemonicParsing="false" onAction="#addWorker" prefHeight="40.0" prefWidth="150.0" text="Employ">
                     <HBox.margin>
                         <Insets left="3.0" right="3.0" />
                     </HBox.margin>
@@ -45,12 +45,12 @@
             <children>
                 <HBox maxHeight="46.0" minHeight="46.0" prefHeight="46.0" prefWidth="200.0">
                     <children>
-                        <Label maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0" text="Imię">
+                        <Label maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0" text="Name">
                             <HBox.margin>
                                 <Insets left="3.0" right="3.0" />
                             </HBox.margin>
                         </Label>
-                        <TextField fx:id="nameTextField" maxHeight="40.0" maxWidth="400.0" minHeight="40.0" minWidth="400.0" prefHeight="40.0" prefWidth="400.0" promptText="Imię">
+                        <TextField fx:id="nameTextField" maxHeight="40.0" maxWidth="400.0" minHeight="40.0" minWidth="400.0" prefHeight="40.0" prefWidth="400.0" promptText="Name">
                             <HBox.margin>
                                 <Insets left="3.0" right="3.0" />
                             </HBox.margin>
@@ -62,12 +62,12 @@
                 </HBox>
                 <HBox layoutX="10.0" layoutY="10.0" maxHeight="46.0" minHeight="46.0" prefHeight="46.0" prefWidth="200.0">
                     <children>
-                        <Label maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0" text="Nazwisko">
+                        <Label maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0" text="Surname">
                             <HBox.margin>
                                 <Insets left="3.0" right="3.0" />
                             </HBox.margin>
                         </Label>
-                        <TextField fx:id="surnameTextField" maxHeight="40.0" maxWidth="400.0" minHeight="40.0" minWidth="400.0" prefHeight="40.0" prefWidth="400.0" promptText="Nazwisko">
+                        <TextField fx:id="surnameTextField" maxHeight="40.0" maxWidth="400.0" minHeight="40.0" minWidth="400.0" prefHeight="40.0" prefWidth="400.0" promptText="Surname">
                             <HBox.margin>
                                 <Insets left="3.0" right="3.0" />
                             </HBox.margin>
@@ -79,12 +79,12 @@
                 </HBox>
                 <HBox layoutX="10.0" layoutY="56.0" maxHeight="46.0" minHeight="46.0" prefHeight="46.0" prefWidth="200.0">
                     <children>
-                        <Label maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0" text="Data zatrudnienia">
+                        <Label maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0" text="Date of employment">
                             <HBox.margin>
                                 <Insets left="3.0" right="3.0" />
                             </HBox.margin>
                         </Label>
-                        <DatePicker fx:id="workDatePicker" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" promptText="Data zatrudnienia">
+                        <DatePicker fx:id="workDatePicker" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" promptText="Date">
                             <HBox.margin>
                                 <Insets left="3.0" right="3.0" />
                             </HBox.margin>
@@ -96,16 +96,16 @@
                 </HBox>
                 <HBox layoutX="10.0" layoutY="102.0" maxHeight="46.0" minHeight="46.0" prefHeight="46.0" prefWidth="200.0">
                     <children>
-                        <Label maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0" text="Stanowisko">
+                        <Label maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0" text="Position">
                             <HBox.margin>
                                 <Insets left="3.0" right="3.0" />
                             </HBox.margin>
                         </Label>
                         <MenuButton fx:id="positionButton" maxHeight="40.0" minHeight="40.0" mnemonicParsing="false" prefHeight="40.0" text="MenuButton">
                             <items>
-                                <MenuItem fx:id="managerMenuItem" mnemonicParsing="false" onAction="#changePositionToManager" text="Menedżer" />
-                                <MenuItem fx:id="waiterMenuItem" mnemonicParsing="false" onAction="#changePositionToWaiter" text="Kelner" />
-                                <MenuItem fx:id="cookMenuItem" mnemonicParsing="false" onAction="#changePositionToCook" text="Kucharz" />
+                                <MenuItem fx:id="managerMenuItem" mnemonicParsing="false" onAction="#changePositionToManager" text="Manager" />
+                                <MenuItem fx:id="waiterMenuItem" mnemonicParsing="false" onAction="#changePositionToWaiter" text="Waiter" />
+                                <MenuItem fx:id="cookMenuItem" mnemonicParsing="false" onAction="#changePositionToCook" text="Cook" />
                             </items>
                             <HBox.margin>
                                 <Insets left="3.0" right="3.0" />

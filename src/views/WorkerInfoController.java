@@ -1,7 +1,6 @@
 package views;
 
 import app.data.worker.Worker;
-import app.data.worker.WorkerList;
 import app.jdbc.WorkerJdbcClass;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -47,10 +46,9 @@ public class WorkerInfoController implements Initializable {
     @FXML
     private TextField hourRateTextField;
 
-    private enum Position{Menedżer, Kelner, Kucharz}
+    private enum Position{Manager, Waiter, Cook}
     private Position actualPosition;
     private Worker workerToShow;
-    private boolean ifDataModified = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -63,16 +61,16 @@ public class WorkerInfoController implements Initializable {
         surnameTextField.setText(workerToShow.getSurname());
         workDatePicker.setValue(JavaFXUtils.parseToLocalDate(workerToShow.getDate()));
         if (workerToShow.isIf_waiter()){
-            actualPosition = Position.Kelner;
-            positionButton.setText(String.valueOf(Position.Kelner));
+            actualPosition = Position.Waiter;
+            positionButton.setText(String.valueOf(Position.Waiter));
         }
         if (workerToShow.isIf_cooker()) {
-            actualPosition = Position.Kucharz;
-            positionButton.setText(String.valueOf(Position.Kucharz));
+            actualPosition = Position.Cook;
+            positionButton.setText(String.valueOf(Position.Cook));
         }
         if (workerToShow.isIf_manager()) {
-            actualPosition = Position.Menedżer;
-            positionButton.setText(String.valueOf(Position.Menedżer));
+            actualPosition = Position.Manager;
+            positionButton.setText(String.valueOf(Position.Manager));
         }
         addChangeButton();
     }
@@ -84,54 +82,39 @@ public class WorkerInfoController implements Initializable {
 
     public void deleteWorker(ActionEvent actionEvent) {
         WorkerJdbcClass.getInstance().fireWorker(workerToShow);
-//        WorkerList.getInstance().deleteWorker(workerToShow);
         goToWorkerView(actionEvent);
     }
 
     public void changePositionToManager(ActionEvent actionEvent) {
-        actualPosition = Position.Menedżer;
-        positionButton.setText(String.valueOf(Position.Menedżer));
-//        if(!ifDataModified){
-//            ifDataModified = true;
-//            addChangeButton();
-//        }
+        actualPosition = Position.Manager;
+        positionButton.setText(String.valueOf(Position.Manager));
     }
 
     public void changePositionToWaiter(ActionEvent actionEvent) {
-        actualPosition = Position.Kelner;
-        positionButton.setText(String.valueOf(Position.Kelner));
-//        if(!ifDataModified){
-//            ifDataModified = true;
-//            addChangeButton();
-//        }
+        actualPosition = Position.Waiter;
+        positionButton.setText(String.valueOf(Position.Waiter));
     }
 
     public void changePositionToCook(ActionEvent actionEvent) {
-        actualPosition = Position.Kucharz;
-        positionButton.setText(String.valueOf(Position.Kucharz));
-//        if(!ifDataModified){
-//            ifDataModified = true;
-//            addChangeButton();
-//        }
+        actualPosition = Position.Cook;
+        positionButton.setText(String.valueOf(Position.Cook));
     }
 
     private void addChangeButton() {
-        Button modifyDataButton = JavaFXUtils.createButton("Zapisz zmiany");
+        Button modifyDataButton = JavaFXUtils.createButton("Save changes");
         modifyDataButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 workerToShow.setName(nameTextField.getCharacters().toString());
                 workerToShow.setSurname(surnameTextField.getCharacters().toString());
                 workerToShow.setDate((Date) JavaFXUtils.parseToDate(workDatePicker.getValue()));
-                if(actualPosition.equals(Position.Kelner))
+                if(actualPosition.equals(Position.Waiter))
                     workerToShow.setWaiter();
-                else if(actualPosition.equals(Position.Kucharz))
+                else if(actualPosition.equals(Position.Cook))
                     workerToShow.setCook();
                 else
                     workerToShow.setManager();
                 WorkerJdbcClass.getInstance().modifyWorker(workerToShow);
-//                centerVBox.getChildren().remove(4);
-//                ifDataModified = false;
             }
         });
         centerVBox.getChildren().add(4, modifyDataButton);
@@ -145,9 +128,5 @@ public class WorkerInfoController implements Initializable {
     }
 
     public void setChangedData(InputMethodEvent inputMethodEvent) {
-//        if(!ifDataModified){
-//            ifDataModified = true;
-//            addChangeButton();
-//        }
     }
 }

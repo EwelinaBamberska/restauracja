@@ -1,8 +1,6 @@
 package views;
 
 import app.data.magazine.MagazineItem;
-import app.data.magazine.MagazineItemProperty;
-import app.data.magazine.MagazineList;
 import app.data.worker.LoggedWorker;
 import app.jdbc.MagazineJdbcClass;
 import javafx.event.ActionEvent;
@@ -15,7 +13,6 @@ import javafx.scene.input.KeyEvent;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.List;
 
 public class TakeITemFromMagazineViewController implements Initializable {
     @FXML

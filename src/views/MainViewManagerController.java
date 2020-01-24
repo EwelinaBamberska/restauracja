@@ -56,8 +56,6 @@ public class MainViewManagerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//            onlyManagerCheckBox.setVisible(false);
-//            onlyManagerCheckBox.setSelected(true);
         BillTableViewController.initializeBillTable(billsTableView, getClass());
         BillTableViewController.showBills(toPaidCheckBox.isSelected(), paidCheckBox.isSelected(),
                 onlyManagerCheckBox.isSelected(), billsTableView);

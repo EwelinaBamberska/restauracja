@@ -17,9 +17,9 @@ public class WorkerItemProperty {
         if(manager)
             this.position = new SimpleStringProperty("Menadżer");
         else if(waiter)
-            this.position = new SimpleStringProperty("Kelner");
+            this.position = new SimpleStringProperty("Waiter");
         else
-            this.position = new SimpleStringProperty("Kucharz");
+            this.position = new SimpleStringProperty("Cook");
     }
 
     public String getId_prac() {

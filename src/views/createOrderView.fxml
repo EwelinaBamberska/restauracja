@@ -11,18 +11,21 @@
 
 <BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.CreateOrderViewController">
    <top>
-      <HBox BorderPane.alignment="CENTER">
+      <HBox maxHeight="46.0" minHeight="46.0" prefHeight="46.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="back_to_orders_view_button" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#go_to_orders_view" prefHeight="40.0" prefWidth="100.0" text="Wróć">
+            <Button fx:id="back_to_orders_view_button" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#go_to_orders_view" prefHeight="40.0" prefWidth="100.0" text="Back">
                <HBox.margin>
                   <Insets left="3.0" right="3.0" />
                </HBox.margin></Button>
-            <Button fx:id="submit_button" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#submit_button" prefHeight="40.0" prefWidth="100.0" text="Zatwierdź" wrapText="true">
+            <Button fx:id="submit_button" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#submit_button" prefHeight="40.0" prefWidth="100.0" text="Submit" wrapText="true">
                <HBox.margin>
                   <Insets left="3.0" right="3.0" />
                </HBox.margin>
             </Button>
          </children>
+         <padding>
+            <Insets bottom="3.0" top="3.0" />
+         </padding>
       </HBox>
    </top>
     <center>
@@ -35,17 +38,17 @@
     <bottom>
         <HBox maxHeight="40.0" minHeight="40.0" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <AutocompletionTextField fx:id="name_text_field" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" onKeyReleased="#showItemsInMagazine" prefHeight="40.0" prefWidth="200.0">
+                <AutocompletionTextField fx:id="name_text_field" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" onKeyReleased="#showItemsInMagazine" prefHeight="40.0" prefWidth="200.0" promptText="Product name">
                     <HBox.margin>
                         <Insets left="3.0" right="3.0" />
                     </HBox.margin>
                 </AutocompletionTextField>
-                <TextField fx:id="amount_text_field" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" prefHeight="40.0" prefWidth="200.0">
+                <TextField fx:id="amount_text_field" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" prefHeight="40.0" prefWidth="200.0" promptText="Amount">
                     <HBox.margin>
                         <Insets left="3.0" right="3.0" />
                     </HBox.margin>
                 </TextField>
-                <Button fx:id="add_new_position_button" maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#add_new_position" prefHeight="40.0" prefWidth="100.0" text="Dodaj nową pozycję" wrapText="true">
+                <Button fx:id="add_new_position_button" maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" mnemonicParsing="false" onAction="#add_new_position" prefHeight="40.0" prefWidth="150.0" text="Add new product" wrapText="true">
                     <HBox.margin>
                         <Insets left="3.0" right="3.0" />
                     </HBox.margin>

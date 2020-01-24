@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -14,14 +15,21 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.sql.Date;
 
 public class JavaFXUtils {
 
     public static void changeScene(ActionEvent actionEvent, String name, double width, double height, Class clazz) {
+        try {
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Parent parent = FXMLLoader.load(clazz.getResource(name));
+            stage.setScene(new Scene(parent, width, height));
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void changeScene(KeyEvent actionEvent, String name, double width, double height, Class clazz) {
         try {
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Parent parent = FXMLLoader.load(clazz.getResource(name));
@@ -43,12 +51,6 @@ public class JavaFXUtils {
 
     public static final LocalDate parseToLocalDate(Date date){
         LocalDate convertedDate = date.toLocalDate();
-//                .atZone(ZoneId.systemDefault())
-//                .toLocalDate();
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-//        convertedDate = LocalDate.parse(convertedDate.format(formatter));
-//        DateTimeFormatter formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
-//        final ZonedDateTime parsed = ZonedDateTime.parse(convertedDate.toString(), formatter);
         return convertedDate;
     }
 

@@ -14,7 +14,7 @@
             <Insets bottom="3.0" top="3.0" />
          </padding>
          <children>
-            <Button fx:id="backToMenuButton" maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="40.0" prefWidth="150.0" text="Wróć">
+            <Button fx:id="backToMenuButton" maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" mnemonicParsing="false" onAction="#goToMainMenu" prefHeight="40.0" prefWidth="150.0" text="Back">
                <HBox.margin>
                   <Insets left="3.0" right="3.0" />
                </HBox.margin>
@@ -25,16 +25,16 @@
    <center>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <AutocompletionTextField fx:id="itemNameTextField" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" onKeyReleased="#showEntries" prefHeight="40.0" prefWidth="200.0" promptText="Nazwa towaru">
+            <AutocompletionTextField fx:id="itemNameTextField" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" onKeyReleased="#showEntries" prefHeight="40.0" prefWidth="200.0" promptText="Product name">
                <HBox.margin>
                   <Insets left="3.0" right="3.0" />
                </HBox.margin></AutocompletionTextField>
-            <TextField fx:id="itemAmountTextField" layoutX="13.0" layoutY="10.0" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" prefHeight="40.0" prefWidth="200.0" promptText="Ilość">
+            <TextField fx:id="itemAmountTextField" layoutX="13.0" layoutY="10.0" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" prefHeight="40.0" prefWidth="200.0" promptText="Amount">
                <HBox.margin>
                   <Insets left="3.0" right="3.0" />
                </HBox.margin>
             </TextField>
-            <Button fx:id="takeFromMagazineButton" maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" mnemonicParsing="false" onAction="#takeFromMagazine" prefHeight="40.0" prefWidth="150.0" text="Usuń z magazynu">
+            <Button fx:id="takeFromMagazineButton" maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" mnemonicParsing="false" onAction="#takeFromMagazine" prefHeight="40.0" prefWidth="150.0" text="Delete from magazine">
                <HBox.margin>
                   <Insets left="3.0" right="3.0" />
                </HBox.margin>

@@ -1,8 +1,10 @@
 package app.jdbc;
 
 import app.data.bill.Bill;
+import app.data.bill.DishInBill;
 import app.data.worker.LoggedWorker;
 
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -86,5 +88,97 @@ public class BillJdbcClass {
             }
         }
         return bill;
+    }
+
+    public void payByBill(int billId, int rate) {
+        CallableStatement stmt = null;
+        String query = "{CALL rachunek_functions.oplac_rachunek(?, ?)}";
+        try {
+            stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
+            stmt.setInt(1, billId);
+            stmt.setInt(2, rate);
+            stmt.executeQuery();
+            JdbcConnector.getInstance().getConn().commit();
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                }catch (SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public ArrayList<DishInBill> getItemsOnBill(Integer valueOf) {
+        Statement stmt = null;
+        String query = "select * from danie_na_zamowieniu where towar_id_rachunku = " + valueOf;
+        ArrayList<DishInBill> items = new ArrayList<>();
+        try {
+            stmt = JdbcConnector.getInstance().getConn().createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()) {
+                DishInBill item = new DishInBill(rs.getInt(1), rs.getInt(2), rs.getString(3));
+                items.add(item);
+            }
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                }catch (SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return items;
+    }
+
+    public void deleteDishFromBill(Integer id, String name) {
+        CallableStatement stmt = null;
+        String query = "{CALL danie_na_zamowieniu_functions.usun_danie_z_rachunku(?, ?)}";
+        try {
+            stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
+            stmt.setInt(2, id);
+            stmt.setString(1, name);
+            stmt.executeQuery();
+            JdbcConnector.getInstance().getConn().commit();
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                }catch (SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void addDishToBill(DishInBill item) {
+        CallableStatement stmt = null;
+        String query = "{CALL danie_na_zamowieniu_functions.dodaj_danie(?, ?, ?)}";
+        try {
+            stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
+            stmt.setInt(1, item.getBillId());
+            stmt.setInt(2, item.getAmount());
+            stmt.setString(3, item.getItemName());
+            stmt.executeQuery();
+            JdbcConnector.getInstance().getConn().commit();
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                }catch (SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        }
     }
 }

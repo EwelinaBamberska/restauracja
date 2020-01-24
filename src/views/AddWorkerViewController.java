@@ -1,7 +1,6 @@
 package views;
 
 import app.data.worker.Worker;
-import app.data.worker.WorkerList;
 import app.jdbc.WorkerJdbcClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,7 +31,7 @@ public class AddWorkerViewController implements Initializable {
     @FXML
     private MenuItem cookMenuItem;
 
-    private enum Position{Menedżer, Kelner, Kucharz}
+    private enum Position{Manager, Waiter, Cook}
     private Position actualPosition = null;
 
     @Override
@@ -51,19 +50,18 @@ public class AddWorkerViewController implements Initializable {
         String waiter = "F";
         String manager = "F";
         String cook = "F";
-        if (actualPosition.equals(Position.Kelner)){
+        if (actualPosition.equals(Position.Waiter)){
             waiter = "T";
         }
-        else if(actualPosition.equals(Position.Menedżer)){
+        else if(actualPosition.equals(Position.Manager)){
             manager = "T";
         }
-        else if(actualPosition.equals(Position.Kucharz)){
+        else if(actualPosition.equals(Position.Cook)){
             cook = "T";
         }
         if(!name.equals("") && !surname.equals("") && workDatePicker != null && actualPosition != null) {
             int id = WorkerJdbcClass.getInstance().addWorker(name, surname, date, waiter, manager, cook);
             Worker newWorker = new Worker(id, name, surname, date, waiter, cook, manager);
-//            WorkerList.getInstance().addWorker(newWorker);
             goToWorkerView(actionEvent);
         }
         else {
@@ -72,17 +70,17 @@ public class AddWorkerViewController implements Initializable {
     }
 
     public void changePositionToManager(ActionEvent actionEvent) {
-        actualPosition = Position.Menedżer;
-        positionButton.setText(String.valueOf(Position.Menedżer));
+        actualPosition = Position.Manager;
+        positionButton.setText(String.valueOf(Position.Manager));
     }
 
     public void changePositionToWaiter(ActionEvent actionEvent) {
-        actualPosition = Position.Kelner;
-        positionButton.setText(String.valueOf(Position.Kelner));
+        actualPosition = Position.Waiter;
+        positionButton.setText(String.valueOf(Position.Waiter));
     }
 
     public void changePositionToCook(ActionEvent actionEvent) {
-        actualPosition = Position.Kucharz;
-        positionButton.setText(String.valueOf(Position.Kucharz));
+        actualPosition = Position.Cook;
+        positionButton.setText(String.valueOf(Position.Cook));
     }
 }

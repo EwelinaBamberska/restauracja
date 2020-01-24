@@ -1,7 +1,6 @@
 package views;
 
 import app.data.menu.MenuItemProperty;
-import app.data.menu.MenuList;
 import app.data.menu.MenuPosition;
 import app.jdbc.MenuJdbcClass;
 import javafx.collections.FXCollections;
@@ -47,7 +46,6 @@ public class MenuViewController implements Initializable {
     }
 
     private void showItemsInMenu() {
-//        if(!MenuList.getInstance().isDownloadedData())
         ArrayList<MenuPosition> menuPositions = MenuJdbcClass.getInstance().getMenuItemsFromDatabase();
         menu_items_table.getItems().clear();
         ObservableList<MenuItemProperty> menuItems = FXCollections.observableArrayList();
@@ -58,8 +56,8 @@ public class MenuViewController implements Initializable {
     private void initializeTableColumns() {
         menu_items_table.setEditable(true);
 
-        TableColumn<MenuItemProperty,String> positionNameColumn = new TableColumn<>("Nazwa dania");
-        TableColumn<MenuItemProperty, String> positionPriceColumn = new TableColumn<>("Cena");
+        TableColumn<MenuItemProperty,String> positionNameColumn = new TableColumn<>("Dish name");
+        TableColumn<MenuItemProperty, String> positionPriceColumn = new TableColumn<>("Price");
         menu_items_table.getColumns().addAll(positionNameColumn, positionPriceColumn);
 
         positionNameColumn.setCellValueFactory(new PropertyValueFactory<MenuItemProperty, String>("name"));
@@ -73,25 +71,23 @@ public class MenuViewController implements Initializable {
                         MenuItemProperty position = ((MenuItemProperty) t.getTableView().getItems().get(
                                 t.getTablePosition().getRow()));
                         Double newPrice = Double.parseDouble(t.getNewValue().toString().replace(",", "."));
-//                        MenuList.getInstance().modifyPriceOfPosisiton(position.getName(), newPrice);
                         MenuJdbcClass.getInstance().modifyPrice(position.getName(), newPrice);
                     }
                 }
         );
 
         //add button columns
-        TableColumn<MenuItemProperty, Void> deleteButton = new TableColumn<>("Usuń");
+        TableColumn<MenuItemProperty, Void> deleteButton = new TableColumn<>("Delete");
 
 
         Callback<TableColumn<MenuItemProperty, Void>, TableCell<MenuItemProperty, Void>> cellFactory1 = new Callback<TableColumn<MenuItemProperty, Void>, TableCell<MenuItemProperty, Void>>() {
             @Override
             public TableCell<MenuItemProperty, Void> call(final TableColumn<MenuItemProperty, Void> param) {
                 final TableCell<MenuItemProperty, Void> cell = new TableCell<MenuItemProperty, Void>() {
-                    private final Button delete = new Button("Usuń");
+                    private final Button delete = new Button("Delete");
                     {
                         delete.setOnAction((ActionEvent event)->{
                             MenuItemProperty data = getTableView().getItems().get(getIndex());
-//                            MenuList.getInstance().removePosition(data.getName());
                             MenuJdbcClass.getInstance().deleteMenuPosition(data.getName());
                             showItemsInMenu();
                         });
@@ -138,7 +134,6 @@ public class MenuViewController implements Initializable {
                 Double priceValue = Double.parseDouble(price);
 
                 MenuPosition newPosition = new MenuPosition(name, priceValue);
-//                MenuList.getInstance().addMenuPosition(newPosition);
                 MenuJdbcClass.getInstance().addMenuPosition(newPosition);
                 showItemsInMenu();
             }catch(NumberFormatException e){
@@ -154,7 +149,6 @@ public class MenuViewController implements Initializable {
 
     public void findItemInMenu(ActionEvent actionEvent) {
         String regexToFind = findItemInMenuTextView.getCharacters().toString();
-//        if(!MenuList.getInstance().isDownloadedData())
         ArrayList<MenuPosition> itemsInDB = MenuJdbcClass.getInstance().getMenuItemsFromDatabase();
         menu_items_table.getItems().clear();
         ObservableList<MenuItemProperty> menuItems = FXCollections.observableArrayList();
@@ -164,7 +158,7 @@ public class MenuViewController implements Initializable {
 
         regexPos.forEach(position -> menuItems.add(new MenuItemProperty(position.getName(), position.getPrice())));
         menu_items_table.setItems(menuItems);
-        Button showAllButton = JavaFXUtils.createButton("Pokaż wszystkie.");
+        Button showAllButton = JavaFXUtils.createButton("Show all.");
         showAllButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

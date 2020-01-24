@@ -3,7 +3,9 @@ package views;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
 
 public class MainViewWaiterController {
     @FXML
@@ -15,11 +17,17 @@ public class MainViewWaiterController {
     @FXML
     private Button log_out_button;
     @FXML
-    private ListView open_bills_list;
+    private TableView openBillsList;
+    @FXML
+    private CheckBox toPaidCheckBox;
+    @FXML
+    private CheckBox paidCheckBox;
 
     @FXML
     public void initialize(){
-        //TODO:show_list
+        BillTableViewController.initializeBillTable(openBillsList, getClass());
+        BillTableViewController.showBills(toPaidCheckBox.isSelected(), paidCheckBox.isSelected(),
+                true, openBillsList);
     }
 
     public void go_to_create_bill_view(ActionEvent actionEvent) {
@@ -37,6 +45,11 @@ public class MainViewWaiterController {
     }
 
     public void log_out(ActionEvent actionEvent) {
-        //TODO: log out
+        JavaFXUtils.changeScene(actionEvent, "loginToApp.fxml", 800, 600, getClass());
+    }
+
+    public void showSelectedBills(ActionEvent actionEvent) {
+        BillTableViewController.showBills(toPaidCheckBox.isSelected(), paidCheckBox.isSelected(),
+                true, openBillsList);
     }
 }

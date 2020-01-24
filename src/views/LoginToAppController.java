@@ -6,19 +6,12 @@ import app.jdbc.WorkerJdbcClass;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -37,8 +30,12 @@ public class LoginToAppController implements Initializable {
                     JavaFXUtils.changeScene(actionEvent, "mainViewManager.fxml", 800.0, 600.0, getClass());
                 else if (LoggedWorker.getInstance().isIf_waiter())
                     JavaFXUtils.changeScene(actionEvent, "mainViewWaiter.fxml", 800.0, 600.0, getClass());
-            } else
+                else JavaFXUtils.changeScene(actionEvent, "mainViewCook.fxml", 800.0, 600.0, getClass());
+
+            } else {
                 views.ErrorBox.showError("Error", "Nonexistent ID ");
+                sign_in_text_area.clear();
+            }
         }catch (NumberFormatException e){
             views.ErrorBox.showError("Error", "Input can only be a number");
         }
@@ -49,26 +46,24 @@ public class LoginToAppController implements Initializable {
             @Override
             public void handle(KeyEvent keyEvent) {
                 if (keyEvent.getCode() == KeyCode.ENTER)  {
-                    String enteredID = sign_in_text_area.getText();
-                    if (WorkerJdbcClass.getInstance().logWorker(Integer.parseInt(enteredID))){
-                        if(LoggedWorker.getInstance().isIf_manager()) {
-                            try {
-                                Stage stage = (Stage) ((Node) keyEvent.getSource()).getScene().getWindow();
-                                Parent parent = FXMLLoader.load(getClass().getResource("mainViewManager.fxml"));
-                                stage.setScene(new Scene(parent, 800, 600));
-                            } catch (IOException e){
-                                e.printStackTrace();
+                    try{
+                        String enteredID = sign_in_text_area.getText();
+                        if (WorkerJdbcClass.getInstance().logWorker(Integer.parseInt(enteredID))){
+                            if(LoggedWorker.getInstance().isIf_manager()) {
+                                JavaFXUtils.changeScene(keyEvent, "mainViewManager.fxml", 800.0, 600.0, getClass());
                             }
-                        }
-                        else if (LoggedWorker.getInstance().isIf_waiter()){
-                            try {
-                                Stage stage = (Stage) ((Node) keyEvent.getSource()).getScene().getWindow();
-                                Parent parent = FXMLLoader.load(getClass().getResource("mainViewWaiter.fxml"));
-                                stage.setScene(new Scene(parent, 800, 600));
-                            } catch (IOException e){
-                                e.printStackTrace();
+                            else if (LoggedWorker.getInstance().isIf_waiter()){
+                                JavaFXUtils.changeScene(keyEvent, "mainViewWaiter.fxml", 800.0, 600.0, getClass());
+
                             }
+                            else JavaFXUtils.changeScene(keyEvent, "mainViewCook.fxml", 800.0, 600.0, getClass());
                         }
+                        else {
+                            sign_in_text_area.clear();
+                            views.ErrorBox.showError("Error", "Nonexistent ID ");
+                        }
+                    }catch (NumberFormatException e){
+                        views.ErrorBox.showError("Error", "Input can only be a number");
                     }
                 }
             }

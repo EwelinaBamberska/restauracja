@@ -46,18 +46,16 @@ public class OrdersViewController implements Initializable {
     }
 
     private void showOrders() {
-//        if(!OrderList.getInstance().isDownloadedData())
         ArrayList<Order> ordersInDB = OrderJdbcClass.getInstance().getOrdersFromDatabase(unclaimedOrdersCheckBox.isSelected(), claimedOrdersCheckBox.isSelected(), myOrdersCheckBox.isSelected());
         orders_items_table.getItems().clear();
         ObservableList<OrderItemProperty> orderItems = FXCollections.observableArrayList();
-//        OrderList.getInstance().getOrderList(unclaimedOrdersCheckBox.isSelected(), claimedOrdersCheckBox.isSelected(), myOrdersCheckBox.isSelected())
         ordersInDB.forEach(position -> orderItems.add(new OrderItemProperty(position.getManagerId(), position.getOrderId(), position.isIfDelivered())));
         orders_items_table.setItems(orderItems);
     }
 
     private void initializeTableViews() {
-        TableColumn<OrderItemProperty,String> managerNameColumn = new TableColumn<>("Meneger ID");
-        TableColumn<OrderItemProperty, String> orderIdColumn = new TableColumn<>("Identyfikator zamówienia");
+        TableColumn<OrderItemProperty,String> managerNameColumn = new TableColumn<>("Manager ID");
+        TableColumn<OrderItemProperty, String> orderIdColumn = new TableColumn<>("Order ID");
         orders_items_table.getColumns().addAll(orderIdColumn, managerNameColumn);
 
         managerNameColumn.setCellValueFactory(new PropertyValueFactory<OrderItemProperty, String>("managerName"));
