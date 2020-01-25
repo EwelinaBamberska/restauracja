@@ -31,8 +31,6 @@ public class OrdersViewController implements Initializable {
     @FXML
     private TableView orders_items_table;
     @FXML
-    private TableView items_table_view;
-    @FXML
     private Button back_to_menu_button;
     @FXML
     private Button create_new_order_button;
@@ -45,8 +43,11 @@ public class OrdersViewController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        unclaimedOrdersCheckBox.setSelected(true);
+        myOrdersCheckBox.setSelected(true);
         initializeTableViews();
         showOrders();
+
     }
 
     private void showOrders() {
@@ -67,7 +68,7 @@ public class OrdersViewController implements Initializable {
         orderIdColumn.setCellValueFactory(new PropertyValueFactory<OrderItemProperty, String>("orderId"));
 
         //add button columns
-        TableColumn<OrderItemProperty, Void> deleteButton = new TableColumn<>("Odbierz zamówienie");
+        TableColumn<OrderItemProperty, Void> deleteButton = new TableColumn<>("Claim order.");
 
         orders_items_table.setRowFactory( tv -> {
             TableRow<OrderItemProperty> row = new TableRow<>();
@@ -106,7 +107,7 @@ public class OrdersViewController implements Initializable {
             @Override
             public TableCell<OrderItemProperty, Void> call(final TableColumn<OrderItemProperty, Void> param) {
                 final TableCell<OrderItemProperty, Void> cell = new TableCell<OrderItemProperty, Void>() {
-                    private final Button delete = new Button("Odbierz");
+                    private final Button delete = new Button("Claim");
                     {
                         delete.setOnAction((ActionEvent event)->{
                             OrderItemProperty data = getTableView().getItems().get(getIndex());
@@ -131,25 +132,8 @@ public class OrdersViewController implements Initializable {
         };
         deleteButton.setCellFactory(cellFactory1);
         orders_items_table.getColumns().add(deleteButton);
-
-        //initialize items table
-        TableColumn<ItemInOrderProperty,String> productNameColumn = new TableColumn<>("Nazwa towaru");
-        TableColumn<ItemInOrderProperty, String> productAmountColumn = new TableColumn<>("Ilość");
-
-        items_table_view.getColumns().addAll(orderIdColumn, managerNameColumn);
-
-        productNameColumn.setCellValueFactory(new PropertyValueFactory<ItemInOrderProperty, String>("name"));
-        productAmountColumn.setCellValueFactory(new PropertyValueFactory<ItemInOrderProperty, String>("orderId"));
     }
 
-    private void showItemsInOrder(String orderId) {
-        if(!OrderList.getInstance().getOrder(Integer.valueOf(orderId)).isDownloadedData())
-            OrderJdbcClass.getInstance().getProductsInOrdersFromDatabase(Integer.valueOf(orderId));
-        items_table_view.getItems().clear();
-        ObservableList<ItemInOrderProperty> orderItems = FXCollections.observableArrayList();
-        OrderList.getInstance().getOrder(Integer.valueOf(orderId)).getProducts().forEach(position -> orderItems.add(new ItemInOrderProperty(position.getName(), position.getAmountOfProduct(), position.getOrderId())));
-        items_table_view.setItems(orderItems);
-    }
 
     public void go_to_menu(ActionEvent actionEvent) {
         JavaFXUtils.changeScene(actionEvent, "mainViewManager.fxml", 800, 600, getClass());

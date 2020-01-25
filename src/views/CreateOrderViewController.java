@@ -59,8 +59,8 @@ public class CreateOrderViewController implements Initializable {
     private void initializeTableView() {
         items_table.setEditable(true);
 
-        TableColumn<ItemInOrderProperty,String> nameColumn = new TableColumn<>("Nazwa dania");
-        TableColumn<ItemInOrderProperty, String> amountColumn = new TableColumn<>("Ilość");
+        TableColumn<ItemInOrderProperty,String> nameColumn = new TableColumn<>("Product name");
+        TableColumn<ItemInOrderProperty, String> amountColumn = new TableColumn<>("Amount");
         items_table.getColumns().addAll(nameColumn, amountColumn);
 
         nameColumn.setCellValueFactory(new PropertyValueFactory<ItemInOrderProperty, String>("name"));
@@ -80,14 +80,14 @@ public class CreateOrderViewController implements Initializable {
         );
 
         //add button columns
-        TableColumn<ItemInOrderProperty, Void> deleteButton = new TableColumn<>("Usuń");
+        TableColumn<ItemInOrderProperty, Void> deleteButton = new TableColumn<>("Delete from order");
 
 
         Callback<TableColumn<ItemInOrderProperty, Void>, TableCell<ItemInOrderProperty, Void>> cellFactory1 = new Callback<TableColumn<ItemInOrderProperty, Void>, TableCell<ItemInOrderProperty, Void>>() {
             @Override
             public TableCell<ItemInOrderProperty, Void> call(final TableColumn<ItemInOrderProperty, Void> param) {
                 final TableCell<ItemInOrderProperty, Void> cell = new TableCell<ItemInOrderProperty, Void>() {
-                    private final Button delete = new Button("Usuń");
+                    private final Button delete = new Button("Delete");
                     {
                         delete.setOnAction((ActionEvent event)->{
                             ItemInOrderProperty data = getTableView().getItems().get(getIndex());
