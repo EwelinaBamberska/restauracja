@@ -21,7 +21,7 @@ public class HoursList {
     public boolean isDownloadedData() {
         return downloadedData;
     }
-    public List<HoursPosition> getMenuPositionList() {
+    public List<HoursPosition> getHoursPositionList() {
         return hoursPositionList;
     }
 

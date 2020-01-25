@@ -47,16 +47,16 @@ public class ShowWorkHoursViewController implements Initializable {
 //        menu_items_table.setMinHeight(centre_menu_view_vbox.getHeight());
 //        menu_items_table.setMaxHeight(centre_menu_view_vbox.getHeight());
 
-        TableColumn<MenuItemProperty, String> positionIDColumn = new TableColumn<>("Employee ID");
-        TableColumn<MenuItemProperty, String> positionDateColumn = new TableColumn<>("Date");
-        TableColumn<MenuItemProperty, String> positionWageColumn = new TableColumn<>("Wage");
-        TableColumn<MenuItemProperty, String> positionHoursColumn = new TableColumn<>("Hours worked");
+        TableColumn<HoursItemProperty, String> positionIDColumn = new TableColumn<>("Employee ID");
+        TableColumn<HoursItemProperty, String> positionDateColumn = new TableColumn<>("Date");
+        TableColumn<HoursItemProperty, String> positionWageColumn = new TableColumn<>("Wage");
+        TableColumn<HoursItemProperty, String> positionHoursColumn = new TableColumn<>("Hours worked");
         hours_worked_table.getColumns().addAll(positionIDColumn, positionDateColumn, positionWageColumn, positionHoursColumn);
 
-        positionIDColumn.setCellValueFactory(new PropertyValueFactory<MenuItemProperty, String>("id"));
-        positionDateColumn.setCellValueFactory(new PropertyValueFactory<MenuItemProperty, String>("date"));
-        positionWageColumn.setCellValueFactory(new PropertyValueFactory<MenuItemProperty, String>("wage"));
-        positionHoursColumn.setCellValueFactory(new PropertyValueFactory<MenuItemProperty, String>("hours"));
+        positionIDColumn.setCellValueFactory(new PropertyValueFactory<HoursItemProperty, String>("ID"));
+        positionDateColumn.setCellValueFactory(new PropertyValueFactory<HoursItemProperty, String>("date"));
+        positionWageColumn.setCellValueFactory(new PropertyValueFactory<HoursItemProperty, String>("wage"));
+        positionHoursColumn.setCellValueFactory(new PropertyValueFactory<HoursItemProperty, String>("hours"));
     }
 
     private void showItemsInTable(String ID){
@@ -64,7 +64,7 @@ public class ShowWorkHoursViewController implements Initializable {
                 HoursJdbcClass.getInstance().getHoursFromDatabase(ID);
             hours_worked_table.getItems().clear();
             ObservableList<HoursItemProperty> hoursItems = FXCollections.observableArrayList();
-            HoursList.getInstance().getMenuPositionList().forEach(position -> hoursItems.add(new HoursItemProperty(position.getID(), position.getDate(),position.getWage(),position.getHours())));
+            HoursList.getInstance().getHoursPositionList().forEach(position -> hoursItems.add(new HoursItemProperty(position.getID(), position.getDate(),position.getWage(),position.getHours())));
             hours_worked_table.setItems(hoursItems);
         }
     public void get_hours(ActionEvent actionEvent){
