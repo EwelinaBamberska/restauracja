@@ -18,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -92,10 +93,12 @@ public class MagazineViewController implements Initializable {
     public void addIngredient(ActionEvent actionEvent) {
         String name = ingredientNameTextField.getText();
         int amount = Integer.valueOf(ingredientAmountTextField.getText());
-        MagazineItem newItem = new MagazineItem(amount, name);
-        MagazineJdbcClass.getInstance().addItem(newItem);
-        ingredientNameTextField.clear();
-        ingredientAmountTextField.clear();
-        showIngredients();
+            MagazineItem newItem = new MagazineItem(amount, name);
+            MagazineJdbcClass.getInstance().addItem(newItem);
+            ingredientNameTextField.clear();
+            ingredientAmountTextField.clear();
+            showIngredients();
+
     }
 }
+
