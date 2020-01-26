@@ -2,4 +2,4 @@
 **/*.local
 **/*.git
 **/*.DS_Store
-.idea/
+.idea/workspace.xml
