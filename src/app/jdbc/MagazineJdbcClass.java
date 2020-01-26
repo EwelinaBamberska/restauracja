@@ -43,7 +43,7 @@ public class MagazineJdbcClass {
 
     public void addItem(MagazineItem newItem) {
         CallableStatement stmt = null;
-        String query = "{CALL magazyn_functions.nowy_towar(?, ?)}";
+        String query= "{CALL magazyn_functions.dodaj_towar(?, ?)}";
         try {
             stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
             stmt.setString(1, newItem.getName());
@@ -51,6 +51,7 @@ public class MagazineJdbcClass {
             stmt.executeQuery();
             JdbcConnector.getInstance().getConn().commit();
         } catch (SQLException e) {
+
             throw new Error("Problem", e);
         } finally {
             if (stmt != null) {

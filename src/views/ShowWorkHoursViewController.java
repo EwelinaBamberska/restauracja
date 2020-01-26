@@ -59,14 +59,37 @@ public class ShowWorkHoursViewController implements Initializable {
         positionHoursColumn.setCellValueFactory(new PropertyValueFactory<HoursItemProperty, String>("hours"));
     }
 
-    private void showItemsInTable(String ID){
-            if(!HoursList.getInstance().isDownloadedData())
-                HoursJdbcClass.getInstance().getHoursFromDatabase(ID);
-            hours_worked_table.getItems().clear();
-            ObservableList<HoursItemProperty> hoursItems = FXCollections.observableArrayList();
-            HoursList.getInstance().getHoursPositionList().forEach(position -> hoursItems.add(new HoursItemProperty(position.getID(), position.getDate(),position.getWage(),position.getHours())));
-            hours_worked_table.setItems(hoursItems);
+    private void showItemsInTable(String ID) {
+        int checking = 0;
+
+        if(ID ==null||ID.isEmpty()){
+        views.ErrorBox.showError("Error", "Input can't be empty");
+        checking++;
         }
+        HoursIDTextField.clear();
+
+        if(app.data.DataValidation.checkSpecialChars(ID)==""){
+        views.ErrorBox.showError("Error", "ID consist only of numbers");
+        checking++;
+
+        }
+        if(app.data.DataValidation.checkOnlyNumbers(ID)==""){
+            views.ErrorBox.showError("Error", "ID consist only of numbers");
+            checking++;
+        }
+
+        if(checking ==0){
+
+                HoursList.getInstance().getHoursPositionList().clear();
+                HoursJdbcClass.getInstance().getHoursFromDatabase(ID);
+                hours_worked_table.getItems().clear();
+                ObservableList<HoursItemProperty> hoursItems = FXCollections.observableArrayList();
+                HoursList.getInstance().getHoursPositionList().forEach(position -> hoursItems.add(new HoursItemProperty(position.getID(), position.getDate(), position.getWage(), position.getHours())));
+                hours_worked_table.setItems(hoursItems);
+
+            }
+
+    }
     public void get_hours(ActionEvent actionEvent){
         String data;
         data = HoursIDTextField.getCharacters().toString();

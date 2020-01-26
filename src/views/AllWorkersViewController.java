@@ -128,6 +128,7 @@ public class AllWorkersViewController implements Initializable {
                 topHBox.getChildren().remove(topHBox.getChildren().size() - 1);
             }
         });
+        if (topHBox.getChildren().size() == 1)
         topHBox.getChildren().add(showAllButton);
     }
 

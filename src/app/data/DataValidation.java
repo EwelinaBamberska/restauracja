@@ -9,7 +9,7 @@ public class DataValidation {
             return data;
         }
 
-        public static String checkNumbers(String data){
+        public static String checkOnlyLetters(String data){
             for(char c : data.toCharArray()){
                 if(Character.isDigit(c)) {
                     data = "";
@@ -78,5 +78,18 @@ public class DataValidation {
             return data;
         }
 
+        public static String checkOnlyNumbers(String data){
+            Pattern p = Pattern.compile("[^0-9 ]", Pattern.CASE_INSENSITIVE);
+            Matcher m = p.matcher(data);
+            boolean b = m.find();
+
+            if (b){
+                data = "";
+            }
+
+            return  data;
+        }
 
 }
+
+
