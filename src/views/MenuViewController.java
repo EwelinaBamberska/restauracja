@@ -115,6 +115,7 @@ public class MenuViewController implements Initializable {
         int checking = 0;
         String name = name_text_field.getCharacters().toString();
         String price = priceTextField.getCharacters().toString().replace(",", ".");
+        Double priceValue = Double.parseDouble(price);
         if (app.data.DataValidation.checkEmpty(name) == "" || app.data.DataValidation.checkEmpty(price) == "") {
             views.ErrorBox.showError("Error", "Input can't be empty");
             checking++;
@@ -123,15 +124,19 @@ public class MenuViewController implements Initializable {
             views.ErrorBox.showError("Error", "Special characters are not allowed in names");
             checking++;
         }
+
         if(app.data.DataValidation.checkSize(32,name)==""){
             views.ErrorBox.showError("Error", "Name must be at most 32 characters long");
+            checking++;
+        }
+        if(priceValue <0){
+            views.ErrorBox.showError("Error","Price must be bigger than 0");
             checking++;
         }
         if(checking == 0) {
             name_text_field.clear();
             priceTextField.clear();
             try {
-                Double priceValue = Double.parseDouble(price);
                 MenuPosition newPosition = new MenuPosition(name, priceValue);
                 MenuJdbcClass.getInstance().addMenuPosition(newPosition);
                 showItemsInMenu();
