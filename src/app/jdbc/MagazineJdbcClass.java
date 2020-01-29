@@ -43,7 +43,7 @@ public class MagazineJdbcClass {
 
     public void addItem(MagazineItem newItem) {
         CallableStatement stmt = null;
-        String query= "{CALL magazyn_functions.dodaj_towar(?, ?)}";
+        String query= "{CALL magazyn_functions.insert_item(?, ?)}";
         try {
             stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
             stmt.setString(1, newItem.getName());
@@ -51,7 +51,6 @@ public class MagazineJdbcClass {
             stmt.executeQuery();
             JdbcConnector.getInstance().getConn().commit();
         } catch (SQLException e) {
-
             throw new Error("Problem", e);
         } finally {
             if (stmt != null) {
@@ -130,5 +129,30 @@ public class MagazineJdbcClass {
                 }
             }
         }
+    }
+
+    public boolean checkIfProductExists(String name) {
+        PreparedStatement stmt = null;
+        String query = "select * from magazyn where nazwa_towaru = ?";
+        try {
+            stmt = JdbcConnector.getInstance().getConn().prepareStatement(query);
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()) {
+                return true;
+            }
+            JdbcConnector.getInstance().getConn().commit();
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                }catch (SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return false;
     }
 }

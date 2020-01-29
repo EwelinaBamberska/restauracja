@@ -169,13 +169,18 @@ public class MagazineViewController implements Initializable {
         }
 
         if(checking ==0) {
-            name = name.toLowerCase();
-            int amount = Integer.valueOf(ingredientAmountTextField.getText());
-            MagazineItem newItem = new MagazineItem(amount, name);
-            MagazineJdbcClass.getInstance().addItem(newItem);
-            ingredientNameTextField.clear();
-            ingredientAmountTextField.clear();
-            showIngredients();
+            name = name.toLowerCase().trim();
+            if(!MagazineJdbcClass.getInstance().checkIfProductExists(name)) {
+                int amount = Integer.valueOf(ingredientAmountTextField.getText());
+                MagazineItem newItem = new MagazineItem(amount, name);
+                MagazineJdbcClass.getInstance().addItem(newItem);
+                ingredientNameTextField.clear();
+                ingredientAmountTextField.clear();
+                showIngredients();
+            }
+            else {
+                views.ErrorBox.showError("Error", "Product exists in database!\nYou can create order to add product.");
+            }
         }
     }
 }

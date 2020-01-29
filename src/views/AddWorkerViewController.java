@@ -50,21 +50,25 @@ public class AddWorkerViewController implements Initializable {
         String waiter = "F";
         String manager = "F";
         String cook = "F";
+        boolean pos = false;
         if (actualPosition.equals(Position.Waiter)){
             waiter = "T";
+            pos = true;
         }
         else if(actualPosition.equals(Position.Manager)){
             manager = "T";
+            pos = true;
         }
         else if(actualPosition.equals(Position.Cook)){
             cook = "T";
+            pos = true;
         }
-        if(!name.equals("") && !surname.equals("") && workDatePicker != null) {
+        if(!name.equals("") && !surname.equals("") && workDatePicker != null && pos) {
             int id = WorkerJdbcClass.getInstance().addWorker(name, surname, date, waiter, manager, cook);
             goToWorkerView(actionEvent);
         }
         else {
-            //BŁĄD Dane nieuzupełnione
+            views.ErrorBox.showError("Error", "You have to fill all fields.");
         }
     }
 
