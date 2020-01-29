@@ -35,7 +35,9 @@ public class ShowWorkHoursViewController implements Initializable {
 
     public void go_to_menu(ActionEvent actionEvent) {
         if(LoggedWorker.getInstance().isIf_manager()){
-        JavaFXUtils.changeScene(actionEvent, "mainViewManager.fxml", 800, 600, getClass());}
+            JavaFXUtils.changeScene(actionEvent, "mainViewManager.fxml", 800, 600, getClass());}
+        else if (LoggedWorker.getInstance().isIf_cooker())
+            JavaFXUtils.changeScene(actionEvent, "mainViewCook.fxml", 800, 600, getClass());
         else{
             JavaFXUtils.changeScene(actionEvent, "mainViewWaiter.fxml",800,600,getClass());
         }

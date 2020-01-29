@@ -118,6 +118,7 @@ public class WorkerInfoController implements Initializable {
     }
 
     public void saveHours(ActionEvent actionEvent) {
+        System.out.println(Float.parseFloat(hourRateTextField.getText().replace(",", ".")));
         WorkerJdbcClass.getInstance().saveHoursToDB(workerToShow.getId_prac(),
                 (Date) JavaFXUtils.parseToDate(workDayDatePicker.getValue()),
                 Float.parseFloat(amountOfHoursTextField.getText().replace(",", ".")),

@@ -185,6 +185,7 @@ public class WorkerJdbcClass {
             stmt.setInt(3, 1);
             stmt.setDate(5, date);
             stmt.setFloat(4, hours);
+            System.out.println(rate);
             stmt.executeQuery();
             JdbcConnector.getInstance().getConn().commit();
         }catch (SQLException e) {

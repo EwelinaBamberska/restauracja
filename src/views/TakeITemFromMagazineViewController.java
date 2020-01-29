@@ -27,7 +27,6 @@ public class TakeITemFromMagazineViewController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 
     public void goToMainMenu(ActionEvent actionEvent) {

@@ -65,15 +65,23 @@ public class MenuJdbcClass {
     }
 
     public void deleteMenuPosition(String position){
-        CallableStatement stmt = null;
+        CallableStatement stmt = null, disable = null, enable = null;
         String query = "{CALL menu_functions.usun_danie(?)}";
         try {
             stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
+            disable = JdbcConnector.getInstance().getConn().prepareCall("{CALL disableMenuFK}");
+            enable = JdbcConnector.getInstance().getConn().prepareCall("{CALL enableMenuFK}");
+            disable.executeQuery();
             stmt.setString(1, position);
             stmt.executeQuery();
+            enable.executeQuery();
             JdbcConnector.getInstance().getConn().commit();
         } catch (SQLException e) {
-            throw new Error("Problem", e);
+            try {
+                JdbcConnector.getInstance().getConn().commit();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
         } finally {
             if (stmt != null) {
                 try {
