@@ -82,7 +82,7 @@ public class OrdersViewController implements Initializable {
                             )
                     );
 
-                    Stage stage = new Stage(StageStyle.DECORATED);
+                    Stage stage = (Stage) orders_items_table.getScene().getWindow();
                     try {
                         stage.setScene(
                                 new Scene(

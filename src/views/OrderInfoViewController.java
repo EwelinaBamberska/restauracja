@@ -137,7 +137,6 @@ public class OrderInfoViewController implements Initializable {
     }
 
     public void backToOrdersView(ActionEvent actionEvent) {
-        ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
         JavaFXUtils.changeScene(actionEvent, "ordersView.fxml", 800, 600, getClass());
     }
 

@@ -57,7 +57,7 @@ public class BillTableViewController {
                             )
                     );
 
-                    Stage stage = new Stage(StageStyle.DECORATED);
+                    Stage stage = (Stage) tableView.getScene().getWindow();
                     try {
                         stage.setScene(
                                 new Scene(

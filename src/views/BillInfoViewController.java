@@ -158,7 +158,7 @@ public class BillInfoViewController implements Initializable {
     }
 
     public void backToOrdersView(ActionEvent actionEvent) {
-        ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
+//        ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
         if(LoggedWorker.getInstance().isIf_manager())
             JavaFXUtils.changeScene(actionEvent, "mainViewManager.fxml", 800, 600, getClass());
     }

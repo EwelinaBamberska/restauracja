@@ -73,11 +73,12 @@ public class AllWorkersViewController implements Initializable {
                     WorkerItemProperty rowData = row.getItem();
                     FXMLLoader loader = new FXMLLoader(
                             getClass().getResource(
-                                    "customerDialog.fxml"
+                                    "workerInfoView.fxml"
                             )
                     );
 
-                    Stage stage = new Stage(StageStyle.DECORATED);
+                    Stage stage = (Stage) workersTableView.getScene().getWindow();
+//                            new Stage(StageStyle.DECORATED);
                     try {
                         stage.setScene(
                                 new Scene(
@@ -105,7 +106,7 @@ public class AllWorkersViewController implements Initializable {
     }
 
     public void goToAddWorkerView(ActionEvent actionEvent) {
-        JavaFXUtils.changeScene(actionEvent, "workerInfoView.fxml", 800, 600, getClass());
+        JavaFXUtils.changeScene(actionEvent, "addWorkerView.fxml", 800, 600, getClass());
     }
 
     public void findWorker(ActionEvent actionEvent) {
