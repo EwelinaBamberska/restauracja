@@ -181,4 +181,24 @@ public class BillJdbcClass {
             }
         }
     }
+
+    public void createBill(String TableNumber){
+        CallableStatement stmt = null;
+        String query = "INSERT INTO RACHUNEK VALUES (ID_RACHUNKU_SEQ.NEXTVAL, NULL, 0, "+ TableNumber +", " + LoggedWorker.getInstance().getId_prac() + ", current_date, 'F')";
+        try{
+            stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
+            stmt.executeQuery();
+            JdbcConnector.getInstance().getConn().commit();
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                }catch (SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
 }

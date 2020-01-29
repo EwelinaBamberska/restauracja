@@ -573,10 +573,21 @@ end;
 
 create or replace package body magazyn_functions is
 
+    LICZ NUMBER;
     procedure dodaj_towar(vNazwa Magazyn.nazwa_towaru%type, vIlosc Magazyn.ilosc%type) is
-    begin
-        update magazyn set ilosc = ilosc + vIlosc where vNazwa = nazwa_towaru;
-    end;
+
+    BEGIN
+        SELECT COUNT (vNazwa) INTO LICZ FROM 
+        MAGAZYN WHERE nazwa_towaru = vNazwa;
+        
+        IF LICZ = 1 THEN
+            UPDATE MAGAZYN
+            SET ILOSC = ILOSC + vIlosc
+            WHERE nazwa_towaru = vNazwa;
+        ELSE
+            INSERT INTO magazyn(NAZWA_TOWARU,ILOSC)VALUES (vNazwa,vIlosc);
+        END IF;
+    END;
     
     procedure usun_towar(vNazwa Magazyn.nazwa_towaru%type, vIlosc Magazyn.ilosc%type) is
     begin
@@ -680,3 +691,14 @@ alter table zamowiony_towar add(czy_dostarczony VARCHAR2(1));
 
 commit;
 select * from menu;
+
+begin
+magazyn_functions.dodaj_towar('frytki',7);
+end;
+
+
+select * from pracownik_na_zmianie;
+
+insert into pracownik_na_zmianie values (42, current_date, 10, 25, 1);
+
+commit;
