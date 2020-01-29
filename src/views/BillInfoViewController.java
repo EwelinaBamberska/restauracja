@@ -1,5 +1,6 @@
 package views;
 
+import app.data.DataValidation;
 import app.data.bill.Bill;
 import app.data.bill.DishInBill;
 import app.data.bill.DishItemProperty;
@@ -170,12 +171,40 @@ public class BillInfoViewController implements Initializable {
     }
 
     public void addItemToOrder(ActionEvent actionEvent) {
+        int checking = 0;
         String name = nameOfAddedItemTextField.getText();
-        int amount = Integer.valueOf(amountOfAddedItemTextField.getText());
-        DishInBill item = new DishInBill(actualBill.getBillId(), amount, name);
-        BillJdbcClass.getInstance().addDishToBill(item);
-        nameOfAddedItemTextField.clear();
-        amountOfAddedItemTextField.clear();
-        showItemsInTable();
+        String amount_validation = amountOfAddedItemTextField.getText();
+        if (nameOfAddedItemTextField.getText() == null || nameOfAddedItemTextField.getText().trim().isEmpty()) {
+            ErrorBox.showError("Error", "Name input can't be empty");
+            checking++;
+        }
+        if (amountOfAddedItemTextField.getText() == null || amountOfAddedItemTextField.getText().trim().isEmpty()) {
+            ErrorBox.showError("Error", "Amount input can't be empty");
+            checking++;
+        }
+
+        if ( DataValidation.checkSpecialChars(name)=="" || DataValidation.checkSpecialChars(amount_validation)=="") {
+            ErrorBox.showError("Error", "Neither input can contain special characters");
+            checking++;
+        }
+
+        if (DataValidation.checkOnlyLetters(name)=="") {
+            ErrorBox.showError("Error", "Name input can't contain numbers");
+            checking++;
+        }
+
+        if (DataValidation.checkOnlyNumbers(amount_validation)=="") {
+            ErrorBox.showError("Error", "Amount input must be an integer");
+            checking++;
+        }
+        if (checking==0) {
+            name = name.toLowerCase();
+            int amount = Integer.valueOf(amountOfAddedItemTextField.getText());
+            DishInBill item = new DishInBill(actualBill.getBillId(), amount, name);
+            BillJdbcClass.getInstance().addDishToBill(item);
+            nameOfAddedItemTextField.clear();
+            amountOfAddedItemTextField.clear();
+            showItemsInTable();
+        }
     }
 }

@@ -114,7 +114,7 @@ public class BillJdbcClass {
 
     public ArrayList<DishInBill> getItemsOnBill(Integer valueOf) {
         Statement stmt = null;
-        String query = "select * from danie_na_zamowieniu where towar_id_rachunku = " + valueOf;
+        String query = "select * from danie_na_zamowieniu where rachunek_id_rachunku = " + valueOf;
         ArrayList<DishInBill> items = new ArrayList<>();
         try {
             stmt = JdbcConnector.getInstance().getConn().createStatement();
