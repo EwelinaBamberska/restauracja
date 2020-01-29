@@ -76,8 +76,6 @@ public class BillInfoViewController implements Initializable {
         deliverButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-//                BillJdbcClass.getInstance().payByBill(actualBill.getBillId());
-//                actualBill.setIfPaid(true);
                 deliverLabel.setText("Paid bill.");
                 topHBox.getChildren().remove(1);
                 bottomVBox.setVisible(false);
@@ -87,7 +85,7 @@ public class BillInfoViewController implements Initializable {
                         )
                 );
 
-                Stage stage = new Stage(StageStyle.DECORATED);
+                Stage stage = (Stage) bottomVBox.getScene().getWindow();
                 try {
                     stage.setScene(new Scene((Pane) loader.load()));
                 } catch (IOException e) {
@@ -158,7 +156,6 @@ public class BillInfoViewController implements Initializable {
     }
 
     public void backToOrdersView(ActionEvent actionEvent) {
-//        ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
         if(LoggedWorker.getInstance().isIf_manager())
             JavaFXUtils.changeScene(actionEvent, "mainViewManager.fxml", 800, 600, getClass());
     }

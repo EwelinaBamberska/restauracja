@@ -2,9 +2,7 @@ package app.jdbc;
 
 import app.data.order.ItemInOrder;
 import app.data.order.Order;
-import app.data.order.OrderList;
 import app.data.worker.LoggedWorker;
-import app.data.worker.Worker;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -217,5 +215,26 @@ public class OrderJdbcClass {
             }
         }
         return order;
+    }
+
+    public void deleteOrder(int orderId) {
+        CallableStatement stmt = null;
+        String query = "{CALL menedzer_functions.usun_zamowienie(?)}";
+        try {
+            stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
+            stmt.setInt(1, orderId);
+            stmt.executeQuery();
+            JdbcConnector.getInstance().getConn().commit();
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                }catch (SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        }
     }
 }

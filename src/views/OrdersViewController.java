@@ -1,9 +1,7 @@
 package views;
 
-import app.data.order.ItemInOrderProperty;
 import app.data.order.Order;
 import app.data.order.OrderItemProperty;
-import app.data.order.OrderList;
 import app.jdbc.OrderJdbcClass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -102,36 +99,6 @@ public class OrdersViewController implements Initializable {
             });
             return row ;
         });
-
-        Callback<TableColumn<OrderItemProperty, Void>, TableCell<OrderItemProperty, Void>> cellFactory1 = new Callback<TableColumn<OrderItemProperty, Void>, TableCell<OrderItemProperty, Void>>() {
-            @Override
-            public TableCell<OrderItemProperty, Void> call(final TableColumn<OrderItemProperty, Void> param) {
-                final TableCell<OrderItemProperty, Void> cell = new TableCell<OrderItemProperty, Void>() {
-                    private final Button delete = new Button("Claim");
-                    {
-                        delete.setOnAction((ActionEvent event)->{
-                            OrderItemProperty data = getTableView().getItems().get(getIndex());
-
-                            OrderJdbcClass.getInstance().claimOrder(Integer.valueOf(data.getOrderId()));
-                            OrderList.getInstance().claimOrder(Integer.valueOf(data.getOrderId()));
-                        });
-                    }
-
-                    @Override
-                    public void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            setGraphic(delete);
-                        }
-                    }
-                };
-                return cell;
-            }
-        };
-        deleteButton.setCellFactory(cellFactory1);
-        orders_items_table.getColumns().add(deleteButton);
     }
 
 

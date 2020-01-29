@@ -110,4 +110,25 @@ public class MagazineJdbcClass {
         }
         return -1;
     }
+
+    public void deleteItemFromMagazine(String name) {
+        CallableStatement stmt = null;
+        String query = "{CALL magazyn_functions.delete_item_name(?)}";
+        try {
+            stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
+            stmt.setString(1, name);
+            stmt.executeQuery();
+            JdbcConnector.getInstance().getConn().commit();
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                }catch (SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
 }

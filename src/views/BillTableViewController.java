@@ -59,11 +59,7 @@ public class BillTableViewController {
 
                     Stage stage = (Stage) tableView.getScene().getWindow();
                     try {
-                        stage.setScene(
-                                new Scene(
-                                        (Pane) loader.load()
-                                )
-                        );
+                        stage.setScene(new Scene((Pane) loader.load()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

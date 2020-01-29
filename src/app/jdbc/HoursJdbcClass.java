@@ -2,10 +2,7 @@ package app.jdbc;
 
 import app.data.hours.HoursList;
 import app.data.hours.HoursPosition;
-import app.data.menu.MenuList;
-import app.data.menu.MenuPosition;
 
-import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;

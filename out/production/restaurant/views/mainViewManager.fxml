@@ -87,7 +87,7 @@
                         <Insets left="3.0" right="3.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="magazine_button" layoutX="335.0" layoutY="10.0" maxHeight="50.0" maxWidth="150.0" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" onAction="#go_to_magazine_options" prefHeight="50.0" prefWidth="150.0" text="Magazine" wrapText="true">
+                  <Button fx:id="magazine_button" layoutX="335.0" layoutY="10.0" maxHeight="50.0" maxWidth="150.0" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" onAction="#go_to_magazine_options" prefHeight="50.0" prefWidth="150.0" text="Warehouse" wrapText="true">
                      <HBox.margin>
                         <Insets left="3.0" right="3.0" />
                      </HBox.margin>

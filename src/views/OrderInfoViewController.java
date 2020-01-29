@@ -1,7 +1,6 @@
 package views;
 
 import app.data.magazine.MagazineItem;
-import app.data.magazine.MagazineList;
 import app.data.order.*;
 import app.jdbc.MagazineJdbcClass;
 import app.jdbc.OrderJdbcClass;
@@ -11,19 +10,16 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.List;
 
 public class OrderInfoViewController implements Initializable {
     @FXML
@@ -62,10 +58,10 @@ public class OrderInfoViewController implements Initializable {
         initializeTable();
         showItemsInTable();
         if(!actualOrder.isIfDelivered())
-            addDeliverButton();
+            addButtonsWhenNotDelivered();
     }
 
-    private void addDeliverButton() {
+    private void addButtonsWhenNotDelivered() {
         Button deliverButton = JavaFXUtils.createButton("Receive");
         topHBox.getChildren().add(deliverButton);
         deliverButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -74,8 +70,18 @@ public class OrderInfoViewController implements Initializable {
                 OrderJdbcClass.getInstance().claimOrder(actualOrder.getOrderId());
                 actualOrder.setIfDelivered(true);
                 deliverLabel.setText("Order is received.");
+                topHBox.getChildren().remove(2);
                 topHBox.getChildren().remove(1);
                 bottomVBox.setVisible(false);
+            }
+        });
+        Button deleteOrder = JavaFXUtils.createButton("Delete order");
+        topHBox.getChildren().add(deleteOrder);
+        deleteOrder.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                OrderJdbcClass.getInstance().deleteOrder(actualOrder.getOrderId());
+                backToOrdersView(event);
             }
         });
     }

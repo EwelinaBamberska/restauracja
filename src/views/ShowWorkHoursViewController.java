@@ -2,12 +2,8 @@ package views;
 
 import app.data.hours.HoursItemProperty;
 import app.data.hours.HoursList;
-import app.data.hours.HoursPosition;
-import app.data.menu.MenuItemProperty;
-import app.data.menu.MenuList;
 import app.data.worker.LoggedWorker;
 import app.jdbc.HoursJdbcClass;
-import app.jdbc.MenuJdbcClass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,7 +14,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 

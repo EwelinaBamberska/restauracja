@@ -15,7 +15,7 @@ public class WorkerItemProperty {
         this.name = new SimpleStringProperty(name);
         this.surname = new SimpleStringProperty(surname);
         if(manager)
-            this.position = new SimpleStringProperty("Menadżer");
+            this.position = new SimpleStringProperty("Manager");
         else if(waiter)
             this.position = new SimpleStringProperty("Waiter");
         else

@@ -59,9 +59,8 @@ public class AddWorkerViewController implements Initializable {
         else if(actualPosition.equals(Position.Cook)){
             cook = "T";
         }
-        if(!name.equals("") && !surname.equals("") && workDatePicker != null && actualPosition != null) {
+        if(!name.equals("") && !surname.equals("") && workDatePicker != null) {
             int id = WorkerJdbcClass.getInstance().addWorker(name, surname, date, waiter, manager, cook);
-            Worker newWorker = new Worker(id, name, surname, date, waiter, cook, manager);
             goToWorkerView(actionEvent);
         }
         else {

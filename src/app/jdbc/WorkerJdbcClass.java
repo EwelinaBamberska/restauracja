@@ -101,21 +101,32 @@ public class WorkerJdbcClass {
     }
 
     public void fireWorker(Worker workerToFire) {
-        CallableStatement stmt = null;
+        CallableStatement stmt = null, disable = null, enable = null;
         String query = "{CALL menedzer_functions.usun_pracownika(?)}";
         try {
             stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
+            disable = JdbcConnector.getInstance().getConn().prepareCall("{CALL disablePracFK}");
+            enable = JdbcConnector.getInstance().getConn().prepareCall("{CALL enablePracFK}");
             stmt.setInt(1, workerToFire.getId_prac());
+            disable.executeQuery();
             stmt.executeQuery();
+            enable.executeQuery();
+
             JdbcConnector.getInstance().getConn().commit();
         } catch (SQLIntegrityConstraintViolationException e){
             System.out.println("Nie można zwolnić pracownika, który nie jest zatrudniony.");
         } catch (SQLException e) {
-            throw new Error("Problem", e);
+            try {
+                JdbcConnector.getInstance().getConn().commit();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
+                    disable.close();
+                    enable.close();
                 }catch (SQLException ex){
                     ex.printStackTrace();
                 }
@@ -149,8 +160,8 @@ public class WorkerJdbcClass {
             }
             stmt.executeQuery();
             JdbcConnector.getInstance().getConn().commit();
-        } catch (SQLIntegrityConstraintViolationException e){
-            System.out.println("Nie można modyfikować pracownika, który nie jest zatrudniony.");
+//        } catch (SQLIntegrityConstraintViolationException e){
+//            System.out.println("Nie można modyfikować pracownika, który nie jest zatrudniony.");
         } catch (SQLException e) {
             throw new Error("Problem", e);
         } finally {

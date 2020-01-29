@@ -2,7 +2,6 @@ package views;
 
 import app.data.magazine.MagazineItem;
 import app.data.magazine.MagazineItemProperty;
-import app.data.magazine.MagazineList;
 import app.jdbc.MagazineJdbcClass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,15 +9,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
+import javafx.util.Callback;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -62,6 +58,38 @@ public class MagazineViewController implements Initializable {
 
         itemNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
+
+        TableColumn<MagazineItemProperty, Void> deleteButton = new TableColumn<>("Delete");
+
+
+        Callback<TableColumn<MagazineItemProperty, Void>, TableCell<MagazineItemProperty, Void>> cellFactory1 = new Callback<TableColumn<MagazineItemProperty, Void>, TableCell<MagazineItemProperty, Void>>() {
+            @Override
+            public TableCell<MagazineItemProperty, Void> call(final TableColumn<MagazineItemProperty, Void> param) {
+                final TableCell<MagazineItemProperty, Void> cell = new TableCell<MagazineItemProperty, Void>() {
+                    private final Button delete = new Button("Delete");
+                    {
+                        delete.setOnAction((ActionEvent event)->{
+                            MagazineItemProperty data = getTableView().getItems().get(getIndex());
+                            MagazineJdbcClass.getInstance().deleteItemFromMagazine(data.getName());
+                            showIngredients();
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(delete);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        deleteButton.setCellFactory(cellFactory1);
+        ingredientsTableView.getColumns().add(deleteButton);
     }
 
     public void goToMainMenu(ActionEvent actionEvent) {
@@ -96,7 +124,6 @@ public class MagazineViewController implements Initializable {
             itemsInDB.forEach(position -> {
                 if (position.getName().contains(regexToFind)) regexItems.add(position);
             });
-//        MagazineList.getInstance().getItemsInMagazineRegex(regexToFind)
             regexItems.forEach(position -> items.add(new MagazineItemProperty(position.getAmount(), position.getName())));
             ingredientsTableView.setItems(items);
             Button showAllButton = JavaFXUtils.createButton("Pokaż wszystko.");

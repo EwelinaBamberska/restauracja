@@ -1,6 +1,5 @@
 package app.jdbc;
 
-import app.data.menu.MenuList;
 import app.data.menu.MenuPosition;
 
 import java.sql.CallableStatement;
