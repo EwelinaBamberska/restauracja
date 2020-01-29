@@ -132,12 +132,43 @@ public class CreateOrderViewController implements Initializable {
     public void add_new_position(ActionEvent actionEvent) {
         String name = name_text_field.getCharacters().toString();
         String amount = amount_text_field.getCharacters().toString();
-        name_text_field.clear();
-        amount_text_field.clear();
-        int amountInt = Integer.valueOf(amount);
-        ItemInOrder item = new ItemInOrder(name, amountInt, -1);
-        itemsInCreatedOrder.add(item);
-        showActualElements();
+        int checking = 0;
+
+        if (app.data.DataValidation.checkEmpty(name) == "" || app.data.DataValidation.checkEmpty(amount) == "") {
+            views.ErrorBox.showError("Error", "Input can't be empty");
+            checking++;
+        }
+        if (app.data.DataValidation.checkSpecialChars(name) == "") {
+            views.ErrorBox.showError("Error", "Special characters are not allowed in names");
+            checking++;
+        }
+
+        if (app.data.DataValidation.checkSpecialChars(amount) == "") {
+            views.ErrorBox.showError("Error", "Special characters are not allowed in amounts");
+            checking++;
+        }
+
+        if(app.data.DataValidation.checkSize(32,name)==""){
+            views.ErrorBox.showError("Error", "Name must be at most 32 characters long");
+            checking++;
+        }
+
+        if (checking == 0) {
+            int amountInt = Integer.valueOf(amount);
+
+            if (amountInt < 0) {
+                views.ErrorBox.showError("Error", "Amount must be bigger than 0");
+                checking++;
+            }
+
+            if (checking == 0) {
+                name_text_field.clear();
+                amount_text_field.clear();
+                ItemInOrder item = new ItemInOrder(name, amountInt, -1);
+                itemsInCreatedOrder.add(item);
+                showActualElements();
+            }
+        }
     }
 
     public ItemInOrder getByName(String name){
