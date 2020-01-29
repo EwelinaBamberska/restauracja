@@ -112,7 +112,7 @@ public class MagazineViewController implements Initializable {
             views.ErrorBox.showError("Error", "Keyword can't be longer than 32 characters");
             checking++;
         }
-        if(app.data.DataValidation.checkOnlyNumbers(regexToFind)==""){
+        if(app.data.DataValidation.checkOnlyLetters(regexToFind)==""){
             views.ErrorBox.showError("Error", "There can't be numbers in ingredients names");
             checking++;
         }
