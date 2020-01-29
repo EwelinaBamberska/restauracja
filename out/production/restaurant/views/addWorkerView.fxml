@@ -84,7 +84,7 @@
                                 <Insets left="3.0" right="3.0" />
                             </HBox.margin>
                         </Label>
-                        <DatePicker fx:id="workDatePicker" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" promptText="Date">
+                        <DatePicker fx:id="workDatePicker" editable="false" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" promptText="Date">
                             <HBox.margin>
                                 <Insets left="3.0" right="3.0" />
                             </HBox.margin>

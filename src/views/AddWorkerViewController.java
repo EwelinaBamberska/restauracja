@@ -46,25 +46,51 @@ public class AddWorkerViewController implements Initializable {
     public void addWorker(ActionEvent actionEvent) {
         String name = nameTextField.getText();
         String surname = surnameTextField.getText();
-        Date date = (Date) JavaFXUtils.parseToDate(workDatePicker.getValue());
-        String waiter = "F";
-        String manager = "F";
-        String cook = "F";
-        if (actualPosition.equals(Position.Waiter)){
-            waiter = "T";
+        int checking = 0;
+
+        if(app.data.DataValidation.checkEmpty(name)==""){
+            views.ErrorBox.showError("Error","Name input can't be empty");
+            checking++;
         }
-        else if(actualPosition.equals(Position.Manager)){
-            manager = "T";
+
+        if(app.data.DataValidation.checkEmpty(surname)==""){
+            views.ErrorBox.showError("Error","Surname input can't be empty");
+            checking++;
         }
-        else if(actualPosition.equals(Position.Cook)){
-            cook = "T";
+        if(checking == 0) {
+            if (app.data.DataValidation.checkNames(name) == "") {
+                views.ErrorBox.showError("Error", "Valid name starts with a capital letter, followed with non-capitals");
+                checking++;
+            }
+
+            if (app.data.DataValidation.checkNames(surname) == "") {
+                views.ErrorBox.showError("Error", "Valid surname starts with a capital letter, followed with non-capitals");
+                checking++;
+            }
         }
-        if(!name.equals("") && !surname.equals("") && workDatePicker != null) {
-            int id = WorkerJdbcClass.getInstance().addWorker(name, surname, date, waiter, manager, cook);
-            goToWorkerView(actionEvent);
+        if(actualPosition == null){
+            views.ErrorBox.showError("Error","You need to choose the role");
+            checking++;
         }
-        else {
-            //BŁĄD Dane nieuzupełnione
+
+        if(checking == 0) {
+            Date date = (Date) JavaFXUtils.parseToDate(workDatePicker.getValue());
+            String waiter = "F";
+            String manager = "F";
+            String cook = "F";
+            if (actualPosition.equals(Position.Waiter)) {
+                waiter = "T";
+            } else if (actualPosition.equals(Position.Manager)) {
+                manager = "T";
+            } else if (actualPosition.equals(Position.Cook)) {
+                cook = "T";
+            }
+            if (!name.equals("") && !surname.equals("") && workDatePicker != null) {
+                int id = WorkerJdbcClass.getInstance().addWorker(name, surname, date, waiter, manager, cook);
+                goToWorkerView(actionEvent);
+            } else {
+                views.ErrorBox.showError("Error", "Incomplete data");
+            }
         }
     }
 
