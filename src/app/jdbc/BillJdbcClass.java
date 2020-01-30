@@ -201,4 +201,25 @@ public class BillJdbcClass {
             }
         }
     }
+
+    public void setPrice(int billId) {
+        CallableStatement stmt = null;
+        String query = "{CALL rachunek_functions.sumaryczna_cena(?)}";
+        try{
+            stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
+            stmt.setInt(1, billId);
+            stmt.executeQuery();
+            JdbcConnector.getInstance().getConn().commit();
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                }catch (SQLException ex){
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
 }

@@ -206,6 +206,7 @@ public class BillInfoViewController implements Initializable {
             int amount = Integer.valueOf(amountOfAddedItemTextField.getText());
             DishInBill item = new DishInBill(actualBill.getBillId(), amount, name);
             BillJdbcClass.getInstance().addDishToBill(item);
+            BillJdbcClass.getInstance().setPrice(actualBill.getBillId());
             nameOfAddedItemTextField.clear();
             amountOfAddedItemTextField.clear();
             showItemsInTable();
