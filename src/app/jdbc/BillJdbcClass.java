@@ -3,11 +3,9 @@ package app.jdbc;
 import app.data.bill.Bill;
 import app.data.bill.DishInBill;
 import app.data.worker.LoggedWorker;
+import oracle.jdbc.OracleTypes;
 
-import java.sql.CallableStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class BillJdbcClass {
@@ -204,11 +202,12 @@ public class BillJdbcClass {
 
     public void setPrice(int billId) {
         CallableStatement stmt = null;
-        String query = "{CALL rachunek_functions.sumaryczna_cena(?)}";
+        String query = "{? = call rachunek_functions.sumaryczna_cena(?)}";
         try{
             stmt = JdbcConnector.getInstance().getConn().prepareCall(query);
-            stmt.setInt(1, billId);
-            stmt.executeQuery();
+            stmt.registerOutParameter(1, OracleTypes.NUMBER);
+            stmt.setInt(2, billId);
+            stmt.execute();
             JdbcConnector.getInstance().getConn().commit();
         } catch (SQLException e) {
             throw new Error("Problem", e);
@@ -222,4 +221,21 @@ public class BillJdbcClass {
             }
         }
     }
+
+    public boolean checkDishName(String name){
+        PreparedStatement stmt;
+        String query = "SELECT NAZWA_DANIA FROM MENU WHERE NAZWA_DANIA =?";
+        try {
+            stmt = JdbcConnector.getInstance().getConn().prepareStatement(query);
+            stmt.setString(1,name);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()) {
+                return false;
+            }else
+                return true;
+        }catch (SQLException e){
+            throw new Error("Problem", e);
+        }
+    }
+
 }

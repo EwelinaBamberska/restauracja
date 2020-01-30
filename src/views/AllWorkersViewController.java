@@ -112,25 +112,33 @@ public class AllWorkersViewController implements Initializable {
     public void findWorker(ActionEvent actionEvent) {
         String regexToFind = findWorkerTextField.getCharacters().toString();
         ArrayList<Worker> workersInDB = WorkerJdbcClass.getInstance().getWorkers();
-        workersTableView.getItems().clear();
-        ObservableList<WorkerItemProperty> workers = FXCollections.observableArrayList();
+        if (app.data.DataValidation.checkSpecialChars(regexToFind) == "") {
+            views.ErrorBox.showError("Error", "Special characters are not allowed in names");
 
-        ArrayList<Worker> regexWorkers = new ArrayList<>();
-        workersInDB.forEach(position -> {if(position.passToRegex(regexToFind)) regexWorkers.add(position);});
+        } else {
 
-        regexWorkers.forEach(position -> workers.add(new WorkerItemProperty(position.getId_prac(), position.getName(),
-                        position.getSurname(), position.isIf_manager(), position.isIf_cooker(), position.isIf_waiter())));
-        workersTableView.setItems(workers);
-        Button showAllButton = JavaFXUtils.createButton("Show all.");
-        showAllButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                showWorkers();
-                topHBox.getChildren().remove(topHBox.getChildren().size() - 1);
-            }
-        });
-        if (topHBox.getChildren().size() == 1)
-        topHBox.getChildren().add(showAllButton);
+            workersTableView.getItems().clear();
+            ObservableList<WorkerItemProperty> workers = FXCollections.observableArrayList();
+
+            ArrayList<Worker> regexWorkers = new ArrayList<>();
+            workersInDB.forEach(position -> {
+                if (position.passToRegex(regexToFind)) regexWorkers.add(position);
+            });
+
+            regexWorkers.forEach(position -> workers.add(new WorkerItemProperty(position.getId_prac(), position.getName(),
+                    position.getSurname(), position.isIf_manager(), position.isIf_cooker(), position.isIf_waiter())));
+            workersTableView.setItems(workers);
+            Button showAllButton = JavaFXUtils.createButton("Show all.");
+            showAllButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    showWorkers();
+                    topHBox.getChildren().remove(topHBox.getChildren().size() - 1);
+                }
+            });
+            if (topHBox.getChildren().size() == 1)
+                topHBox.getChildren().add(showAllButton);
+        }
     }
 
 }

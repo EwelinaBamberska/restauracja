@@ -47,7 +47,7 @@ public class TakeITemFromMagazineViewController implements Initializable {
             goToMainMenu(actionEvent);
         }
         else{
-            //ZA DUZO ZABRANE
+            ErrorBox.showError("Error","There isn't that much of selected product");
         }
     }
 

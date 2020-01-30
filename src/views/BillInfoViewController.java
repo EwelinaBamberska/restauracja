@@ -201,6 +201,11 @@ public class BillInfoViewController implements Initializable {
             ErrorBox.showError("Error", "Amount input must be an integer");
             checking++;
         }
+
+        if (app.jdbc.BillJdbcClass.getInstance().checkDishName(name)){
+            ErrorBox.showError("Error","Choose a dish that is in the menu");
+            checking++;
+        }
         if (checking==0) {
             name = name.toLowerCase().trim();
             int amount = Integer.valueOf(amountOfAddedItemTextField.getText());

@@ -115,6 +115,7 @@ public class WorkerInfoController implements Initializable {
             }
         });
         centerVBox.getChildren().add(4, modifyDataButton);
+
     }
 
     public void saveHours(ActionEvent actionEvent) {
